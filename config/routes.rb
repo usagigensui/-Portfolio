@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # topページ
-  root "homes#top"
+  root 'homes#top'
+  get 'about' => 'homes#about'
   # ログイン機能
   devise_for :users, skip: :all
   devise_scope :user do
