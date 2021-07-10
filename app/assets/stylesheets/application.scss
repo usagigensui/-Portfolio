@@ -26,6 +26,24 @@
   box-sizing: border-box;
 }
 
+
+// topページ
+.top {
+  // top画像
+  .top-image {
+    width: 100%;
+    height: 30rem;
+    margin: 2rem 0;
+  }
+
+  // nav
+  .nav {
+    li {
+      margin-top: 1rem;
+    }
+  }
+}
+
 // フッター
 .footer {
   width: 100%;
