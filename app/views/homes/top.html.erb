@@ -15,19 +15,28 @@
           Mine Pageとは？
         <% end %>
       </li>
-      <!--会員登録ページへのリンク-->
+      <!--会員登録ボタン-->
       <li class="nav-item">
-        <%= link_to "", class: "btn btn-outline-secondary btn-lg nav-link" do %>
+        <%= link_to new_user_registration_path, class: "btn btn-outline-secondary btn-lg nav-link", "data-toggle": "modal", "data-target": "#signupModal" do %>
           アカウント作成
         <% end %>
       </li>
-      <!--ログインページへのリンク-->
+      <!--会員登録モーダルの立ち上げ-->
+      <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <%= render "devise/registrations/form", user: @user %>
+      </div>
+      <!--ログインボタン-->
       <li class="nav-item">
-        <%= link_to "", class: "btn btn-outline-secondary btn-lg nav-link" do %>
+        <%= link_to new_user_session_path, class: "btn btn-outline-secondary btn-lg nav-link", "data-toggle": "modal", "data-target": "#loginModal" do %>
           ログイン
         <% end %>
       </li>
+      <!--ログインモーダルの立ち上げ-->
+      <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <%= render "devise/sessions/form", user: @user %>
+      </div>
     </ul>
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
   </div>
 </nav>
 <!--フッター呼び出し-->
