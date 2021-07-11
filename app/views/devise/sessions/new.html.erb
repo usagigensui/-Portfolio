@@ -1,8 +1,11 @@
-<h2 class="pt-5">ログイン</h2>
+<!--ヘッダー呼び出し-->
+<%= render "layouts/header" %>
+<h2>ログイン</h2>
 
 <!--フォーム-->
 <%= form_with model: @user, url: user_session_path, local: true do |f| %>
   <!--エラーメッセージ-->
+  <%= flash[:notice] %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="mb-3">

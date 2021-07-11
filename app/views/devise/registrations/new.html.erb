@@ -1,7 +1,10 @@
-<h2 class="pt-5">アカウント作成</h2>
+<!--ヘッダー呼び出し-->
+<%= render "layouts/header" %>
+<h2>アカウント作成</h2>
 
 <!--フォーム-->
 <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+  <!--エラーメッセージ-->
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="mb-3">

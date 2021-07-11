@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   # topページ
   root 'homes#top'
+
+  # 説明ページ
   get 'about' => 'homes#about'
+
   # ログイン機能
   devise_for :users, skip: :all
   devise_scope :user do
@@ -11,4 +14,13 @@ Rails.application.routes.draw do
     get 'signup' => 'devise/registrations#new', as: :new_user_registration
     post 'signup' => 'devise/registrations#create', as: :user_registration
   end
+
+  # マイページ
+  get 'mypage' => 'users#show'
+  # get 'mypage/edit' => 'users#edit'
+  get 'mypage/alert' => 'users#alert'
+  patch 'withdraw' => 'users#withdraw'
+
+  # プロフィール
+  get ':cord' => 'profiles#new'
 end
