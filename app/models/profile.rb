@@ -1,6 +1,8 @@
 class Profile < ApplicationRecord
   belongs_to :user
+  has_many :posts, dependent: :destroy
 
+  # プロフィールコード、名前は空白禁止
   with_options presence: true do
     # プロフィールコードは一意で20文字以内とする
     validates :code, uniqueness: true, length: {maximum: 20}, format: { with: /\A[a-z0-9]+\z/ }

@@ -17,6 +17,9 @@
           <%= link_to "新しいプロフィールを作成", new_profile_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
+          <%= link_to "プロフィールを削除", profiles_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
           <%= link_to "退会する", mypage_alert_path, class: "nav-link" %>
         </li>
       </ul>
@@ -24,8 +27,8 @@
 
     <!--プロフィール一覧-->
     <main class="col-md-8 row">
-      <% @user.profile.each do |profile| %>
-        <%= link_to profile_path(profile), class: "col-md-4" do %>
+      <% @user.profiles.each do |profile| %>
+        <%= link_to profile_path(profile.id), class: "col-md-4" do %>
             <div class="card">
               <%= attachment_image_tag profile, :image, class: "card-img-top", fallback: "cat.png" %>
               <div class="card-body">

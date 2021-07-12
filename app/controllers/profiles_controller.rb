@@ -1,8 +1,25 @@
 class ProfilesController < ApplicationController
+  # show以外はログインユーザーのみ許可
+  before_action :authenticate_user!, except: [:show]
+
+  # プロフィールページ
+  def show
+    @profile = Profile.find(params[:id])
+  end
+
+  # タイムライン
+  def timeline
+    @profile = Profile.find(params[:id])
+    @posts = @profile.posts
+    @post = Post.new
+  end
+
+  # プロフィール作成フォーム
   def new
     @profile = Profile.new
   end
 
+  # プロフィールを新規作成
   def create
     @profile = Profile.new(profile_params)
     @profile.user_id = current_user.id
@@ -13,10 +30,19 @@ class ProfilesController < ApplicationController
     end
   end
 
+  # プロフィール編集フォーム
   def edit
     @profile = Profile.find(params[:id])
+    # プロフィールオーナー=ログインユーザーの場合
+    if @profile.user == current_user
+      render "efit"
+    # プロフィールオーナー≠ログインユーザーの場合
+    else
+      redirect_to root_path
+    end
   end
 
+  # プロフィールへの編集を保存
   def update
     @profile = Profile.find(params[:id])
     if @profile.update(profile_params)
@@ -26,15 +52,17 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def show
-    @profile = Profile.find(params[:id])
+  # プロフィール一覧(削除ページ)
+  def index
+    @profiles = current_user.profiles
   end
 
-  # def destroy
-  #   @profile = Profile.find(params[:id])
-  #   @profile.destroy
-  #   redirect_to mypage_path
-  # end
+  # プロフィールを削除
+  def destroy
+    @profile = Profile.find(params[:id])
+    @profile.destroy
+    redirect_to mypage_path
+  end
 
   private
 

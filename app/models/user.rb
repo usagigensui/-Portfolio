@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :profile, dependent: :destroy
+  has_many :profiles, dependent: :destroy
 
   # バリデーション・パスワードは半角英数字のみ
   validates :password, format: { with: /\A[a-zA-Z0-9]+\z/  }

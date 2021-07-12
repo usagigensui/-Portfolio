@@ -1,0 +1,20 @@
+<nav>
+  <ul class="nav justify-content-end">
+    <!--ログインユーザーがプロフィールオーナーの場合-->
+    <% if current_user.id == profile.user_id %>
+      <li class="nav-item">
+        <%= link_to "編集する", edit_profile_path, class: "nav-link" %>
+      </li>
+    <% end %>
+    <li class="nav-item">
+        <%= link_to "ソーシャル", "", class: "nav-link active" %>
+    </li>
+  </ul>
+</nav>
+<!--フラッシュメッセージ-->
+<%= flash[:notice] %>
+<%= flash[:error] %>
+
+<%=attachment_image_tag @profile, :image, class: "profile-icon", fallback: "cat.png" %>
+<%= profile.name %>
+<%= profile.introduction %>

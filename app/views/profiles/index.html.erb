@@ -1,0 +1,27 @@
+<!--ヘッダー呼び出し-->
+<%= render "layouts/header" %>
+
+<!--プロフィール一覧-->
+<table class="table">
+  <thead>
+    <tr>
+      <th>コード</th>
+      <th>名前</th>
+      <th>自己紹介</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @profiles.each do |profile| %>
+    <tr>
+      <th><%= profile.code %></th>
+      <td><%= profile.name %></td>
+      <td><%= profile.introduction.truncate(20) %></td>
+      <td><%= link_to "削除", profile_path(profile.id), method: :delete, "data-confirm" => "削除すると元に戻すことはできません。本当に削除しますか？" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!--フッター呼び出し-->
+<%= render "layouts/footer" %>
