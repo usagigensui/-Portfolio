@@ -11,6 +11,15 @@ ja:
               blank: "が入力されていません。"
               invalid: "は半角英数字６文字以上で入力してください。"
               too_short: "は半角英数字６文字以上で入力してください。"
+        profile:
+          attributes:
+            code:
+              blank: "が入力されていません。"
+              taken: "はすでに使用されています。別のコードを指定してください。"
+              invalid: "は半角小文字英数字20文字以内で入力してください。"
+            name:
+              blank: "が入力されていません。"
+              invalid: "は20文字以内で入力してください。"
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
     attributes:
@@ -20,8 +29,12 @@ ja:
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"
+      profile:
+        code: "プロフィールコード"
+        name: "名前"
     models:
       user: "ユーザ"
+      profile: "プロフィール"
   devise:
     confirmations:
       new:

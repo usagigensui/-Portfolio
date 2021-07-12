@@ -5,7 +5,7 @@
 <!--フォーム-->
 <%= form_with model: @user, url: user_session_path, local: true do |f| %>
   <!--エラーメッセージ-->
-  <%= flash[:notice] %>
+  <%= flash[:error] %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="mb-3">

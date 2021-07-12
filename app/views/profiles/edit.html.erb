@@ -1,9 +1,6 @@
 <!--ヘッダー呼び出し-->
 <%= render "layouts/header" %>
-<h2>マイページ</h2>
-
-<%= @user.email %>
-<%= link_to "退会する", mypage_alert_path %>
-
+<!--プロフィール作成・編集フォーム呼び出し-->
+<%= render "profiles/form", profile: @profile %>
 <!--フッター呼び出し-->
 <%= render "layouts/footer" %>

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   # マイページ
-  def show
+  def mypage
     @user = current_user
   end
 

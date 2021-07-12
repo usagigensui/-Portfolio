@@ -29,8 +29,8 @@ class Users::SessionsController < Devise::SessionsController
     if @user
       # 退会ユーザーのアドレスでパスワードが一致していた場合
       if (@user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == false))
-        redirect_to new_user_session_path
         flash[:error] = "退会済みです。"
+        redirect_to new_user_session_path
       end
     # パスワードに誤りがあった場合
     else

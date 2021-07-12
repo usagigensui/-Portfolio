@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'posts/new'
+  get 'posts/create'
+  get 'posts/edit'
+  get 'posts/update'
+  get 'posts/destroy'
   # topページ
   root 'homes#top'
 
@@ -16,11 +21,11 @@ Rails.application.routes.draw do
   end
 
   # マイページ
-  get 'mypage' => 'users#show'
+  get 'mypage' => 'users#mypage'
   # get 'mypage/edit' => 'users#edit'
   get 'mypage/alert' => 'users#alert'
   patch 'withdraw' => 'users#withdraw'
 
   # プロフィール
-  get ':cord' => 'profiles#new'
+  resources :profiles
 end

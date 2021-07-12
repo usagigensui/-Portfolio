@@ -1,0 +1,45 @@
+<!--ヘッダー呼び出し-->
+<%= render "layouts/header" %>
+
+<div class="mypage">
+  <h2>マイページ</h2>
+
+  <!--フラッシュメッセージ-->
+  <%= flash[:notice] %>
+
+  <p><%= @user.email %></p>
+
+  <div class="row">
+
+    <nav class="col-md-4">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <%= link_to "新しいプロフィールを作成", new_profile_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "退会する", mypage_alert_path, class: "nav-link" %>
+        </li>
+      </ul>
+    </nav>
+
+    <!--プロフィール一覧-->
+    <main class="col-md-8 row">
+      <% @user.profile.each do |profile| %>
+        <%= link_to profile_path(profile), class: "col-md-4" do %>
+            <div class="card">
+              <%= attachment_image_tag profile, :image, class: "card-img-top", fallback: "cat.png" %>
+              <div class="card-body">
+                <h5 class="card-title"><%= profile.name %></h5>
+                <p class="card-text"><%= profile.introduction.truncate(20) %></p>
+              </div>
+              <div class="card-footer text-muted">
+                <%= profile.updated_at %>
+              </div>
+            </div>
+        <% end %>
+      <% end %>
+    </main>
+  </div>
+</div>
+<!--フッター呼び出し-->
+<%= render "layouts/footer" %>

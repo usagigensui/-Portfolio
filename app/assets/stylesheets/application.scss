@@ -64,3 +64,46 @@
     }
   }
 }
+
+// マイページ
+.mypage {
+  // プロフィール一覧
+  .card-img-top {
+    height: 10rem;
+    object-fit: cover;
+  }
+}
+
+// プロフィール作成・編集ページ
+.profile-form {
+  // 必須項目の米印
+  .required {
+    color: #dc143c;
+  }
+
+  // 画像投稿ボタン・元のボタンを隠す
+  .item_image_btn {
+    display: none;
+  }
+
+  // 画像プレビュー
+  .image-preview {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #d3d3d3;
+  }
+}
+
+// プロフィールページ
+.profile {
+  // アイコン画像
+  .profile-icon {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #d3d3d3;
+  }
+}
