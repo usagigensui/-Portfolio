@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_12_120923) do
+ActiveRecord::Schema.define(version: 2021_07_13_051009) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "profile_id", null: false
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 2021_07_12_120923) do
     t.string "name", null: false
     t.text "introduction"
     t.string "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.integer "profile_id", null: false
+    t.string "title", null: false
+    t.text "body"
+    t.datetime "start_date", null: false
+    t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -14,6 +14,9 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require rails-ujs
+//= require jquery
+//= require moment
+//= require fullcalendar
 //= require activestorage
 //= require turbolinks
 //= require_tree .

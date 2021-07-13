@@ -13,7 +13,6 @@
     <%= form_with(model: [profile, post], url: posts_path, local: true) do |f| %>
       <div class="modal-body text-left">
         <div class="mb-3">
-          <%#= f.label :text, "", class: "form-label" %>
           <%= f.text_area :text, autofocus: true, autocomplete: "投稿内容", class: "form-control" %>
         </div>
       </div>

@@ -24,10 +24,12 @@ Rails.application.routes.draw do
   # プロフィール
   resources :profiles do
     member do
-      get :timeline
+      # タイムライン
+      get 'timeline' => 'posts#index'
+      resources :posts, except: [:new, :index, :show]
+      # カレンダー
+      resources :schedules, except: [:new]
     end
   end
 
-  # タイムライン
-  resources :posts, except: [:new, :show]
 end

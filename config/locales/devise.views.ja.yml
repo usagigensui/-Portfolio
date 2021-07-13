@@ -20,6 +20,12 @@ ja:
             name:
               blank: "が入力されていません。"
               invalid: "は20文字以内で入力してください。"
+        schedule:
+          attributes:
+            title:
+              blank: "が入力されていません。"
+            start_date:
+              blank: "が入力されていません。"
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
     attributes:
@@ -32,9 +38,13 @@ ja:
       profile:
         code: "プロフィールコード"
         name: "名前"
+      schedule:
+        title: "タイトル"
+        start_date: "開始日時"
     models:
       user: "ユーザ"
       profile: "プロフィール"
+      schedule: "スケジュールの予定"
   devise:
     confirmations:
       new:

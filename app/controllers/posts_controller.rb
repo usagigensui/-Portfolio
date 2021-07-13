@@ -1,11 +1,15 @@
 class PostsController < ApplicationController
-  # ログインユーザーのみ許可
-  before_action :authenticate_user!
+  # show以外はログインユーザーのみ許可
+  before_action :authenticate_user!, except: [:index]
   # プロフィールの特定
   before_action :set_profile
 
+  def index
+    @posts = @profile.posts
+    @post = Post.new
+  end
+
   def create
-    @profile = Profile.find(params[:profile_id])
     @post = Post.new(post_params)
     @post.profile_id = @profile.id
     if @post.save
@@ -26,14 +30,15 @@ class PostsController < ApplicationController
   def destroy
   end
 
+   # プロフィールの特定
+  def set_profile
+    @profile = Profile.find(params[:id])
+  end
+
   private
 
   def post_params
     params.require(:post).permit(:text)
   end
 
-  # プロフィールの特定
-  def set_profile
-    @profile = Profile.find(params[:profile_id])
-  end
 end

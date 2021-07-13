@@ -7,13 +7,6 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
   end
 
-  # タイムライン
-  def timeline
-    @profile = Profile.find(params[:id])
-    @posts = @profile.posts
-    @post = Post.new
-  end
-
   # プロフィール作成フォーム
   def new
     @profile = Profile.new
@@ -35,7 +28,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
     # プロフィールオーナー=ログインユーザーの場合
     if @profile.user == current_user
-      render "efit"
+      render "edit"
     # プロフィールオーナー≠ログインユーザーの場合
     else
       redirect_to root_path

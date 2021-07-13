@@ -1,6 +1,7 @@
 class Profile < ApplicationRecord
   belongs_to :user
   has_many :posts, dependent: :destroy
+  has_many :schedules, dependent: :destroy
 
   # プロフィールコード、名前は空白禁止
   with_options presence: true do
