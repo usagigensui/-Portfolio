@@ -2,7 +2,7 @@ class SchedulesController < ApplicationController
   # show以外はログインユーザーのみ許可
   before_action :authenticate_user!, except: [:index]
   # プロフィールの特定
-  before_action :set_profile
+  before_action :set_profile, except: [:destroy]
 
   def index
     @schedules = @profile.schedules
@@ -26,13 +26,12 @@ class SchedulesController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def destroy
+    @schedule = Schedule.find(params[:id])
+    @profile = @schedule.profile
+    @schedule.destroy
+    flash[:notice] = "投稿を削除しました。"
+    redirect_to schedules_path(@profile)
   end
 
    # プロフィールの特定

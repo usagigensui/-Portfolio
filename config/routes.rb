@@ -26,9 +26,9 @@ Rails.application.routes.draw do
     member do
       # タイムライン
       get 'timeline' => 'posts#index'
-      resources :posts, except: [:new, :index, :show]
+      resources :posts, except: [:new, :index, :show, :edit]
       # カレンダー
-      resources :schedules, except: [:new]
+      resources :schedules, except: [:new, :edit, :update]
     end
   end
 

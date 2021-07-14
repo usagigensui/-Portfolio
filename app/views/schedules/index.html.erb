@@ -50,13 +50,35 @@
   <% end %>
 
   <!--予定一覧-->
-  <% @schedules.each do |schedule| %>
-    <p>
-      <%= schedule.title %>
-      <%= schedule.start_date %><%= schedule.end_date %><br>
-      <%= simple_format(h(schedule.body)) %>
-    </p>
-  <% end %>
+    <ul class="list-group list-group-flush list-group-flush">
+    <% @schedules.each do |schedule| %>
+      <li class="list-group-item  d-flex justify-content-between align-items-center">
+        <span>
+          <%= l schedule.start_date, format: :long %>
+          <!--終了時刻に入力がある場合-->
+          <% if schedule.end_date.present? %>
+            <%= l schedule.end_date, format: :long %>
+          <% end %>
+          <%= schedule.title %>
+          <!--予定詳細に入力がある場合-->
+          <% if schedule.body.present? %>
+            <a class="and_more" data-toggle="collapse" href="#<%= "collapse" + schedule.id.to_s %>" role="button" aria-expanded="false" aria-controls="<%= "collapse" + schedule.id.to_s %>">
+              <i class="fas fa-caret-down"></i>
+            </a>
+          <% end %>
+        </span>
+        <!--削除ボタン-->
+        <%= link_to schedule_path(schedule), method: :delete, "data-confirm" => "投稿を削除しますか？" do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </li>
+      <div class="collapse mt-1" id="<%= "collapse" + schedule.id.to_s %>">
+        <div class="card card-body">
+          <%= safe_join(schedule.body.split("\n"), tag(:br)) %>
+        </div>
+      </div>
+    <% end %>
+    </ul>
 
   </section>
   <section class="col-md-5">
@@ -71,8 +93,8 @@
     $(document).ready(function() {
       $('#calendar').fullCalendar({
         events: "schedules.json",
-        // 日付マスを選択できない
-        selectable: false,
+        // 日付マスのリンクをしない
+        editable: false,
         // 時刻の表示はしない
         displayEventTime: false,
         // スクロールしない

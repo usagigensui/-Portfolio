@@ -36,7 +36,7 @@
                 <p class="card-text"><%= profile.introduction.truncate(20) %></p>
               </div>
               <div class="card-footer text-muted">
-                <%= profile.updated_at %>
+                <%= l profile.updated_at, format: :long %>
               </div>
             </div>
         <% end %>

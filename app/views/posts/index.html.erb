@@ -32,11 +32,9 @@
     <!--ログインユーザーがプロフィールオーナーの場合-->
     <% if current_user.id == @profile.user_id %>
     <!--新規投稿ボタン-->
-      <div class="">
-        <%= link_to "#", class: "", "data-toggle": "modal", "data-target": "#postModal" do %>
-          <i class="fas fa-plus"></i>
-        <% end %>
-      </div>
+      <%= link_to "#", class: "", "data-toggle": "modal", "data-target": "#postModal" do %>
+        <i class="fas fa-plus"></i>
+      <% end %>
       <!--新規投稿モーダルの立ち上げ-->
       <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-hidden="true">
         <%= render "posts/new", { profile: @profile, post: @post } %>
@@ -47,11 +45,35 @@
   <!--投稿がある場合-->
   <% if @profile.posts.present? %>
     <% @profile.posts.each do |post| %>
-      <p>
-      <%= simple_format(h(post.text)) %>
-      <%= post.created_at %>
-      <%= post.updated_at %>
-      </p>
+      <div class="card card-body mt-3">
+          <%= safe_join(post.text.split("\n"), tag(:br)) %>
+          <div class="text-right">
+
+            <!--ログインしている場合-->
+            <% if user_signed_in? %>
+              <!--ログインユーザーがプロフィールオーナーの場合-->
+              <% if current_user.id == @profile.user_id %>
+                <!--編集ボタン-->
+                <a data-toggle="modal", data-target="#<%= "editModal" + post.id.to_s %>">
+                  <i class="fas fa-pen-nib"></i>
+                </a>
+                <!--投稿編集モーダルの立ち上げ-->
+                <div class="modal fade" id="<%= "editModal" + post.id.to_s %>" tabindex="-1" role="dialog" aria-hidden="true">
+                  <%= render "posts/edit", { profile: @profile, post: post } %>
+                </div>
+                <!--削除ボタン-->
+                <%= link_to post_path(post), method: :delete, "data-confirm" => "投稿を削除しますか？" do %>
+                  <i class="fas fa-trash-alt"></i>
+                <% end %>
+              <% end %>
+            <% end %>
+            <%= l post.created_at, format: :long %>
+            <!--修正があった場合-->
+            <% if post.created_at != post.updated_at %>
+              updated at <%= l post.updated_at, format: :long %>
+            <% end %>
+          </div>
+      </div>
     <% end %>
   <!-- 投稿がない場合 -->
   <% else %>

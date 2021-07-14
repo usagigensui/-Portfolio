@@ -1,15 +1,15 @@
 class PostsController < ApplicationController
-  # show以外はログインユーザーのみ許可
+  # index以外はログインユーザーのみ許可
   before_action :authenticate_user!, except: [:index]
-  # プロフィールの特定
-  before_action :set_profile
 
   def index
+    @profile = Profile.find(params[:id])
     @posts = @profile.posts
     @post = Post.new
   end
 
   def create
+    @profile = Profile.find(params[:id])
     @post = Post.new(post_params)
     @post.profile_id = @profile.id
     if @post.save
@@ -21,18 +21,23 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      flash[:notice] = "投稿を修正しました。"
+      redirect_to timeline_profile_path(@post.profile.id)
+    else
+      flash[:error] = "投稿の修正に失敗しました。"
+      redirect_to timeline_profile_path(@post.profile.id)
+    end
   end
 
   def destroy
-  end
-
-   # プロフィールの特定
-  def set_profile
-    @profile = Profile.find(params[:id])
+    @post = Post.find(params[:id])
+    @profile = @post.profile
+    @post.destroy
+    flash[:notice] = "投稿を削除しました。"
+    redirect_to timeline_profile_path(@profile)
   end
 
   private
