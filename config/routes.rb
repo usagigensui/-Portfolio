@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   # プロフィール
   resources :profiles do
     member do
+      # コメント
+      resources :comments, except: [:new, :index, :show, :edit]
       # タイムライン
       get 'timeline' => 'posts#index'
       resources :posts, except: [:new, :index, :show, :edit]

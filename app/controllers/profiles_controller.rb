@@ -5,6 +5,7 @@ class ProfilesController < ApplicationController
   # プロフィールページ
   def show
     @profile = Profile.find(params[:id])
+    @comment = Comment.new
   end
 
   # プロフィール作成フォーム

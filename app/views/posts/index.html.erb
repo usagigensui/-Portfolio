@@ -44,7 +44,7 @@
 
   <!--投稿がある場合-->
   <% if @profile.posts.present? %>
-    <% @profile.posts.each do |post| %>
+    <% @posts.each do |post| %>
       <div class="card card-body mt-3">
           <%= safe_join(post.text.split("\n"), tag(:br)) %>
           <div class="text-right">

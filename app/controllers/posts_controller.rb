@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @profile = Profile.find(params[:id])
-    @posts = @profile.posts
+    @posts = @profile.posts.reverse_order
     @post = Post.new
   end
 

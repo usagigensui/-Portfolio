@@ -6,6 +6,8 @@ class SchedulesController < ApplicationController
 
   def index
     @schedules = @profile.schedules
+    @bygone_list = @schedules.where("schedules.start_date < ?", DateTime.now).reorder(:start)
+    @future_list = @schedules.where("schedules.start_date > ?", DateTime.now).reorder(:start)
     @schedule = Schedule.new
   end
 
