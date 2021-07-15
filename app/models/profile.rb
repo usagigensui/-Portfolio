@@ -3,6 +3,7 @@ class Profile < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :schedules, dependent: :destroy
+  has_many :inquiries, dependent: :destroy
 
   # プロフィールコード、名前は空白禁止
   with_options presence: true do

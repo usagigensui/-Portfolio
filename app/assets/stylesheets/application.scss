@@ -27,6 +27,11 @@
   box-sizing: border-box;
 }
 
+// 必須項目の米印
+.required {
+  color: #dc143c;
+}
+
 // ヘッダー
 .header {
   margin-bottom: 2rem;
@@ -77,11 +82,6 @@
 
 // プロフィール作成・編集ページ
 .profile-form {
-  // 必須項目の米印
-  .required {
-    color: #dc143c;
-  }
-
   // 画像投稿ボタン・元のボタンを隠す
   .item_image_btn {
     display: none;

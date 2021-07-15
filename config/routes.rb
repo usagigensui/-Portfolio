@@ -31,6 +31,13 @@ Rails.application.routes.draw do
       resources :posts, except: [:new, :index, :show, :edit]
       # カレンダー
       resources :schedules, except: [:new, :edit, :update]
+      # フォームメール
+      resources :inquiries, except: [:edit, :update, :show] do
+        member do
+          post :confirm
+          post :back
+        end
+      end
     end
   end
 

@@ -26,6 +26,14 @@ ja:
               blank: "が入力されていません。"
             start_date:
               blank: "が入力されていません。"
+        inquiry:
+          attributes:
+            sender:
+              blank: "が入力されていません。"
+            email:
+              blank: "が入力されていません。"
+            message:
+              blank: "が入力されていません。"
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
     attributes:
@@ -41,10 +49,15 @@ ja:
       schedule:
         title: "タイトル"
         start_date: "開始日時"
+      inquiry:
+        sender: "名前"
+        email: "メールアドレス"
+        message: "メッセージ"
     models:
       user: "ユーザ"
       profile: "プロフィール"
       schedule: "スケジュールの予定"
+      inquiry: "フォームメール"
   devise:
     confirmations:
       new:

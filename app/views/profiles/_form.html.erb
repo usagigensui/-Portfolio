@@ -7,21 +7,21 @@
     <!--エラーメッセージ-->
     <%= render "layouts/error", model: f.object %>
 
-    <div class="mb-3">
+    <div class="form-group mb-3">
       <%= f.label :code, "プロフィールコード", class: "form-label" %>
       <span class="small required"><i class="fas fa-asterisk"></i></span>
       <%= f.text_field :code, class: "form-control" %>
       <div class="small text-muted">プロフィールページのURLの末尾に使用します。半角小文字英数字で、20文字まで入力できます。</div>
     </div>
 
-    <div class="mb-3">
+    <div class="form-group mb-3">
       <%= f.label :name, "名前", class: "form-label" %>
       <span class="small required"><i class="fas fa-asterisk"></i></span>
       <%= f.text_field :name, class: "form-control" %>
       <div class="small text-muted">最大20文字まで入力できます。</div>
     </div>
 
-    <div class="mb-3">
+    <div class="form-group mb-3">
       <span class="mr-3">アイコン画像</span>
       <%= f.attachment_field :image, id: "file", class: "item_image_btn" %>
       <button type="button" class="btn btn-outline-info btn-sm" id="img_field" onClick="$('#file').click()" >画像を選択</button>
@@ -43,13 +43,13 @@
       });
     </script>
 
-    <div class="mb-3">
+    <div class="form-group mb-3">
       <%= f.label :introduction, "自己紹介", class: "form-label" %>
       <%= f.text_field :introduction, class: "form-control"%>
       <div class="small text-muted">最大160文字まで入力できます。</div>
     </div>
 
-    <div class="mb-3">
+    <div class="form-group mb-3">
       <%= f.submit "確定", class: "btn btn-outline-success" %>
     </div>
 

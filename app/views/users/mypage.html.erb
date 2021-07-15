@@ -28,18 +28,23 @@
     <!--プロフィール一覧-->
     <main class="col-md-8 row">
       <% @user.profiles.each do |profile| %>
-        <%= link_to profile_path(profile.id), class: "col-md-4" do %>
-            <div class="card">
-              <%= attachment_image_tag profile, :image, class: "card-img-top", fallback: "cat.png" %>
-              <div class="card-body">
-                <h5 class="card-title"><%= profile.name %></h5>
-                <p class="card-text"><%= profile.introduction.truncate(20) %></p>
-              </div>
-              <div class="card-footer text-muted">
-                <%= l profile.updated_at, format: :long %>
-              </div>
+        <div class="col-md-4">
+          <div class="card">
+             <%= link_to profile_path(profile.id) do %>
+            <%= attachment_image_tag profile, :image, class: "card-img-top", fallback: "cat.png" %>
+            <div class="card-body">
+              <h5 class="card-title"><%= profile.name %></h5>
+              <p class="card-text"><%= profile.introduction.truncate(20) %></p>
             </div>
-        <% end %>
+            <% end %>
+            <div class="card-footer text-muted">
+              <%= l profile.updated_at, format: :long %>
+              <%= link_to inquiries_path(profile.id) do %>
+                <i class="fas fa-envelope-open-text"></i>
+              <% end %>
+            </div>
+          </div>
+        </div>
       <% end %>
     </main>
   </div>
