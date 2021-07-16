@@ -74,3 +74,7 @@ gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem "dotenv-rails"
 gem 'byebug'
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
