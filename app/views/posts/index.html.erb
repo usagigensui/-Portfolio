@@ -11,17 +11,17 @@
       <% end %>
     </li>
     <li class="nav-item">
-      <%= link_to timeline_profile_path(@profile.id), class: "nav-link active" do %>
+      <%= link_to timeline_profile_path(@profile), class: "nav-link active" do %>
         <i class="far fa-clock"></i>
       <% end %>
     </li>
     <li class="nav-item">
-      <%= link_to schedules_path(@profile.id), class: "nav-link" do %>
+      <%= link_to schedules_path(@profile), class: "nav-link" do %>
         <i class="far fa-calendar-alt"></i>
       <% end %>
     </li>
     <li class="nav-item">
-      <%= link_to new_inquiry_path(@profile.id), class: "nav-link" do %>
+      <%= link_to new_inquiry_path(@profile), class: "nav-link" do %>
         <i class="far fa-envelope"></i>
       <% end %>
     </li>
@@ -62,7 +62,7 @@
                   <%= render "posts/edit", { profile: @profile, post: post } %>
                 </div>
                 <!--削除ボタン-->
-                <%= link_to post_path(post), method: :delete, "data-confirm" => "投稿を削除しますか？" do %>
+                <%= link_to post_path(@profile, post), method: :delete, "data-confirm" => "投稿を削除しますか？" do %>
                   <i class="fas fa-trash-alt"></i>
                 <% end %>
               <% end %>

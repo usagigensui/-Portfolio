@@ -3,15 +3,15 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @profile = Profile.find(params[:id])
+    @profile = Profile.find_by(code: params[:code])
     @comment = Comment.new(comment_params)
     @comment.profile_id = @profile.id
     if @comment.save
       flash[:notice] = "プロフィールコメントを追加しました。"
-      redirect_to profile_path(params[:id])
+      redirect_to profile_path(params[:code])
     else
       flash[:error] = "プロフィールコメントの追加に失敗しました。"
-      redirect_to profile_path(params[:id])
+      redirect_to profile_path(params[:code])
     end
   end
 
@@ -19,10 +19,10 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     if @comment.update(comment_params)
       flash[:notice] = "投稿を修正しました。"
-      redirect_to profile_path(@comment.profile.id)
+      redirect_to profile_path(@comment.profile)
     else
       flash[:error] = "投稿の修正に失敗しました。"
-      redirect_to profile_path(@comment.profile.id)
+      redirect_to profile_path(@comment.profile)
     end
   end
 

@@ -3,21 +3,21 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
-    @profile = Profile.find(params[:id])
+    @profile = Profile.find_by(code: params[:code])
     @posts = @profile.posts.reverse_order
     @post = Post.new
   end
 
   def create
-    @profile = Profile.find(params[:id])
+    @profile = Profile.find_by(code: params[:code])
     @post = Post.new(post_params)
     @post.profile_id = @profile.id
     if @post.save
       flash[:notice] = "タイムラインへ投稿しました。"
-      redirect_to timeline_profile_path(params[:id])
+      redirect_to timeline_profile_path(params[:code])
     else
       flash[:error] = "タイムラインへの投稿に失敗しました。"
-      redirect_to timeline_profile_path(params[:id])
+      redirect_to timeline_profile_path(params[:code])
     end
   end
 
@@ -25,10 +25,10 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     if @post.update(post_params)
       flash[:notice] = "投稿を修正しました。"
-      redirect_to timeline_profile_path(@post.profile.id)
+      redirect_to timeline_profile_path(@post.profile)
     else
       flash[:error] = "投稿の修正に失敗しました。"
-      redirect_to timeline_profile_path(@post.profile.id)
+      redirect_to timeline_profile_path(@post.profile)
     end
   end
 

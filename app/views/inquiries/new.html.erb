@@ -11,17 +11,17 @@
       <% end %>
     </li>
     <li class="nav-item">
-      <%= link_to timeline_profile_path(@profile.id), class: "nav-link" do %>
+      <%= link_to timeline_profile_path(@profile), class: "nav-link" do %>
         <i class="far fa-clock"></i>
       <% end %>
     </li>
     <li class="nav-item">
-      <%= link_to schedules_path(@profile.id), class: "nav-link" do %>
+      <%= link_to schedules_path(@profile), class: "nav-link" do %>
         <i class="far fa-calendar-alt"></i>
       <% end %>
     </li>
     <li class="nav-item">
-      <%= link_to new_inquiry_path(@profile.id), class: "nav-link active" do %>
+      <%= link_to new_inquiry_path(@profile), class: "nav-link active" do %>
         <i class="far fa-envelope"></i>
       <% end %>
     </li>
@@ -31,7 +31,7 @@
   <p><span class="small required"><i class="fas fa-asterisk"></i></span>は必須項目です。</p>
 
   <!--メール送信フォーム-->
-  <%= form_with(model: [@profile, @inquiry], url: confirm_inquiry_path(@profile.id), local: true) do |f| %>
+  <%= form_with(model: [@profile, @inquiry], url: confirm_inquiries_path(@profile), local: true) do |f| %>
 
     <!--エラーメッセージ-->
     <%= render "layouts/error", model: f.object %>

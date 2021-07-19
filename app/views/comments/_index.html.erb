@@ -20,7 +20,7 @@
               <%= render "comments/edit", { profile: profile, comment: comment } %>
             </div>
             <!--削除ボタン-->
-            <%= link_to comment_path(comment), method: :delete, "data-confirm" => "投稿を削除しますか？" do %>
+            <%= link_to comment_path(profile, comment), method: :delete, "data-confirm" => "投稿を削除しますか？" do %>
               <i class="fas fa-trash-alt"></i>
             <% end %>
           </div>

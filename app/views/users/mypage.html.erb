@@ -30,7 +30,7 @@
       <% @user.profiles.each do |profile| %>
         <div class="col-md-4">
           <div class="card">
-             <%= link_to profile_path(profile.id) do %>
+             <%= link_to profile_path(profile.code) do %>
             <%= attachment_image_tag profile, :image, class: "card-img-top", fallback: "cat.png" %>
             <div class="card-body">
               <h5 class="card-title"><%= profile.name %></h5>
@@ -39,8 +39,8 @@
             <% end %>
             <div class="card-footer text-muted">
               <%= l profile.updated_at, format: :long %>
-              <%= link_to inquiries_path(profile.id) do %>
-                <i class="fas fa-envelope-open-text"></i>
+              <%= link_to inquiries_path(profile) do %>
+                <i class="far fa-envelope"></i>
               <% end %>
             </div>
           </div>

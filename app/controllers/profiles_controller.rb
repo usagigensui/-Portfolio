@@ -1,10 +1,11 @@
 class ProfilesController < ApplicationController
   # show以外はログインユーザーのみ許可
   before_action :authenticate_user!, except: [:show]
+  # プロフィールの特定
+  before_action :set_profile, except: [:new, :create, :index]
 
   # プロフィールページ
   def show
-    @profile = Profile.find(params[:id])
     @comment = Comment.new
   end
 
@@ -26,7 +27,6 @@ class ProfilesController < ApplicationController
 
   # プロフィール編集フォーム
   def edit
-    @profile = Profile.find(params[:id])
     # プロフィールオーナー=ログインユーザーの場合
     if @profile.user == current_user
       render "edit"
@@ -38,7 +38,6 @@ class ProfilesController < ApplicationController
 
   # プロフィールへの編集を保存
   def update
-    @profile = Profile.find(params[:id])
     if @profile.update(profile_params)
       redirect_to mypage_path
     else
@@ -53,9 +52,13 @@ class ProfilesController < ApplicationController
 
   # プロフィールを削除
   def destroy
-    @profile = Profile.find(params[:id])
     @profile.destroy
     redirect_to mypage_path
+  end
+
+   # プロフィールの特定
+  def set_profile
+    @profile = Profile.find_by(code: params[:code])
   end
 
   private

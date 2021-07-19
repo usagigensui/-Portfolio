@@ -18,8 +18,8 @@ class Profile < ApplicationRecord
   # image_idに画像投稿機能を追加
   attachment :image
 
-  # URLのIDをコードに
-  # def to_param
-  #   cord
-  # end
+  # URLのIDをプロフィールコードに
+  def to_param
+    code
+  end
 end

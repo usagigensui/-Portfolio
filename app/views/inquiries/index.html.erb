@@ -30,7 +30,7 @@
           </td>
         <td>
           <!--削除ボタン-->
-          <%= link_to inquiry_path(inquiry), method: :delete, "data-confirm" => "メールを削除しますか？" do %>
+          <%= link_to inquiry_path(@profile, inquiry), method: :delete, "data-confirm" => "メールを削除しますか？" do %>
             <i class="fas fa-trash-alt"></i>
           <% end %>
         </td>

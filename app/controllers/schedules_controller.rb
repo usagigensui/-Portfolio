@@ -1,13 +1,18 @@
 class SchedulesController < ApplicationController
-  # show以外はログインユーザーのみ許可
-  before_action :authenticate_user!, except: [:index]
+  # index、completed以外はログインユーザーのみ許可
+  before_action :authenticate_user!, except: [:index, :completed]
   # プロフィールの特定
   before_action :set_profile, except: [:destroy]
 
   def index
     @schedules = @profile.schedules
-    @bygone_list = @schedules.where("schedules.start_date < ?", DateTime.now).reorder(:start)
-    @future_list = @schedules.where("schedules.start_date > ?", DateTime.now).reorder(:start)
+    @waiting_schedules = @schedules.where("(start_date > ?) or (end_date > ?)", DateTime.now, DateTime.now)
+    @schedule = Schedule.new
+  end
+
+  def completed
+    @schedules = @profile.schedules
+    @completed_schedules = @schedules.where("(start_date < ?) or (end_date < ?)", DateTime.now, DateTime.now)
     @schedule = Schedule.new
   end
 
@@ -20,7 +25,7 @@ class SchedulesController < ApplicationController
     @schedule.profile_id = @profile.id
     if @schedule.save
       flash[:notice] = "予定を追加しました。"
-      redirect_to schedules_path(params[:id])
+      redirect_to schedules_path(params[:code])
     else
       flash[:error] = "予定の追加に失敗しました。"
       @schedules = @profile.schedules
@@ -38,7 +43,7 @@ class SchedulesController < ApplicationController
 
    # プロフィールの特定
   def set_profile
-    @profile = Profile.find(params[:id])
+    @profile = Profile.find_by(code: params[:code])
   end
 
   private
