@@ -7,11 +7,13 @@ class InquiriesController < ApplicationController
   # フォームメール作成ページ
   def new
     @inquiry = Inquiry.new
+    @link = Link.new
   end
 
   # 入力内容確認ページ
   def confirm
     @inquiry = Inquiry.new(inquiry_params)
+    @link = Link.new
   end
 
   # 作成ページに戻る

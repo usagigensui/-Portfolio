@@ -1,6 +1,6 @@
 <div class="profile">
   <!--ヘッダー呼び出し-->
-  <%= render "profiles/header", profile: @profile %>
+  <%= render "profiles/header", { profile: @profile, links: @links } %>
 
   <!--タブメニュー-->
   <nav>
@@ -54,7 +54,7 @@
               <!--ログインユーザーがプロフィールオーナーの場合-->
               <% if current_user.id == @profile.user_id %>
                 <!--編集ボタン-->
-                <a data-toggle="modal", data-target="#<%= "editModal" + post.id.to_s %>">
+                <a data-toggle="modal" data-target="#<%= "editModal" + post.id.to_s %>" href="#">
                   <i class="fas fa-pen-nib"></i>
                 </a>
                 <!--投稿編集モーダルの立ち上げ-->

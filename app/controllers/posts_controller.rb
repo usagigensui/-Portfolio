@@ -2,12 +2,15 @@ class PostsController < ApplicationController
   # index以外はログインユーザーのみ許可
   before_action :authenticate_user!, except: [:index]
 
+  # タイムライン
   def index
     @profile = Profile.find_by(code: params[:code])
     @posts = @profile.posts.reverse_order
     @post = Post.new
+    @link = Link.new
   end
 
+  # 新規投稿
   def create
     @profile = Profile.find_by(code: params[:code])
     @post = Post.new(post_params)
@@ -21,6 +24,7 @@ class PostsController < ApplicationController
     end
   end
 
+  # 投稿を編集
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
@@ -32,6 +36,7 @@ class PostsController < ApplicationController
     end
   end
 
+  # 投稿を削除
   def destroy
     @post = Post.find(params[:id])
     @profile = @post.profile

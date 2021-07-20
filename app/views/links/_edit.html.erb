@@ -2,7 +2,7 @@
   <div class="modal-content">
 
     <div class="modal-header">
-      <h2 class="modal-title">投稿を修正</h2>
+      <h2 class="modal-title">リンクを編集</h2>
       <!--閉じるボタン-->
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -10,15 +10,15 @@
     </div>
 
     <!--フォーム-->
-    <%= form_with(model: [profile, comment], url: comment_path(profile.code, comment.id), local: true) do |f| %>
+    <%= form_with(model: [profile, link], url: link_path(profile.code, link.id), local: true) do |f| %>
       <div class="modal-body text-left">
-        <div class="mb-3">
-          <%= f.label :title, "タイトル" %>
-          <%= f.text_field :title, autofocus: true, autocomplete: "タイトル", class: "form-control" %>
+        <div class="form-group mb-3">
+          <%= f.label :url, "URL" %>
+          <%= f.text_field :url, autofocus: true, autocomplete: "https://minepage.com", class: "form-control" %>
         </div>
-        <div class="mb-3">
-          <%= f.label :text, "内容" %>
-          <%= f.text_area :text, autofocus: true, autocomplete: "コメント内容", class: "form-control" %>
+        <div class="form-group mb-3">
+          <%= f.label :category, "カテゴリー" %>
+          <%= f.select :category, Link.categories.keys, {prompt: "選択してください"}, class: "custom-select" %>
         </div>
       </div>
 

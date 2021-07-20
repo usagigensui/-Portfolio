@@ -1,48 +1,56 @@
-<!--コメント一覧-->
-<% profile.comments.each do |comment| %>
-  <div class="card mt-3">
-    <div class="card-header">
-      <%= comment.title %>
-    </div>
-    <div class="card-body">
-      <%= safe_join(comment.text.split("\n"), tag(:br)) %>
-      <!--ログインしている場合-->
-      <% if user_signed_in? %>
-        <!--ログインユーザーがプロフィールオーナーの場合-->
-        <% if current_user.id == profile.user_id %>
-          <div class="text-right">
-            <!--編集ボタン-->
-            <a data-toggle="modal", data-target="#<%= "editModal" + comment.id.to_s %>">
-              <i class="fas fa-pen-nib"></i>
-            </a>
-            <!--コメント編集モーダルの立ち上げ-->
-            <div class="modal fade" id="<%= "editModal" + comment.id.to_s %>" tabindex="-1" role="dialog" aria-hidden="true">
-              <%= render "comments/edit", { profile: profile, comment: comment } %>
-            </div>
-            <!--削除ボタン-->
-            <%= link_to comment_path(profile, comment), method: :delete, "data-confirm" => "投稿を削除しますか？" do %>
-              <i class="fas fa-trash-alt"></i>
-            <% end %>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-<% end %>
-
 <!--ログインしている場合-->
 <% if user_signed_in? %>
   <!--ログインユーザーがプロフィールオーナーの場合-->
   <% if current_user.id == profile.user_id %>
-    <div class="text-center">
-      <!--新規投稿ボタン-->
-      <%= link_to "#", class: "", "data-toggle": "modal", "data-target": "#postModal" do %>
-        <i class="fas fa-plus"></i>
-      <% end %>
-      <!--新規投稿モーダルの立ち上げ-->
-      <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <%= render "comments/new", { profile: profile, comment: comment } %>
+    <!--新規投稿ボタン-->
+    <%= link_to "#", class: "", "data-toggle": "modal", "data-target": "#postModal" do %>
+      <i class="fas fa-plus"></i>
+    <% end %>
+    <!--新規投稿モーダルの立ち上げ-->
+    <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <%= render "comments/new", { profile: profile, comment: comment } %>
+    </div>
+  <% end %>
+<% end %>
+
+<!--コメントがある場合-->
+<% if profile.comments.present? %>
+
+  <!--コメント一覧-->
+  <% profile.comments.each do |comment| %>
+    <div class="card mt-3">
+      <div class="card-header">
+        <%= comment.title %>
+      </div>
+      <div class="card-body">
+        <%= safe_join(comment.text.split("\n"), tag(:br)) %>
+        <!--ログインしている場合-->
+        <% if user_signed_in? %>
+          <!--ログインユーザーがプロフィールオーナーの場合-->
+          <% if current_user.id == profile.user_id %>
+            <div class="text-right">
+              <!--編集ボタン-->
+              <a data-toggle="modal", data-target="#<%= "editModal" + comment.id.to_s %>" href="#">
+                <i class="fas fa-pen-nib"></i>
+              </a>
+              <!--コメント編集モーダルの立ち上げ-->
+              <div class="modal fade" id="<%= "editModal" + comment.id.to_s %>" tabindex="-1" role="dialog" aria-hidden="true">
+                <%= render "comments/edit", { profile: profile, comment: comment } %>
+              </div>
+              <!--削除ボタン-->
+              <%= link_to comment_path(profile, comment), method: :delete, "data-confirm" => "投稿を削除しますか？" do %>
+                <i class="fas fa-trash-alt"></i>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
   <% end %>
+
+<!-- コメントがない場合 -->
+<% else %>
+  <div>
+    <p>プロフィールコメントはありません。</p>
+  </div>
 <% end %>

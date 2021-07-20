@@ -1,6 +1,6 @@
 <div class="profile">
   <!--ヘッダー呼び出し-->
-    <%= render "profiles/header", profile: @profile %>
+  <%= render "profiles/header", { profile: @profile, links: @links } %>
 
   <!--タブメニュー-->
   <nav>
@@ -56,7 +56,11 @@
       </li>
     </ul>
   </nav>
-  <!--予定一覧-->
+
+  <!--予定がある場合-->
+  <% if @waiting_schedules.present? %>
+
+    <!--予定一覧-->
     <ul class="list-group list-group-flush list-group-flush">
     <% @waiting_schedules.each do |schedule| %>
       <li class="list-group-item  d-flex justify-content-between align-items-center">
@@ -92,6 +96,13 @@
       </div>
     <% end %>
     </ul>
+
+  <!-- 予定がない場合 -->
+  <% else %>
+    <div>
+      <p>予定はありません。</p>
+    </div>
+  <% end %>
 
   </section>
   <section class="col-md-5">

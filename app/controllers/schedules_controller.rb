@@ -4,22 +4,23 @@ class SchedulesController < ApplicationController
   # プロフィールの特定
   before_action :set_profile, except: [:destroy]
 
+  # 予定一覧ページ
   def index
     @schedules = @profile.schedules
     @waiting_schedules = @schedules.where("(start_date > ?) or (end_date > ?)", DateTime.now, DateTime.now)
     @schedule = Schedule.new
+    @link = Link.new
   end
 
+  # 終了した予定一覧ページ
   def completed
     @schedules = @profile.schedules
     @completed_schedules = @schedules.where("(start_date < ?) or (end_date < ?)", DateTime.now, DateTime.now)
     @schedule = Schedule.new
+    @link = Link.new
   end
 
-  def new
-    @schedule = Schedule.new
-  end
-
+  # 新規予定作成
   def create
     @schedule = Schedule.new(schedule_params)
     @schedule.profile_id = @profile.id
@@ -33,6 +34,7 @@ class SchedulesController < ApplicationController
     end
   end
 
+  # 予定削除
   def destroy
     @schedule = Schedule.find(params[:id])
     @profile = @schedule.profile

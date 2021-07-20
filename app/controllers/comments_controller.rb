@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   # ログインユーザーのみ許可
   before_action :authenticate_user!
 
+  # 自己紹介コメントを新規作成
   def create
     @profile = Profile.find_by(code: params[:code])
     @comment = Comment.new(comment_params)
@@ -15,6 +16,7 @@ class CommentsController < ApplicationController
     end
   end
 
+  # 自己紹介コメントを編集
   def update
     @comment = Comment.find(params[:id])
     if @comment.update(comment_params)
@@ -26,6 +28,7 @@ class CommentsController < ApplicationController
     end
   end
 
+  # 自己紹介コメントを削除
   def destroy
     @comment = Comment.find(params[:id])
     @profile = @comment.profile

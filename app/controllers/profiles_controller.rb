@@ -6,6 +6,7 @@ class ProfilesController < ApplicationController
 
   # プロフィールページ
   def show
+    @link = Link.new
     @comment = Comment.new
   end
 

@@ -4,11 +4,12 @@ class Profile < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :schedules, dependent: :destroy
   has_many :inquiries, dependent: :destroy
+  has_many :links, dependent: :destroy
 
   # プロフィールコード、名前は空白禁止
   with_options presence: true do
     # プロフィールコードは一意で20文字以内、アクション名と被らないこと
-    validates :code, uniqueness: true, length: {maximum: 20}, format: { with: /\A[a-z0-9]+\z/ }, exclusion: { in: ["new"] }
+    validates :code, uniqueness: true, length: {maximum: 20}, format: { with: /\A[a-z0-9]+\z/ }, exclusion: { in: ["new", "menu"] }
     # 名前は20文字以内
     validates :name, length: {maximum: 20}
   end
