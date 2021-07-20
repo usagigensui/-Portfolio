@@ -1,129 +1,127 @@
-<div class="profile">
-  <!--ヘッダー呼び出し-->
-  <%= render "profiles/header", { profile: @profile, links: @links } %>
+<!--ヘッダー呼び出し-->
+<%= render "profiles/header", profile: @profile %>
 
-  <!--タブメニュー-->
-  <nav>
-    <ul class="nav nav-tabs nav-fill">
-    <li class="nav-item">
-      <%= link_to profile_path, class: "nav-link" do %>
-        <i class="fas fa-paperclip"></i>
-      <% end %>
-    </li>
-    <li class="nav-item">
-      <%= link_to timeline_profile_path(@profile), class: "nav-link" do %>
-        <i class="far fa-clock"></i>
-      <% end %>
-    </li>
-    <li class="nav-item">
-      <%= link_to schedules_path(@profile), class: "nav-link active" do %>
-        <i class="far fa-calendar-alt"></i>
-      <% end %>
-    </li>
-    <li class="nav-item">
-      <%= link_to new_inquiry_path(@profile), class: "nav-link" do %>
-        <i class="far fa-envelope"></i>
-      <% end %>
-    </li>
-    </ul>
-  </nav>
+<!--タブメニュー-->
+<nav>
+  <ul class="nav nav-tabs nav-fill">
+  <li class="nav-item">
+    <%= link_to profile_path, class: "nav-link" do %>
+      <i class="fas fa-paperclip"></i>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to timeline_profile_path(@profile), class: "nav-link" do %>
+      <i class="far fa-clock"></i>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to schedules_path(@profile), class: "nav-link active" do %>
+      <i class="far fa-calendar-alt"></i>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to new_inquiry_path(@profile), class: "nav-link" do %>
+      <i class="far fa-envelope"></i>
+    <% end %>
+  </li>
+  </ul>
+</nav>
 
-  <div class="row">
-  <section class="col-md-7">
+<div class="row">
+<section class="col-md-7">
 
-  <nav>
-    <ul class="nav">
+<nav>
+  <ul class="nav">
+    <!--ログインしている場合-->
+    <% if user_signed_in? %>
+      <!--ログインユーザーがプロフィールオーナーの場合-->
+      <% if current_user.id == @profile.user_id %>
+      <!--新規投稿ボタン-->
+      <li class="nav-link">
+        <%= link_to "#", class: "", "data-toggle": "modal", "data-target": "#scheduleModal" do %>
+          <i class="fas fa-plus"></i>
+        <% end %>
+      </li>
+        <!--新規投稿モーダルの立ち上げ-->
+        <div id="scheduleModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+          <%= render "schedules/form", { profile: @profile, schedule: @schedule } %>
+        </div>
+      <% end %>
+    <% end %>
+    <li class="nav-link">
+    <%= link_to completed_schedules_path(@profile) do %>
+      <i class="fas fa-history"></i>
+    <% end %>
+    </li>
+  </ul>
+</nav>
+
+<!--予定がある場合-->
+<% if @waiting_schedules.present? %>
+
+  <!--予定一覧-->
+  <ul class="list-group list-group-flush list-group-flush">
+  <% @waiting_schedules.each do |schedule| %>
+    <li class="list-group-item  d-flex justify-content-between align-items-center">
+      <span>
+        <%= l schedule.start_date, format: :long %>
+        <!--終了時刻に入力がある場合-->
+        <% if schedule.end_date.present? %>
+          <%= l schedule.end_date, format: :long %>
+        <% end %>
+        <%= schedule.title %>
+        <!--予定詳細に入力がある場合-->
+        <% if schedule.body.present? %>
+          <a class="and_more" data-toggle="collapse" href="#<%= "collapse" + schedule.id.to_s %>" role="button" aria-expanded="false" aria-controls="<%= "collapse" + schedule.id.to_s %>">
+            <i class="fas fa-caret-down"></i>
+          </a>
+        <% end %>
+      </span>
       <!--ログインしている場合-->
       <% if user_signed_in? %>
         <!--ログインユーザーがプロフィールオーナーの場合-->
         <% if current_user.id == @profile.user_id %>
-        <!--新規投稿ボタン-->
-        <li class="nav-link">
-          <%= link_to "#", class: "", "data-toggle": "modal", "data-target": "#scheduleModal" do %>
-            <i class="fas fa-plus"></i>
-          <% end %>
-        </li>
-          <!--新規投稿モーダルの立ち上げ-->
-          <div id="scheduleModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-            <%= render "schedules/form", { profile: @profile, schedule: @schedule } %>
-          </div>
-        <% end %>
-      <% end %>
-      <li class="nav-link">
-      <%= link_to completed_schedules_path(@profile) do %>
-        <i class="fas fa-history"></i>
-      <% end %>
-      </li>
-    </ul>
-  </nav>
-
-  <!--予定がある場合-->
-  <% if @waiting_schedules.present? %>
-
-    <!--予定一覧-->
-    <ul class="list-group list-group-flush list-group-flush">
-    <% @waiting_schedules.each do |schedule| %>
-      <li class="list-group-item  d-flex justify-content-between align-items-center">
-        <span>
-          <%= l schedule.start_date, format: :long %>
-          <!--終了時刻に入力がある場合-->
-          <% if schedule.end_date.present? %>
-            <%= l schedule.end_date, format: :long %>
-          <% end %>
-          <%= schedule.title %>
-          <!--予定詳細に入力がある場合-->
-          <% if schedule.body.present? %>
-            <a class="and_more" data-toggle="collapse" href="#<%= "collapse" + schedule.id.to_s %>" role="button" aria-expanded="false" aria-controls="<%= "collapse" + schedule.id.to_s %>">
-              <i class="fas fa-caret-down"></i>
-            </a>
-          <% end %>
-        </span>
-        <!--ログインしている場合-->
-        <% if user_signed_in? %>
-          <!--ログインユーザーがプロフィールオーナーの場合-->
-          <% if current_user.id == @profile.user_id %>
-            <!--削除ボタン-->
-            <%= link_to schedule_path(@profile, schedule), method: :delete, "data-confirm" => "投稿を削除しますか？" do %>
-              <i class="fas fa-trash-alt"></i>
-            <% end %>
+          <!--削除ボタン-->
+          <%= link_to schedule_path(@profile, schedule), method: :delete, "data-confirm" => "投稿を削除しますか？" do %>
+            <i class="fas fa-trash-alt"></i>
           <% end %>
         <% end %>
-      </li>
-      <div class="collapse mt-1" id="<%= "collapse" + schedule.id.to_s %>">
-        <div class="card card-body">
-          <%= safe_join(schedule.body.split("\n"), tag(:br)) %>
-        </div>
+      <% end %>
+    </li>
+    <div class="collapse mt-1" id="<%= "collapse" + schedule.id.to_s %>">
+      <div class="card card-body">
+        <%= safe_join(schedule.body.split("\n"), tag(:br)) %>
       </div>
-    <% end %>
-    </ul>
-
-  <!-- 予定がない場合 -->
-  <% else %>
-    <div>
-      <p>予定はありません。</p>
     </div>
   <% end %>
+  </ul>
 
-  </section>
-  <section class="col-md-5">
-  <!--カレンダーの表示-->
-  <div id="calendar"></div>
-  </section>
-
-
+<!-- 予定がない場合 -->
+<% else %>
+  <div>
+    <p>予定はありません。</p>
   </div>
-  <!--Javascript(カレンダー)-->
-  <script>
-    $(document).ready(function() {
-      $('#calendar').fullCalendar({
-        events: "schedules.json",
-        // 日付マスのリンクをしない
-        editable: false,
-        // 時刻の表示はしない
-        displayEventTime: false,
-        // スクロールしない
-        contentHeight: 'auto'
-      })
-    });
-  </script>
+<% end %>
+
+</section>
+<section class="col-md-5">
+<!--カレンダーの表示-->
+<div id="calendar"></div>
+</section>
+
+
 </div>
+<!--Javascript(カレンダー)-->
+<script>
+  $(document).ready(function() {
+    $('#calendar').fullCalendar({
+      events: "schedules.json",
+      // 日付マスのリンクをしない
+      editable: false,
+      // 時刻の表示はしない
+      displayEventTime: false,
+      // スクロールしない
+      contentHeight: 'auto'
+    })
+  });
+</script>

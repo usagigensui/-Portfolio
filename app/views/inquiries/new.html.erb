@@ -1,67 +1,65 @@
-<div class="profile">
-  <!--ヘッダー呼び出し-->
-  <%= render "profiles/header", { profile: @profile, links: @links } %>
+<!--ヘッダー呼び出し-->
+<%= render "profiles/header", profile: @profile %>
 
-  <!--タブメニュー-->
-  <nav>
-    <ul class="nav nav-tabs nav-fill">
-    <li class="nav-item">
-      <%= link_to profile_path, class: "nav-link" do %>
-        <i class="fas fa-paperclip"></i>
-      <% end %>
-    </li>
-    <li class="nav-item">
-      <%= link_to timeline_profile_path(@profile), class: "nav-link" do %>
-        <i class="far fa-clock"></i>
-      <% end %>
-    </li>
-    <li class="nav-item">
-      <%= link_to schedules_path(@profile), class: "nav-link" do %>
-        <i class="far fa-calendar-alt"></i>
-      <% end %>
-    </li>
-    <li class="nav-item">
-      <%= link_to new_inquiry_path(@profile), class: "nav-link active" do %>
-        <i class="far fa-envelope"></i>
-      <% end %>
-    </li>
-    </ul>
-  </nav>
+<!--タブメニュー-->
+<nav>
+  <ul class="nav nav-tabs nav-fill">
+  <li class="nav-item">
+    <%= link_to profile_path, class: "nav-link" do %>
+      <i class="fas fa-paperclip"></i>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to timeline_profile_path(@profile), class: "nav-link" do %>
+      <i class="far fa-clock"></i>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to schedules_path(@profile), class: "nav-link" do %>
+      <i class="far fa-calendar-alt"></i>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to new_inquiry_path(@profile), class: "nav-link active" do %>
+      <i class="far fa-envelope"></i>
+    <% end %>
+  </li>
+  </ul>
+</nav>
 
-  <p><span class="small required"><i class="fas fa-asterisk"></i></span>は必須項目です。</p>
+<p><span class="small required"><i class="fas fa-asterisk"></i></span>は必須項目です。</p>
 
-  <!--メール送信フォーム-->
-  <%= form_with(model: [@profile, @inquiry], url: confirm_inquiries_path(@profile), local: true) do |f| %>
+<!--メール送信フォーム-->
+<%= form_with(model: [@profile, @inquiry], url: confirm_inquiries_path(@profile), local: true) do |f| %>
 
-    <!--エラーメッセージ-->
-    <%= render "layouts/error", model: f.object %>
+  <!--エラーメッセージ-->
+  <%= render "layouts/error", model: f.object %>
 
-    <div class="form-group mb-3">
-      <%= f.label :sender, "名前" %>
-      <span class="small required"><i class="fas fa-asterisk"></i></span>
-      <%= f.text_field :sender, autofocus: true, class: "form-control" %>
-    </div>
+  <div class="form-group mb-3">
+    <%= f.label :sender, "名前" %>
+    <span class="small required"><i class="fas fa-asterisk"></i></span>
+    <%= f.text_field :sender, autofocus: true, class: "form-control" %>
+  </div>
 
-    <div class="form-group mb-3">
-      <%= f.label :email, "メールアドレス" %>
-      <span class="small required"><i class="fas fa-asterisk"></i></span>
-      <%= f.email_field :email, class: "form-control" %>
-    </div>
+  <div class="form-group mb-3">
+    <%= f.label :email, "メールアドレス" %>
+    <span class="small required"><i class="fas fa-asterisk"></i></span>
+    <%= f.email_field :email, class: "form-control" %>
+  </div>
 
-    <div class="form-group mb-3">
-      <%= f.label :title, "件名" %>
-      <%= f.text_field :title, class: "form-control" %>
-    </div>
+  <div class="form-group mb-3">
+    <%= f.label :title, "件名" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
 
-    <div class="form-grou mb-3">
-      <%= f.label :message, "メッセージ" %>
-      <span class="small required"><i class="fas fa-asterisk"></i></span>
-      <%= f.text_area :message, class: "form-control" %>
-    </div>
+  <div class="form-grou mb-3">
+    <%= f.label :message, "メッセージ" %>
+    <span class="small required"><i class="fas fa-asterisk"></i></span>
+    <%= f.text_area :message, class: "form-control" %>
+  </div>
 
-    <div class="mb-3">
-      <%= f.submit '入力内容確認', class: "btn btn-outline-success" %>
-    </div>
-  <% end %>
+  <div class="mb-3">
+    <%= f.submit '入力内容確認', class: "btn btn-outline-success" %>
+  </div>
+<% end %>
 
-</div>

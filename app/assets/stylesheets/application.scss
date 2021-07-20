@@ -97,14 +97,11 @@
   }
 }
 
-// プロフィールページ
-.profile {
-  // アイコン画像
-  .profile-icon {
-    width: 7rem;
-    height: 7rem;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 1px solid #d3d3d3;
-  }
+// アイコン画像
+.profile-icon {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #d3d3d3;
 }
