@@ -40,7 +40,7 @@ class ProfilesController < ApplicationController
   # プロフィールへの編集を保存
   def update
     if @profile.update(profile_params)
-      redirect_to mypage_path
+      redirect_to profile_path(@profile)
     else
       render 'edit'
     end
