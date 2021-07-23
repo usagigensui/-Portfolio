@@ -1,13 +1,13 @@
 class SchedulesController < ApplicationController
   # index、completed以外はログインユーザーのみ許可
-  before_action :authenticate_user!, except: [:index, :completed]
+  before_action :authenticate_user!, except: %i[index completed]
   # プロフィールの特定
   before_action :set_profile, except: [:destroy]
 
   # 予定一覧ページ
   def index
     @schedules = @profile.schedules
-    @waiting_schedules = @schedules.where("(start_date > ?) or (end_date > ?)", DateTime.now, DateTime.now)
+    @waiting_schedules = @schedules.where('(start_date > ?) or (end_date > ?)', DateTime.now, DateTime.now)
     @schedule = Schedule.new
     @link = Link.new
   end
@@ -15,7 +15,7 @@ class SchedulesController < ApplicationController
   # 終了した予定一覧ページ
   def completed
     @schedules = @profile.schedules
-    @completed_schedules = @schedules.where("(start_date < ?) or (end_date < ?)", DateTime.now, DateTime.now)
+    @completed_schedules = @schedules.where('(start_date < ?) or (end_date < ?)', DateTime.now, DateTime.now)
     @schedule = Schedule.new
     @link = Link.new
   end
@@ -25,10 +25,10 @@ class SchedulesController < ApplicationController
     @schedule = Schedule.new(schedule_params)
     @schedule.profile_id = @profile.id
     if @schedule.save
-      flash[:notice] = "予定を追加しました。"
+      flash[:notice] = '予定を追加しました。'
       redirect_to schedules_path(params[:code])
     else
-      flash[:error] = "予定の追加に失敗しました。"
+      flash[:error] = '予定の追加に失敗しました。'
       @schedules = @profile.schedules
       render 'index'
     end
@@ -39,11 +39,11 @@ class SchedulesController < ApplicationController
     @schedule = Schedule.find(params[:id])
     @profile = @schedule.profile
     @schedule.destroy
-    flash[:notice] = "投稿を削除しました。"
+    flash[:notice] = '投稿を削除しました。'
     redirect_to schedules_path(@profile)
   end
 
-   # プロフィールの特定
+  # プロフィールの特定
   def set_profile
     @profile = Profile.find_by(code: params[:code])
   end

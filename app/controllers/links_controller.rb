@@ -8,24 +8,22 @@ class LinksController < ApplicationController
     @link = Link.new(link_params)
     @link.profile_id = @profile.id
     if @link.save
-      flash[:notice] = "リンクを追加しました。"
-      redirect_to profile_path(params[:code])
+      flash[:notice] = 'リンクを追加しました。'
     else
-      flash[:error] = "リンクの追加に失敗しました。"
-      redirect_to profile_path(params[:code])
+      flash[:error] = 'リンクの追加に失敗しました。'
     end
+    redirect_to profile_path(params[:code])
   end
 
   # リンクを編集
   def update
     @link = Link.find(params[:id])
     if @link.update(link_params)
-      flash[:notice] = "リンクを修正しました。"
-      redirect_to links_path(@link.profile)
+      flash[:notice] = 'リンクを修正しました。'
     else
-      flash[:error] = "リンクの修正に失敗しました。"
-      redirect_to links_path(@link.profile)
+      flash[:error] = 'リンクの修正に失敗しました。'
     end
+    redirect_to links_path(@link.profile)
   end
 
   # リンク一覧ページ
@@ -39,7 +37,7 @@ class LinksController < ApplicationController
     @link = Link.find(params[:id])
     @profile = @link.profile
     @link.destroy
-    flash[:notice] = "リンクを削除しました。"
+    flash[:notice] = 'リンクを削除しました。'
     redirect_to links_path(@link.profile)
   end
 

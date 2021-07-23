@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2021_07_20_071630) do
     t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_profiles_on_code", unique: true
   end
 
   create_table "schedules", force: :cascade do |t|

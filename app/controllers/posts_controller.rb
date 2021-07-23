@@ -16,24 +16,22 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.profile_id = @profile.id
     if @post.save
-      flash[:notice] = "タイムラインへ投稿しました。"
-      redirect_to timeline_profile_path(params[:code])
+      flash[:notice] = 'タイムラインへ投稿しました。'
     else
-      flash[:error] = "タイムラインへの投稿に失敗しました。"
-      redirect_to timeline_profile_path(params[:code])
+      flash[:error] = 'タイムラインへの投稿に失敗しました。'
     end
+    redirect_to timeline_profile_path(params[:code])
   end
 
   # 投稿を編集
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      flash[:notice] = "投稿を修正しました。"
-      redirect_to timeline_profile_path(@post.profile)
+      flash[:notice] = '投稿を修正しました。'
     else
-      flash[:error] = "投稿の修正に失敗しました。"
-      redirect_to timeline_profile_path(@post.profile)
+      flash[:error] = '投稿の修正に失敗しました。'
     end
+    redirect_to timeline_profile_path(@post.profile)
   end
 
   # 投稿を削除
@@ -41,7 +39,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @profile = @post.profile
     @post.destroy
-    flash[:notice] = "投稿を削除しました。"
+    flash[:notice] = '投稿を削除しました。'
     redirect_to timeline_profile_path(@profile)
   end
 
@@ -50,5 +48,4 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:text)
   end
-
 end

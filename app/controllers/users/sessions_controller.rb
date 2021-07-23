@@ -2,7 +2,7 @@
 
 class Users::SessionsController < Devise::SessionsController
   # 退会ユーザーのブロック
-  before_action :reject_user, only: [:create]
+  before_action :reject_user
 
   # before_action :configure_sign_in_params, only: [:create]
 
@@ -28,13 +28,13 @@ class Users::SessionsController < Devise::SessionsController
     @user = User.find_by(email: params[:user][:email].downcase)
     if @user
       # 退会ユーザーのアドレスでパスワードが一致していた場合
-      if (@user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == false))
-        flash[:error] = "退会済みです。"
+      if @user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == false)
+        flash[:error] = '退会済みです。'
         redirect_to new_user_session_path
       end
     # パスワードに誤りがあった場合
     else
-      flash[:error] = "必須項目を入力してください。"
+      flash[:error] = '必須項目を入力してください。'
       redirect_to new_user_session_path
     end
   end

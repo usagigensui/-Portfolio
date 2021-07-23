@@ -7,10 +7,10 @@ class User < ApplicationRecord
   has_many :profiles, dependent: :destroy
 
   # バリデーション・パスワードは半角英数字のみ
-  validates :password, format: { with: /\A[a-zA-Z0-9]+\z/  }
+  validates :password, format: { with: /\A[a-zA-Z0-9]+\z/ }
 
   # 有効ユーザーかどうかの検証
   def active_for_authentication?
-    super && (self.is_valid == true)
+    super && (is_valid == true)
   end
 end

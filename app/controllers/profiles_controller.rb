@@ -2,7 +2,7 @@ class ProfilesController < ApplicationController
   # show以外はログインユーザーのみ許可
   before_action :authenticate_user!, except: [:show]
   # プロフィールの特定
-  before_action :set_profile, except: [:new, :create, :index]
+  before_action :set_profile, except: %i[new create index]
 
   # プロフィールページ
   def show
@@ -30,7 +30,7 @@ class ProfilesController < ApplicationController
   def edit
     # プロフィールオーナー=ログインユーザーの場合
     if @profile.user == current_user
-      render "edit"
+      render 'edit'
     # プロフィールオーナー≠ログインユーザーの場合
     else
       redirect_to root_path
@@ -57,7 +57,7 @@ class ProfilesController < ApplicationController
     redirect_to mypage_path
   end
 
-   # プロフィールの特定
+  # プロフィールの特定
   def set_profile
     @profile = Profile.find_by(code: params[:code])
   end

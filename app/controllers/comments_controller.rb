@@ -8,24 +8,22 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.profile_id = @profile.id
     if @comment.save
-      flash[:notice] = "プロフィールコメントを追加しました。"
-      redirect_to profile_path(params[:code])
+      flash[:notice] = 'プロフィールコメントを追加しました。'
     else
-      flash[:error] = "プロフィールコメントの追加に失敗しました。"
-      redirect_to profile_path(params[:code])
+      flash[:error] = 'プロフィールコメントの追加に失敗しました。'
     end
+    redirect_to profile_path(params[:code])
   end
 
   # 自己紹介コメントを編集
   def update
     @comment = Comment.find(params[:id])
     if @comment.update(comment_params)
-      flash[:notice] = "投稿を修正しました。"
-      redirect_to profile_path(@comment.profile)
+      flash[:notice] = '投稿を修正しました。'
     else
-      flash[:error] = "投稿の修正に失敗しました。"
-      redirect_to profile_path(@comment.profile)
+      flash[:error] = '投稿の修正に失敗しました。'
     end
+    redirect_to profile_path(@comment.profile)
   end
 
   # 自己紹介コメントを削除
@@ -33,7 +31,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @profile = @comment.profile
     @comment.destroy
-    flash[:notice] = "投稿を削除しました。"
+    flash[:notice] = '投稿を削除しました。'
     redirect_to profile_path(@profile)
   end
 

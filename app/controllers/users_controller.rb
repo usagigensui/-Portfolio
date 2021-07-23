@@ -16,13 +16,16 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  #退会実行
+  # 退会実行
   def withdraw
     @user = current_user
-    # @user.update(is_valid: false)
-    @user.update_attribute(:is_valid, false)
-    reset_session
-    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
-    redirect_to root_path
+    if @user.update(is_valid: false)
+      reset_session
+      flash[:notice] = 'ありがとうございました。またのご利用を心よりお待ちしております。'
+      redirect_to root_path
+    else
+      flash[:error] = '退会処理に失敗しました。'
+      redirect_to mypage_path
+    end
   end
 end

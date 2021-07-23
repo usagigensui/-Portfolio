@@ -1,6 +1,6 @@
 class InquiriesController < ApplicationController
   # index、show、destroyはログインユーザーのみ許可
-  before_action :authenticate_user!, only: [:index, :show, :destroy]
+  before_action :authenticate_user!, only: %i[index destroy]
   # プロフィールの特定
   before_action :set_profile, except: [:destroy]
 
@@ -28,10 +28,10 @@ class InquiriesController < ApplicationController
     @inquiry.profile_id = @profile.id
     if @inquiry.save
       InquiryMailer.send_formmail(@profile, @inquiry).deliver_now
-      flash[:notice] = "メールを送信しました。"
+      flash[:notice] = 'メールを送信しました。'
       redirect_to new_inquiry_path(@profile)
     else
-      flash[:error] = "メールの送信に失敗しました。"
+      flash[:error] = 'メールの送信に失敗しました。'
       render 'new'
     end
   end
@@ -46,11 +46,11 @@ class InquiriesController < ApplicationController
     @inquiry = Inquiry.find(params[:id])
     @profile = @inquiry.profile
     @inquiry.destroy
-    flash[:notice] = "メールを削除しました。"
+    flash[:notice] = 'メールを削除しました。'
     redirect_to inquiries_path(@profile)
   end
 
-   # プロフィールの特定
+  # プロフィールの特定
   def set_profile
     @profile = Profile.find_by(code: params[:code])
   end
