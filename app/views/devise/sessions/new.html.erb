@@ -6,7 +6,8 @@
 <%= form_with model: @user, url: user_session_path, local: true do |f| %>
   <!--エラーメッセージ-->
   <%= flash[:error] %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= flash[:alert] %>
+  <%= flash[:notice] %>
 
   <div class="mb-3">
     <%= f.label :email, class: "form-label" %><br />
