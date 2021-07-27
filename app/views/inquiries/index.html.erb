@@ -6,45 +6,55 @@
 <!--フラッシュメッセージ-->
 <%= flash[:notice] %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th style="width: 15%">受信日時</th>
-      <th style="width: 10%">送信者</th>
-      <th style="width: 25%">メールアドレス</th>
-      <th style="width: 45%">件名</th>
-      <th style="width: 5%"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @inquiries.each do |inquiry| %>
+<!--受信メールがある場合-->
+<% if @inquiries.present? %>
+
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= l inquiry.created_at, format: :long %></td>
-        <td><%= inquiry.sender %></td>
-        <td><%= inquiry.email %></td>
-        <td>
-          <%= inquiry.title %>
-          <a class="and_more" data-toggle="collapse" href="#<%= "collapse" + inquiry.id.to_s %>" role="button" aria-expanded="false" aria-controls="<%= "collapse" + inquiry.id.to_s %>">
-              <i class="fas fa-caret-down"></i>
-          </a>
+        <th style="width: 15%">受信日時</th>
+        <th style="width: 10%">送信者</th>
+        <th style="width: 25%">メールアドレス</th>
+        <th style="width: 45%">件名</th>
+        <th style="width: 5%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @inquiries.each do |inquiry| %>
+        <tr>
+          <td><%= l inquiry.created_at, format: :long %></td>
+          <td><%= inquiry.sender %></td>
+          <td><%= inquiry.email %></td>
+          <td>
+            <%= inquiry.title %>
+            <a class="and_more" data-toggle="collapse" href="#<%= "collapse" + inquiry.id.to_s %>" role="button" aria-expanded="false" aria-controls="<%= "collapse" + inquiry.id.to_s %>">
+                <i class="fas fa-caret-down"></i>
+            </a>
           </td>
-        <td>
-          <!--削除ボタン-->
-          <%= link_to inquiry_path(inquiry), method: :delete, "data-confirm" => "メールを削除しますか？" do %>
-            <i class="fas fa-trash-alt"></i>
-          <% end %>
-        </td>
-      </tr>
-      <tr class="collapse mt-1" id="<%= "collapse" + inquiry.id.to_s %>">
-        <td colspan="5">
-          <div class="card card-body">
-            <%= safe_join(inquiry.message.split("\n"), tag(:br)) %>
-          </div>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <td>
+            <!--削除ボタン-->
+            <%= link_to inquiry_path(@profile, inquiry), method: :delete, "data-confirm" => "メールを削除しますか？" do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+          </td>
+        </tr>
+        <tr class="collapse mt-1" id="<%= "collapse" + inquiry.id.to_s %>">
+          <td colspan="5">
+            <div class="card card-body">
+              <%= safe_join(inquiry.message.split("\n"), tag(:br)) %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<!-- 受信メールがない場合 -->
+<% else %>
+  <div>
+    <p>メールは届いていません。</p>
+  </div>
+<% end %>
 
 <!--フッター呼び出し-->
 <%= render "layouts/footer" %>

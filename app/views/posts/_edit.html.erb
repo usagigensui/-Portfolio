@@ -10,7 +10,7 @@
     </div>
 
     <!--フォーム-->
-    <%= form_with(model: [profile, post], url: post_path(profile.id, post.id), local: true) do |f| %>
+    <%= form_with(model: [profile, post], url: post_path(profile.code, post.id), local: true) do |f| %>
       <div class="modal-body text-left">
         <div class="mb-3">
           <%= f.text_area :text, autofocus: true, autocomplete: "投稿内容", class: "form-control" %>

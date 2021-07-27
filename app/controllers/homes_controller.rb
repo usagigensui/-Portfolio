@@ -1,8 +1,9 @@
 class HomesController < ApplicationController
+  # トップページ
   def top
     @user = User.new
   end
 
-  def about
-  end
+  # サイト説明ページ
+  def about; end
 end

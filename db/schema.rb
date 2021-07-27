@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_15_072457) do
+ActiveRecord::Schema.define(version: 2021_07_20_071630) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "profile_id", null: false
@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(version: 2021_07_15_072457) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "links", force: :cascade do |t|
+    t.integer "profile_id", null: false
+    t.text "url", null: false
+    t.integer "category", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.integer "profile_id", null: false
     t.text "text", null: false
@@ -45,6 +53,7 @@ ActiveRecord::Schema.define(version: 2021_07_15_072457) do
     t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_profiles_on_code", unique: true
   end
 
   create_table "schedules", force: :cascade do |t|

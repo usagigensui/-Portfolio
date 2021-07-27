@@ -1,31 +1,29 @@
-<div class="profile">
-  <!--ヘッダー呼び出し-->
-  <%= render "profiles/header", profile: @profile %>
+<!--ヘッダー呼び出し-->
+<%= render "profiles/header", profile: @profile %>
 
-  <!--タブメニュー-->
-  <nav>
-    <ul class="nav nav-tabs nav-fill">
-    <li class="nav-item">
-      <%= link_to profile_path, class: "nav-link active" do %>
-        <i class="fas fa-paperclip"></i>
-      <% end %>
-    </li>
-    <li class="nav-item">
-      <%= link_to timeline_profile_path(@profile.id), class: "nav-link" do %>
-        <i class="far fa-clock"></i>
-      <% end %>
-    </li>
-    <li class="nav-item">
-      <%= link_to schedules_path(@profile.id), class: "nav-link" do %>
-        <i class="far fa-calendar-alt"></i>
-      <% end %>
-    </li>
-    <li class="nav-item">
-      <%= link_to new_inquiry_path(@profile.id), class: "nav-link" do %>
-        <i class="far fa-envelope"></i>
-      <% end %>
-    </li>
-    </ul>
-  </nav>
-  <%= render "comments/index", { profile: @profile, comment: @comment } %>
-</div>
+<!--タブメニュー-->
+<nav class="mb-3">
+  <ul class="nav nav-tabs nav-fill">
+  <li class="nav-item">
+    <%= link_to profile_path, class: "nav-link active" do %>
+      <i class="fas fa-paperclip"></i>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to timeline_profile_path(@profile), class: "nav-link" do %>
+      <i class="far fa-clock"></i>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to schedules_path(@profile), class: "nav-link" do %>
+      <i class="far fa-calendar-alt"></i>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to new_inquiry_path(@profile), class: "nav-link" do %>
+      <i class="far fa-envelope"></i>
+    <% end %>
+  </li>
+  </ul>
+</nav>
+<%= render "comments/index", { profile: @profile, comment: @comment } %>

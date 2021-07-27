@@ -1,5 +1,8 @@
-<div class="row top">
+<!--フラッシュメッセージ-->
+<%= flash[:notice] %>
+<%= flash[:error] %>
 
+<div class="row top">
   <!--画面左-->
   <div class="top-image col-md-5 d-flex justify-content-center align-items-center">
     <h1>Mine Page</h1>
@@ -36,7 +39,6 @@
         <%= render "devise/sessions/form", user: @user %>
       </div>
     </ul>
-    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
   </nav>
 </div>
 <!--フッター呼び出し-->

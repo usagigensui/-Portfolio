@@ -20,3 +20,16 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+// カレンダー
+$(document).ready(function() {
+  $('#calendar').fullCalendar({
+    events: "schedules.json",
+    // 日付マスのリンクをしない
+    editable: false,
+    // 時刻の表示はしない
+    displayEventTime: false,
+    // スクロールしない
+    contentHeight: 'auto'
+  })
+});

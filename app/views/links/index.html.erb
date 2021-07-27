@@ -1,0 +1,44 @@
+<!--ヘッダー呼び出し-->
+<%= render "layouts/header" %>
+
+<h2>リンク一覧・編集</h2>
+
+<!--フラッシュメッセージ-->
+<%= flash[:notice] %>
+<%= flash[:error] %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th style="width: 55%">URL</th>
+      <th style="width: 15%">カテゴリー</th>
+      <th style="width: 15%"></th>
+      <th style="width: 15%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @links.each do |link| %>
+      <tr>
+        <td>
+          <a href="<%= link.url %>"><%= link.url %></a>
+        </td>
+        <td><%= link.category %></td>
+        <td class="text-center">
+        <!--編集ボタン-->
+        <a data-toggle="modal" data-target="#<%= "editModal" + link.id.to_s %>" href="#">編集</a>
+        <!--編集モーダルの立ち上げ-->
+        <div class="modal fade" id="<%= "editModal" + link.id.to_s %>" tabindex="-1" role="dialog" aria-hidden="true">
+          <%= render "links/edit", { profile: @profile, link: link } %>
+        </div>
+        </td>
+        <td class="text-center">
+          <!--削除ボタン-->
+          <%= link_to "削除", link_path(@profile, link), method: :delete, "data-confirm" => "リンクを削除しますか？" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!--フッター呼び出し-->
+<%= render "layouts/footer" %>

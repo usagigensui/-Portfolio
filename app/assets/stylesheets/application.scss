@@ -97,14 +97,61 @@
   }
 }
 
+// アイコン画像
+.profile-icon {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #d3d3d3;
+}
+
 // プロフィールページ
-.profile {
-  // アイコン画像
-  .profile-icon {
-    width: 7rem;
-    height: 7rem;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 1px solid #d3d3d3;
+
+// ヘッダー
+.profile-header {
+  margin-top: 1rem;
+
+  // プロフィール部分
+  .profile-box {
+    margin: 0 1rem 1rem;
+
+    // 左側
+    .left {
+
+      // アイコン外側
+      .icon-wrap {
+        width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
+        overflow: hidden;
+
+        // アイコン
+        .icon {
+          width: 10rem;
+          height: 10rem;
+          border-radius: 50%;
+          // はみ出した部分は隠す
+          object-fit: cover;
+          // 拡大にかかる時間
+          transition-duration: 0.3s;
+        }
+        // アイコンホバー時
+        .icon:hover {
+          // 拡大する
+          transform: scale(1.5);
+        }
+      }
+    }
+
+    // 右側
+    .right {
+      padding: 1rem;
+
+      // 名前
+      .name {
+      font-size: 1.3rem;
+      }
+    }
   }
 }

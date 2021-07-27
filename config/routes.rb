@@ -22,18 +22,24 @@ Rails.application.routes.draw do
   patch 'withdraw' => 'users#withdraw'
 
   # プロフィール
-  resources :profiles do
+  resources :profiles, param: :code do
     member do
-      # コメント
+      # 自己紹介コメント
       resources :comments, except: [:new, :index, :show, :edit]
+      # リンク
+      resources :links, except: [:new, :show, :edit]
       # タイムライン
       get 'timeline' => 'posts#index'
       resources :posts, except: [:new, :index, :show, :edit]
       # カレンダー
-      resources :schedules, except: [:new, :edit, :update]
+      resources :schedules, except: [:new, :edit, :update] do
+        collection do
+          get :completed
+        end
+      end
       # フォームメール
       resources :inquiries, except: [:edit, :update, :show] do
-        member do
+        collection do
           post :confirm
           post :back
         end
