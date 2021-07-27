@@ -29,7 +29,7 @@
     <!--画像プレビュー-->
     <% if profile.image == nil %>
       <div class="wrap">
-        <img id="preview" class="image-preview" src="/assets/cat.png">
+        <%= image_tag asset_path("cat.png", alt: "プレビュー"), id: "preview", class: "image-preview" %>
       </div>
     <% else %>
       <div class="wrap">
