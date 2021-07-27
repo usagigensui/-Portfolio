@@ -88,12 +88,18 @@
   }
 
   // 画像プレビュー
-  .image-preview {
+  .wrap {
     width: 7rem;
-    height: 7rem;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 1px solid #d3d3d3;
+      height: 7rem;
+      border-radius: 50%;
+      border: 1px solid #d3d3d3;
+
+    .image-preview {
+      width: 7rem;
+      height: 7rem;
+      border-radius: 50%;
+      object-fit: cover;
+    }
   }
 }
 

@@ -28,9 +28,13 @@
 
     <!--画像プレビュー-->
     <% if profile.image == nil %>
-      <img id="preview" class="image-preview" src="/assets/cat.png">
+      <div class="wrap">
+        <img id="preview" class="image-preview" src="/assets/cat.png">
+      </div>
     <% else %>
-      <%=attachment_image_tag profile, :image, id: "preview", class: "image-preview", fallback: "cat.png" %>
+      <div class="wrap">
+        <%=attachment_image_tag profile, :image, id: "preview", class: "image-preview" %>
+      </div>
     <% end %>
     <script>
       $('#file').on('change', function (e) {
