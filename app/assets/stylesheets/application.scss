@@ -27,6 +27,10 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: 'M PLUS 1p','Lato', "ヒラギノ角ゴ ProN", "メイリオ", sans-serif;
+}
+
 // 必須項目の米印
 .required {
   color: #dc143c;
@@ -61,23 +65,49 @@
     width: 100%;
     height: 30rem;
     margin: 2rem 0;
+
+    h1{
+    font-size: 4rem;
+    font-family: 'Baloo Chettan 2', cursive;
+    }
   }
 
   // nav
   .nav {
     li {
       margin-top: 1rem;
+      span {
+        font-family: 'Baloo Chettan 2', cursive;
+      }
     }
   }
 }
 
 // マイページ
 .mypage {
-  // プロフィール一覧
-  .card-img-top {
-    height: 10rem;
-    object-fit: cover;
+  // プロフィール画像
+  .wrap {
+    // はみ出した部分は隠す
+    overflow: hidden;
+
+    .card-img-top {
+      object-fit: cover;
+      // 拡大にかかる時間
+      transition-duration: 0.3s;
+    }
+
+    // ホバー時
+    .card-img-top:hover {
+      // 拡大する
+      transform: scale(1.5);
+    }
   }
+
+  // プロフィールテキスト
+  a:hover {
+    text-decoration: none;
+  }
+
 }
 
 // プロフィール作成・編集ページ
@@ -130,6 +160,7 @@
         width: 10rem;
         height: 10rem;
         border-radius: 50%;
+        // はみ出した部分は隠す
         overflow: hidden;
 
         // アイコン
@@ -137,7 +168,6 @@
           width: 10rem;
           height: 10rem;
           border-radius: 50%;
-          // はみ出した部分は隠す
           object-fit: cover;
           // 拡大にかかる時間
           transition-duration: 0.3s;

@@ -8,10 +8,9 @@
   <%= flash[:notice] %>
   <%= flash[:error] %>
 
-  <p><%= @user.email %></p>
-
   <div class="row">
     <nav class="col-md-4">
+      <p><%= @user.email %></p>
       <ul class="nav flex-column">
         <li class="nav-item">
           <%= link_to "新しいプロフィールを作成", new_profile_path, class: "nav-link" %>
@@ -26,23 +25,29 @@
     </nav>
 
     <!--プロフィール一覧-->
-    <main class="col-md-8 row">
+    <main class="col-md-8">
       <% @user.profiles.each do |profile| %>
-        <div class="col-md-4">
           <!--カード-->
-          <div class="card">
-             <%= link_to profile_path(profile.code) do %>
-            <%= attachment_image_tag profile, :image, class: "card-img-top", fallback: "cat.png" %>
+          <div class="card mb-3">
+            <%= link_to profile_path(profile.code) do %>
+            <div class="row g-0">
+              <div class="col-md-3">
+                <div class="wrap">
+                  <%= attachment_image_tag profile, :image, class: "card-img-top ", fallback: "cat.png" %>
+                </div>
+              </div>
 
-            <!--カードボディ-->
-            <div class="card-body">
-              <h5 class="card-title"><%= profile.name %></h5>
-              <p class="card-text"><%= profile.introduction.truncate(20) %></p>
+              <!--カードボディ-->
+              <div class="card-body col-md-9">
+                <h5 class="card-title"><%= profile.name %></h5>
+                <p class="card-text"><%= safe_join(profile.introduction.split("\n"), tag(:br)) %></p>
+              </div>
+
             </div>
             <% end %>
 
             <!--カードフッター-->
-            <div class="card-footer nav nav-fill text-muted ">
+            <div class="card-footer nav justify-content-end text-muted p-0">
               <!--プロフィール編集ページへのリンク-->
               <%= link_to edit_profile_path(profile), class: "nav-link" do %>
                 <i class="fas fa-cog"></i>
@@ -53,7 +58,6 @@
               <% end %>
             </div>
           </div>
-        </div>
       <% end %>
     </main>
   </div>
