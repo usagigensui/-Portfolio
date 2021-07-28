@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   # show、search以外はログインユーザーのみ許可
-  before_action :authenticate_user!, except: [:show, :search]
+  before_action :authenticate_user!, except: %i[show search]
   # プロフィールの特定
   before_action :set_profile, except: %i[new create index search]
 
@@ -57,7 +57,7 @@ class ProfilesController < ApplicationController
     redirect_to mypage_path
   end
 
-    # ユーザー検索
+  # ユーザー検索
   def search
     @profiles = Profile.search(params[:keyword])
     @keyword = params[:keyword]

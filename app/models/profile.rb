@@ -27,6 +27,6 @@ class Profile < ApplicationRecord
 
   # ユーザー検索
   def self.search(keyword)
-    where(["code like? OR name like?", "%#{keyword}%",  "%#{keyword}%"])
+    where(['code like? OR name like?', "%#{keyword}%", "%#{keyword}%"])
   end
 end
