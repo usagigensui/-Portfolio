@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
 
   # 非公開プロフィールへのアクセスをブロック
   def release_check(profile)
-    if profile.status == "非公開" && profile.user != current_user
-      flash[:error] = '非公開のプロフィールです。'
-      redirect_to root_path
-    end
+    return unless profile.status == '非公開' && profile.user != current_user
+
+    flash[:error] = '非公開のプロフィールです。'
+    redirect_to root_path
   end
 end

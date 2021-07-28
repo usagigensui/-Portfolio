@@ -8,7 +8,7 @@ class InquiriesController < ApplicationController
   def new
     @inquiry = Inquiry.new
     @link = Link.new
-   # 非公開プロフィールへのアクセスをブロック
+    # 非公開プロフィールへのアクセスをブロック
     release_check(@profile)
   end
 
