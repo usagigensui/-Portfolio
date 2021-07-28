@@ -4,13 +4,21 @@
     <%= link_to profile_path(profile.code) do %>
     <div class="row g-0">
       <div class="col-md-3">
-        <div class="wrap">
+        <div class="wrap mx-auto my-2">
           <%= attachment_image_tag profile, :image, class: "card-img-top ", fallback: "cat.png" %>
         </div>
       </div>
 
       <!--カードボディ-->
       <div class="card-body col-md-9">
+
+        <!--ログインしている場合-->
+        <% if user_signed_in? %>
+          <!--ログインユーザーがプロフィールオーナーの場合-->
+          <% if current_user.id == profile.user_id %>
+            <p class="card-subtitle mr-3 text-muted small text-right"><%= profile.status %></p>
+          <% end %>
+        <% end %>
         <h5 class="card-title"><%= profile.name %></h5>
         <p class="card-text"><%= safe_join(profile.introduction.split("\n"), tag(:br)) %></p>
       </div>
@@ -23,7 +31,7 @@
       <!--ログインユーザーがプロフィールオーナーの場合-->
       <% if current_user.id == profile.user_id %>
         <!--カードフッター-->
-        <div class="card-footer nav justify-content-end text-muted p-0">
+        <div class="card-footer nav justify-content-end p-0">
           <!--プロフィール編集ページへのリンク-->
           <%= link_to edit_profile_path(profile), class: "nav-link" do %>
             <i class="fas fa-cog"></i>

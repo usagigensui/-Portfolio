@@ -8,12 +8,16 @@ class InquiriesController < ApplicationController
   def new
     @inquiry = Inquiry.new
     @link = Link.new
+   # 非公開プロフィールへのアクセスをブロック
+    release_check(@profile)
   end
 
   # 入力内容確認ページ
   def confirm
     @inquiry = Inquiry.new(inquiry_params)
     @link = Link.new
+    # 非公開プロフィールへのアクセスをブロック
+    release_check(@profile)
   end
 
   # 作成ページに戻る

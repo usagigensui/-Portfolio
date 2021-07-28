@@ -20,6 +20,9 @@ class Profile < ApplicationRecord
   # image_idに画像投稿機能を追加
   attachment :image
 
+  # 公開設定をenum管理
+  enum status: { "公開": 0, "非公開": 1 }
+
   # URLのIDをプロフィールコードに
   def to_param
     code
@@ -27,6 +30,6 @@ class Profile < ApplicationRecord
 
   # ユーザー検索
   def self.search(keyword)
-    where(['code like? OR name like?', "%#{keyword}%", "%#{keyword}%"])
+    where(['code like? OR name like?', "%#{keyword}%", "%#{keyword}%"]).where.not(status: :"非公開")
   end
 end

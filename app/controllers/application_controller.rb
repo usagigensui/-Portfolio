@@ -4,4 +4,12 @@ class ApplicationController < ActionController::Base
     flash[:notice] = 'ログインしました。'
     mypage_path
   end
+
+  # 非公開プロフィールへのアクセスをブロック
+  def release_check(profile)
+    if profile.status == "非公開" && profile.user != current_user
+      flash[:error] = '非公開のプロフィールです。'
+      redirect_to root_path
+    end
+  end
 end

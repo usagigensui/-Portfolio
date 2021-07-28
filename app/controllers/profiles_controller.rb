@@ -8,6 +8,8 @@ class ProfilesController < ApplicationController
   def show
     @link = Link.new
     @comment = Comment.new
+    # 非公開プロフィールへのアクセスをブロック
+    release_check(@profile)
   end
 
   # プロフィール作成フォーム
@@ -20,6 +22,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(profile_params)
     @profile.user_id = current_user.id
     if @profile.save
+      flash[:notice] = 'プロフィールを新規作成しました。'
       redirect_to mypage_path
     else
       render 'new'
@@ -40,6 +43,7 @@ class ProfilesController < ApplicationController
   # プロフィールへの編集を保存
   def update
     if @profile.update(profile_params)
+      flash[:notice] = 'プロフィールを編集しました。'
       redirect_to profile_path(@profile)
     else
       render 'edit'
@@ -54,6 +58,7 @@ class ProfilesController < ApplicationController
   # プロフィールを削除
   def destroy
     @profile.destroy
+    flash[:notice] = 'プロフィールを削除しました。'
     redirect_to mypage_path
   end
 
@@ -71,6 +76,6 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profile).permit(:code, :name, :image, :introduction)
+    params.require(:profile).permit(:code, :name, :image, :introduction, :status)
   end
 end

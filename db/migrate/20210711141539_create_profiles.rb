@@ -6,6 +6,7 @@ class CreateProfiles < ActiveRecord::Migration[5.2]
       t.string :name, null: false
       t.text :introduction
       t.string :image_id
+      t.integer :status, default: 0, null: false
       t.timestamps
     end
   end

@@ -8,6 +8,8 @@ class PostsController < ApplicationController
     @posts = @profile.posts.reverse_order
     @post = Post.new
     @link = Link.new
+    ## 非公開プロフィールへのアクセスをブロック
+    release_check(@profile)
   end
 
   # 新規投稿

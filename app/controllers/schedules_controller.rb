@@ -10,6 +10,8 @@ class SchedulesController < ApplicationController
     @waiting_schedules = @schedules.where('(start_date > ?) or (end_date > ?)', DateTime.now, DateTime.now)
     @schedule = Schedule.new
     @link = Link.new
+    # 非公開プロフィールへのアクセスをブロック
+    release_check(@profile)
   end
 
   # 終了した予定一覧ページ
@@ -18,6 +20,8 @@ class SchedulesController < ApplicationController
     @completed_schedules = @schedules.where('(start_date < ?) or (end_date < ?)', DateTime.now, DateTime.now)
     @schedule = Schedule.new
     @link = Link.new
+    # 非公開プロフィールへのアクセスをブロック
+    release_check(@profile)
   end
 
   # 新規予定作成

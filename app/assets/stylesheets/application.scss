@@ -84,17 +84,51 @@ body {
   }
 }
 
-// マイページ
-.mypage {
+// 検索結果ページ
+.search {
   // プロフィール画像
   .wrap {
+    width: 9rem;
+    height: 9rem;
+    border-radius: 50%;
     // はみ出した部分は隠す
     overflow: hidden;
 
     .card-img-top {
-      object-fit: cover;
-      // 拡大にかかる時間
-      transition-duration: 0.3s;
+    width: 9rem;
+    height: 9rem;
+    border-radius: 50%;
+    object-fit: cover;
+    // 拡大にかかる時間
+    transition-duration: 0.3s;
+    }
+
+    // ホバー時
+    .card-img-top:hover {
+      // 拡大する
+      transform: scale(1.5);
+    }
+  }
+}
+
+// マイページ
+.mypage {
+
+  // プロフィール画像
+  .wrap {
+    width: 9rem;
+    height: 9rem;
+    border-radius: 50%;
+    // はみ出した部分は隠す
+    overflow: hidden;
+
+    .card-img-top {
+    width: 9rem;
+    height: 9rem;
+    border-radius: 50%;
+    object-fit: cover;
+    // 拡大にかかる時間
+    transition-duration: 0.3s;
     }
 
     // ホバー時
@@ -104,7 +138,7 @@ body {
     }
   }
 
-  // プロフィールテキスト
+  // プロフィールホバー時
   a:hover {
     text-decoration: none;
   }
