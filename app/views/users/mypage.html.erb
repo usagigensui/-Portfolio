@@ -26,39 +26,7 @@
 
     <!--プロフィール一覧-->
     <main class="col-md-8">
-      <% @user.profiles.each do |profile| %>
-          <!--カード-->
-          <div class="card mb-3">
-            <%= link_to profile_path(profile.code) do %>
-            <div class="row g-0">
-              <div class="col-md-3">
-                <div class="wrap">
-                  <%= attachment_image_tag profile, :image, class: "card-img-top ", fallback: "cat.png" %>
-                </div>
-              </div>
-
-              <!--カードボディ-->
-              <div class="card-body col-md-9">
-                <h5 class="card-title"><%= profile.name %></h5>
-                <p class="card-text"><%= safe_join(profile.introduction.split("\n"), tag(:br)) %></p>
-              </div>
-
-            </div>
-            <% end %>
-
-            <!--カードフッター-->
-            <div class="card-footer nav justify-content-end text-muted p-0">
-              <!--プロフィール編集ページへのリンク-->
-              <%= link_to edit_profile_path(profile), class: "nav-link" do %>
-                <i class="fas fa-cog"></i>
-              <% end %>
-              <!--メールボックスへのリンク-->
-              <%= link_to inquiries_path(profile), class: "nav-link" do %>
-                <i class="fas fa-mail-bulk"></i>
-              <% end %>
-            </div>
-          </div>
-      <% end %>
+      <%= render 'profiles/index', profiles: @user.profiles %>
     </main>
   </div>
 </div>

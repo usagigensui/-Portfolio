@@ -27,18 +27,19 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   font-family: 'M PLUS 1p','Lato', "ヒラギノ角ゴ ProN", "メイリオ", sans-serif;
+  height: 100%;
+  margin: 0;
 }
 
 // 必須項目の米印
 .required {
   color: #dc143c;
-}
-
-// ヘッダー
-.header {
-  margin-bottom: 2rem;
 }
 
 // フッター
@@ -63,7 +64,7 @@ body {
   // top画像
   .top-image {
     width: 100%;
-    height: 30rem;
+    height: 25rem;
     margin: 2rem 0;
 
     h1{

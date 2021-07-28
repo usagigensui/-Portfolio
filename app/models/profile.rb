@@ -24,4 +24,9 @@ class Profile < ApplicationRecord
   def to_param
     code
   end
+
+  # ユーザー検索
+  def self.search(keyword)
+    where(["code like? OR name like?", "%#{keyword}%",  "%#{keyword}%"])
+  end
 end

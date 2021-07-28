@@ -1,8 +1,8 @@
 class ProfilesController < ApplicationController
-  # show以外はログインユーザーのみ許可
-  before_action :authenticate_user!, except: [:show]
+  # show、search以外はログインユーザーのみ許可
+  before_action :authenticate_user!, except: [:show, :search]
   # プロフィールの特定
-  before_action :set_profile, except: %i[new create index]
+  before_action :set_profile, except: %i[new create index search]
 
   # プロフィールページ
   def show
@@ -55,6 +55,12 @@ class ProfilesController < ApplicationController
   def destroy
     @profile.destroy
     redirect_to mypage_path
+  end
+
+    # ユーザー検索
+  def search
+    @profiles = Profile.search(params[:keyword])
+    @keyword = params[:keyword]
   end
 
   # プロフィールの特定
