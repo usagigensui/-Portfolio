@@ -5,7 +5,7 @@ class CreateSchedules < ActiveRecord::Migration[5.2]
       t.string :title, null: false
       t.text :body
       t.datetime :start_date, null: false
-      t.datetime :end_date
+      t.datetime :end_date, null: false
       t.timestamps
     end
   end

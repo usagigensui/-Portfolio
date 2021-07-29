@@ -6,5 +6,6 @@ class Schedule < ApplicationRecord
     validates :profile_id
     validates :title
     validates :start_date
+    validates :end_date
   end
 end

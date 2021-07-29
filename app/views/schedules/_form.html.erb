@@ -12,18 +12,20 @@
     <!--フォーム-->
     <%= form_with(model: [profile, schedule], url: schedules_path, local: true) do |f| %>
       <div class="modal-body text-left">
-        <!--エラーメッセージ-->
-        <%= render "layouts/error", model: f.object %>
+        <p><span class="small required"><i class="fas fa-asterisk"></i></span>は必須項目です。</p>
         <div class="mb-3">
           <%= f.label :title, "タイトル", class: "form-label" %>
+          <span class="small required"><i class="fas fa-asterisk"></i></span>
           <%= f.text_field :title, autofocus: true, autocomplete: "タイトル", class: "form-control" %>
         </div>
         <div class="mb-3">
           <%= f.label :start_date, "開始日時", class: "form-label" %>
+          <span class="small required"><i class="fas fa-asterisk"></i></span>
           <%= f.datetime_field :start_date, autofocus: true, autocomplete: "XXXX-XX-XX", class: "form-control" %>
         </div>
         <div class="mb-3">
           <%= f.label :end_date, "終了日時", class: "form-label" %>
+          <span class="small required"><i class="fas fa-asterisk"></i></span>
           <%= f.datetime_field :end_date, autofocus: true, autocomplete: "XXXX-XX-XX", class: "form-control" %>
         </div>
         <div class="mb-3">
