@@ -1,6 +1,5 @@
 module ApplicationHelper
   # アイコンの選択
-
   NAMES = {
     'Homepage' => 'fas fa-home',
     'Twitter' => 'fab fa-twitter',
@@ -14,5 +13,10 @@ module ApplicationHelper
 
   def icon(category)
     NAMES[category]
+  end
+
+  # プロフィールオーナーのログイン確認
+  def current_user_signed_in?(profile)
+    user_signed_in? && current_user.id == profile.user_id
   end
 end

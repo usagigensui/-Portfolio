@@ -32,21 +32,18 @@
 
     <nav>
       <ul class="nav">
-        <!--ログインしている場合-->
-        <% if user_signed_in? %>
-          <!--ログインユーザーがプロフィールオーナーの場合-->
-          <% if current_user.id == @profile.user_id %>
+        <!--プロフィールオーナーがログインしている場合-->
+        <% if current_user_signed_in?(@profile) %>
           <!--新規投稿ボタン-->
           <li class="nav-link">
             <%= link_to "#", class: "", "data-toggle": "modal", "data-target": "#scheduleModal" do %>
               <i class="fas fa-plus"></i>
             <% end %>
           </li>
-            <!--新規投稿モーダルの立ち上げ-->
-            <div id="scheduleModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-              <%= render "schedules/form", { profile: @profile, schedule: @schedule } %>
-            </div>
-          <% end %>
+          <!--新規投稿モーダルの立ち上げ-->
+          <div id="scheduleModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <%= render "schedules/form", { profile: @profile, schedule: @schedule } %>
+          </div>
         <% end %>
         <li class="nav-link">
         <%= link_to completed_schedules_path(@profile) do %>
@@ -77,14 +74,11 @@
               </a>
             <% end %>
           </span>
-          <!--ログインしている場合-->
-          <% if user_signed_in? %>
-            <!--ログインユーザーがプロフィールオーナーの場合-->
-            <% if current_user.id == @profile.user_id %>
-              <!--削除ボタン-->
-              <%= link_to schedule_path(@profile, schedule), method: :delete, "data-confirm" => "投稿を削除しますか？" do %>
-                <i class="fas fa-trash-alt"></i>
-              <% end %>
+          <!--プロフィールオーナーがログインしている場合-->
+          <% if current_user_signed_in?(@profile) %>
+            <!--削除ボタン-->
+            <%= link_to schedule_path(@profile, schedule), method: :delete, "data-confirm" => "投稿を削除しますか？" do %>
+              <i class="fas fa-trash-alt"></i>
             <% end %>
           <% end %>
         </li>

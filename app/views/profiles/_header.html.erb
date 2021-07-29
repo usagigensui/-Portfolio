@@ -37,30 +37,27 @@
               <% end %>
             </li>
           <% end %>
-          <!--ログインしている場合-->
-          <% if user_signed_in? %>
-            <!--ログインユーザーがプロフィールオーナーの場合-->
-            <% if current_user.id == profile.user_id %>
-              <li class="nav-item">
-                <!--リンク先追加ボタン-->
-                <%= link_to "#", class: "nav-link", "data-toggle": "modal", "data-target": "#linkModal" do %>
-                  <i class="fas fa-plus"></i>
-                <% end %>
-                <!--新規投稿モーダルの立ち上げ-->
-                <div class="modal fade" id="linkModal" tabindex="-1" role="dialog" aria-hidden="true">
-                  <%= render "links/new", { profile: @profile, link: @link } %>
-                </div>
-              </li>
-
-              <!--リンクが存在した場合-->
-              <% if profile.links.present? %>
-                <li class="nav-item">
-                  <!--リンク一覧画面へのリンク-->
-                  <%= link_to links_path(profile), class: "nav-link" do %>
-                    <i class="fas fa-cog"></i>
-                  <% end %>
-                </li>
+          <!--プロフィールオーナーがログインしている場合-->
+          <% if current_user_signed_in?(profile) %>
+            <li class="nav-item">
+              <!--リンク先追加ボタン-->
+              <%= link_to "#", class: "nav-link", "data-toggle": "modal", "data-target": "#linkModal" do %>
+                <i class="fas fa-plus"></i>
               <% end %>
+              <!--新規投稿モーダルの立ち上げ-->
+              <div class="modal fade" id="linkModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <%= render "links/new", { profile: @profile, link: @link } %>
+              </div>
+            </li>
+
+            <!--リンクが存在した場合-->
+            <% if profile.links.present? %>
+              <li class="nav-item">
+                <!--リンク一覧画面へのリンク-->
+                <%= link_to links_path(profile), class: "nav-link" do %>
+                  <i class="fas fa-cog"></i>
+                <% end %>
+              </li>
             <% end %>
           <% end %>
         </ul>
@@ -69,15 +66,12 @@
 
       <p class="ml-3 mb-0">
         <%= safe_join(profile.introduction.split("\n"), tag(:br)) %>
-        <!--ログインしている場合-->
-        <% if user_signed_in? %>
-          <!--ログインユーザーがプロフィールオーナーの場合-->
-          <% if current_user.id == profile.user_id %>
-            <%= link_to edit_profile_path do %>
-              <i class="fas fa-edit"></i>
-            <% end %>
+        <!--プロフィールオーナーがログインしている場合-->
+        <% if current_user_signed_in?(profile) %>
+          <%= link_to edit_profile_path do %>
+            <i class="fas fa-edit"></i>
           <% end %>
-      <% end %>
+        <% end %>
       </p>
     </div>
   </div>

@@ -12,36 +12,30 @@
       <!--カードボディ-->
       <div class="card-body col-md-9">
 
-        <!--ログインしている場合-->
-        <% if user_signed_in? %>
-          <!--ログインユーザーがプロフィールオーナーの場合-->
-          <% if current_user.id == profile.user_id %>
-            <p class="card-subtitle mr-3 text-muted small text-right"><%= profile.status %></p>
-          <% end %>
-        <% end %>
-        <h5 class="card-title"><%= profile.name %></h5>
-        <p class="card-text"><%= safe_join(profile.introduction.split("\n"), tag(:br)) %></p>
+      <!--プロフィールオーナーがログインしている場合-->
+      <% if current_user_signed_in?(profile) %>
+        <p class="card-subtitle mr-3 text-muted small text-right"><%= profile.status %></p>
+      <% end %>
+      <h5 class="card-title"><%= profile.name %></h5>
+      <p class="card-text"><%= safe_join(profile.introduction.split("\n"), tag(:br)) %></p>
       </div>
 
     </div>
     <% end %>
 
-    <!--ログインしている場合-->
-    <% if user_signed_in? %>
-      <!--ログインユーザーがプロフィールオーナーの場合-->
-      <% if current_user.id == profile.user_id %>
-        <!--カードフッター-->
-        <div class="card-footer nav justify-content-end p-0">
-          <!--プロフィール編集ページへのリンク-->
-          <%= link_to edit_profile_path(profile), class: "nav-link" do %>
-            <i class="fas fa-cog"></i>
-          <% end %>
-          <!--メールボックスへのリンク-->
-          <%= link_to inquiries_path(profile), class: "nav-link" do %>
-            <i class="fas fa-mail-bulk"></i>
-          <% end %>
-        </div>
-      <% end %>
+    <!--プロフィールオーナーがログインしている場合-->
+    <% if current_user_signed_in?(profile) %>
+      <!--カードフッター-->
+      <div class="card-footer nav justify-content-end p-0">
+        <!--プロフィール編集ページへのリンク-->
+        <%= link_to edit_profile_path(profile), class: "nav-link" do %>
+          <i class="fas fa-cog"></i>
+        <% end %>
+        <!--メールボックスへのリンク-->
+        <%= link_to inquiries_path(profile), class: "nav-link" do %>
+          <i class="fas fa-mail-bulk"></i>
+        <% end %>
+      </div>
     <% end %>
   </div>
 <% end %>

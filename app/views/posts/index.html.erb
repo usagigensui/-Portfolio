@@ -26,19 +26,16 @@
   </li>
   </ul>
 </nav>
-<!--ログインしている場合-->
-<% if user_signed_in? %>
-  <!--ログインユーザーがプロフィールオーナーの場合-->
-  <% if current_user.id == @profile.user_id %>
+<!--プロフィールオーナーがログインしている場合-->
+<% if current_user_signed_in?(@profile) %>
   <!--新規投稿ボタン-->
-    <%= link_to "#", class: "", "data-toggle": "modal", "data-target": "#postModal" do %>
-      <i class="fas fa-plus"></i>
-    <% end %>
-    <!--新規投稿モーダルの立ち上げ-->
-    <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-hidden="true">
-      <%= render "posts/new", { profile: @profile, post: @post } %>
-    </div>
+  <%= link_to "#", class: "", "data-toggle": "modal", "data-target": "#postModal" do %>
+    <i class="fas fa-plus"></i>
   <% end %>
+  <!--新規投稿モーダルの立ち上げ-->
+  <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <%= render "posts/new", { profile: @profile, post: @post } %>
+  </div>
 <% end %>
 
 <!--投稿がある場合-->
