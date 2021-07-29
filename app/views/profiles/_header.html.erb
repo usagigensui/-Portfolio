@@ -14,9 +14,8 @@
   <% end %>
 
 
-  <!--フラッシュメッセージ-->
-  <%= flash[:notice] %>
-  <%= flash[:error] %>
+  <!--フラッシュメッセージの呼び出し-->
+  <%= render "layouts/flash" %>
 
   <div class="row profile-box">
     <div class="col-md-auto left d-flex justify-content-end">

@@ -4,9 +4,8 @@
 <div class="mypage">
   <h2>マイページ</h2>
 
-  <!--フラッシュメッセージ-->
-  <%= flash[:notice] %>
-  <%= flash[:error] %>
+  <!--フラッシュメッセージの呼び出し-->
+  <%= render "layouts/flash" %>
 
   <div class="row">
     <nav class="col-md-4">

@@ -3,9 +3,8 @@
 
 <h2>リンク一覧・編集</h2>
 
-<!--フラッシュメッセージ-->
-<%= flash[:notice] %>
-<%= flash[:error] %>
+<!--フラッシュメッセージの呼び出し-->
+<%= render "layouts/flash" %>
 
 <table class="table">
   <thead>

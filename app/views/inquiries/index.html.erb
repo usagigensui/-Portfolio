@@ -3,8 +3,8 @@
 
 <h2>フォームメール受信履歴</h2>
 
-<!--フラッシュメッセージ-->
-<%= flash[:notice] %>
+<!--フラッシュメッセージの呼び出し-->
+<%= render "layouts/flash" %>
 
 <!--受信メールがある場合-->
 <% if @inquiries.present? %>
