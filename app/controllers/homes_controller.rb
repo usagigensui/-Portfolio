@@ -5,5 +5,5 @@ class HomesController < ApplicationController
   end
 
   # サイト説明ページ
-  def about; end
+  # def about; end
 end
