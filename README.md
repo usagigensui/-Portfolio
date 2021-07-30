@@ -1,4 +1,4 @@
-# :simple_smile: MinePage
+# MinePage
 
 ## :globe_with_meridians: App URL
 http://minepage.xyz/
@@ -17,7 +17,7 @@ http://minepage.xyz/
 プロフサイトに一定の需要があるのは知っていましたが、
 それそのもので投稿が行えるものは見たことがないので、作ってみようと思いました。
 
-### :alien: ターゲットユーザ
+### :smile: ターゲットユーザ
 ネットで自己表現を行いたい方。
 主に若年層を想定しています。
 
@@ -25,8 +25,8 @@ http://minepage.xyz/
 - 既存のSNSを使っていて、プロフィールの補足を行いたいとき。
 - 簡易的な個人サイトを持ちたいとき。
 
-## :cyclone: ER図
-<img alt="ER図" src="https://github.com/usagigensui/Portfolio/files/6907907/ER.pdf">
+## :paperclip: ER図
+<img alt="ER図" src="https://github.com/usagigensui/Portfolio/files/6908002/ER.pdf">
 
 ## :seedling: チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1iBqV0anYklTokT4v9J5auW2oT1cM6sycMHXr0ZJNMik/edit?usp=sharing
