@@ -10,7 +10,7 @@ class Profile < ApplicationRecord
   with_options presence: true do
     # プロフィールコードは一意で20文字以内、アクション名と被らないこと
     validates :code, uniqueness: true, length: { maximum: 20 }, format: { with: /\A[a-z0-9]+\z/ },
-                     exclusion: { in: %w[new menu] }
+                     exclusion: { in: %w[new search] }
     # 名前は20文字以内
     validates :name, length: { maximum: 20 }
   end
