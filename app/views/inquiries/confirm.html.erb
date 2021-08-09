@@ -2,30 +2,7 @@
 <%= render "profiles/header", profile: @profile %>
 
 <!--タブメニュー-->
-<nav class="mb-3">
-  <ul class="nav nav-tabs nav-fill">
-  <li class="nav-item">
-    <%= link_to profile_path, class: "nav-link" do %>
-      <i class="fas fa-paperclip"></i>
-    <% end %>
-  </li>
-  <li class="nav-item">
-    <%= link_to timeline_profile_path(@profile), class: "nav-link" do %>
-      <i class="far fa-clock"></i>
-    <% end %>
-  </li>
-  <li class="nav-item">
-    <%= link_to schedules_path(@profile), class: "nav-link" do %>
-      <i class="far fa-calendar-alt"></i>
-    <% end %>
-  </li>
-  <li class="nav-item">
-    <%= link_to new_inquiry_path(@profile), class: "nav-link active" do %>
-      <i class="far fa-envelope"></i>
-    <% end %>
-  </li>
-  </ul>
-</nav>
+<%= render "profiles/tab-menu", profile: @profile %>
 
 <table class="table">
   <tbody>
