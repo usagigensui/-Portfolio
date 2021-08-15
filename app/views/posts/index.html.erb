@@ -20,7 +20,7 @@
 <% if @profile.posts.present? %>
   <% @posts.each do |post| %>
     <div class="card card-body mt-3">
-        <%= safe_join(post.text.split("\n"), tag(:br)) %>
+        <%== user_text(post.text) %>
         <div class="text-right">
 
           <!--ログインしている場合-->

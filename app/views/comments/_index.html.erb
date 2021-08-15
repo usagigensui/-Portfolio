@@ -20,7 +20,7 @@
         <%= comment.title %>
       </div>
       <div class="card-body">
-        <%= safe_join(comment.text.split("\n"), tag(:br)) %>
+        <%== user_text(comment.text) %>
         <!--ログインしている場合-->
         <% if user_signed_in? %>
           <!--ログインユーザーがプロフィールオーナーの場合-->

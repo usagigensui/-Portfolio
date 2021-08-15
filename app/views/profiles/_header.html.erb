@@ -65,7 +65,7 @@
     </div>
 
       <p class="ml-3 mb-0">
-        <%= safe_join(profile.introduction.split("\n"), tag(:br)) %>
+        <%== user_text(profile.introduction) %>
         <!--プロフィールオーナーがログインしている場合-->
         <% if current_user_signed_in?(profile) %>
           <%= link_to edit_profile_path do %>
