@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_20_071630) do
+ActiveRecord::Schema.define(version: 2021_08_16_153413) do
+
+  create_table "colors", force: :cascade do |t|
+    t.integer "profile_id", null: false
+    t.integer "text", default: 0
+    t.integer "background", default: 0
+    t.integer "accent", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.integer "profile_id", null: false
