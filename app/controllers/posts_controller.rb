@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   # タイムライン
   def index
     @profile = Profile.find_by(code: params[:code])
-    @posts = @profile.posts.reverse_order
+    @posts = @profile.posts.page(params[:page]).per(10).reverse_order
     @post = Post.new
     @link = Link.new
     ## 非公開プロフィールへのアクセスをブロック

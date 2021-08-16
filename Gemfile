@@ -78,3 +78,4 @@ group :production do
 end
 gem 'rubocop', require: false
 gem 'rubocop-rails'
+gem 'kaminari'

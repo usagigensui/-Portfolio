@@ -7,7 +7,7 @@ class SchedulesController < ApplicationController
   # 予定一覧ページ
   def index
     @schedules = @profile.schedules
-    @waiting_schedules = @schedules.where('(start_date > ?) or (end_date > ?)', DateTime.now, DateTime.now)
+    @waiting_schedules = @schedules.where('end_date > ?', DateTime.now).page(params[:page]).per(10).reverse_order
     @schedule = Schedule.new
     @link = Link.new
     # 非公開プロフィールへのアクセスをブロック
@@ -17,7 +17,7 @@ class SchedulesController < ApplicationController
   # 終了した予定一覧ページ
   def completed
     @schedules = @profile.schedules
-    @completed_schedules = @schedules.where('(start_date < ?) or (end_date < ?)', DateTime.now, DateTime.now)
+    @completed_schedules = @schedules.where('end_date < ?', DateTime.now).page(params[:page]).per(10).reverse_order
     @schedule = Schedule.new
     @link = Link.new
     # 非公開プロフィールへのアクセスをブロック

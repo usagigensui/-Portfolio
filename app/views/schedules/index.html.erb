@@ -22,6 +22,7 @@
             <%= render "schedules/form", { profile: @profile, schedule: @schedule } %>
           </div>
         <% end %>
+        <!--終了した予定へのリンク-->
         <li class="nav-link">
         <%= link_to completed_schedules_path(@profile) do %>
           <i class="fas fa-history"></i>
@@ -64,10 +65,15 @@
       <% end %>
       </ul>
 
+      <!--ページネーション-->
+      <div class="mt-3 d-flex justify-content-center">
+        <%= paginate @waiting_schedules %>
+      </div>
+
     <!-- 予定がない場合 -->
     <% else %>
       <div>
-        <p>予定はありません。</p>
+        <p>終了した予定はありません。</p>
       </div>
     <% end %>
 

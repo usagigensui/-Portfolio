@@ -18,37 +18,41 @@
 
 <!--投稿がある場合-->
 <% if @profile.posts.present? %>
+
+  <!---投稿一覧->
   <% @posts.each do |post| %>
     <div class="card card-body mt-3">
         <%== user_text(post.text) %>
         <div class="text-right">
-
-          <!--ログインしている場合-->
-          <% if user_signed_in? %>
-            <!--ログインユーザーがプロフィールオーナーの場合-->
-            <% if current_user.id == @profile.user_id %>
-              <!--編集ボタン-->
-              <a data-toggle="modal" data-target="#<%= "editModal" + post.id.to_s %>" href="#">
-                <i class="fas fa-pen-nib"></i>
-              </a>
-              <!--投稿編集モーダルの立ち上げ-->
-              <div class="modal fade" id="<%= "editModal" + post.id.to_s %>" tabindex="-1" role="dialog" aria-hidden="true">
-                <%= render "posts/edit", { profile: @profile, post: post } %>
-              </div>
-              <!--削除ボタン-->
-              <%= link_to post_path(@profile, post), method: :delete, "data-confirm" => "投稿を削除しますか？" do %>
-                <i class="fas fa-trash-alt"></i>
-              <% end %>
+          <!--プロフィールオーナーがログインしている場合-->
+          <% if current_user_signed_in?(@profile) %>
+            <!--編集ボタン-->
+            <a data-toggle="modal" data-target="#<%= "editModal" + post.id.to_s %>" href="#">
+              <i class="fas fa-pen-nib"></i>
+            </a>
+            <!--投稿編集モーダルの立ち上げ-->
+            <div class="modal fade" id="<%= "editModal" + post.id.to_s %>" tabindex="-1" role="dialog" aria-hidden="true">
+              <%= render "posts/edit", { profile: @profile, post: post } %>
+            </div>
+            <!--削除ボタン-->
+            <%= link_to post_path(@profile, post), method: :delete, "data-confirm" => "投稿を削除しますか？" do %>
+              <i class="fas fa-trash-alt"></i>
             <% end %>
           <% end %>
+          <!--投稿日時-->
           <%= l post.created_at, format: :long %>
-          <!--修正があった場合-->
+          <!--修正があった場合は修正日時-->
           <% if post.created_at != post.updated_at %>
             updated at <%= l post.updated_at, format: :long %>
           <% end %>
         </div>
     </div>
   <% end %>
+  <!--ページネーション-->
+  <div class="mt-3 d-flex justify-content-center">
+    <%= paginate @posts %>
+  </div>
+  
 <!-- 投稿がない場合 -->
 <% else %>
   <div>
