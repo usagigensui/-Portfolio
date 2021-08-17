@@ -37,6 +37,12 @@
               ログイン
             <% end %>
           </li>
+          <!--ゲストログイン-->
+          <li class="nav-item">
+            <%= link_to guest_login_path, method: :post, class: "btn btn-outline-secondary btn-lg nav-link" do %>
+              ゲストログイン
+            <% end %>
+          </li>
           <!--ログインモーダルの立ち上げ-->
           <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
             <%= render "devise/sessions/form", user: @user %>

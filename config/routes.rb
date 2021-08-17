@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     delete 'logout' => 'devise/sessions#destroy', as: :destroy_user_session
     get 'signup' => 'devise/registrations#new', as: :new_user_registration
     post 'signup' => 'devise/registrations#create', as: :user_registration
+    # ゲストログイン
+    post 'guest_login' => 'users/sessions#guest'
   end
 
   # マイページ

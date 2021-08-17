@@ -38,8 +38,8 @@
     <% @completed_schedules.each do |schedule| %>
       <li class="list-group-item  d-flex justify-content-between align-items-center bg-transparent">
         <span>
-          <%= l schedule.start_date, format: :long %>
-          <%= l schedule.end_date, format: :long %>
+          <small><%= "#{l schedule.start_date, format: :long}～#{l schedule.end_date, format: :long}" %></small>
+          <br>
           <%= schedule.title %>
           <!--予定詳細に入力がある場合-->
           <% if schedule.body.present? %>

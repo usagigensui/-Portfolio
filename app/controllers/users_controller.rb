@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   # ログインユーザーのみ許可
   before_action :authenticate_user!
+  # ゲストユーザーの削除禁止
+  before_action :ensure_guest_user, only: %i[alert withdraw]
 
   # マイページ
   def mypage
@@ -27,5 +29,14 @@ class UsersController < ApplicationController
       flash[:error] = '退会処理に失敗しました。'
       redirect_to mypage_path
     end
+  end
+
+  # ゲストユーザーの削除禁止
+  def ensure_guest_user
+    @user = current_user
+    return unless @user.email == 'guest@example.com'
+
+    flash[:error] = 'ゲストユーザーは退会できません。'
+    redirect_to mypage_path
   end
 end

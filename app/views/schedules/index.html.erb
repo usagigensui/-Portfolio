@@ -41,8 +41,8 @@
         <% @waiting_schedules.each do |schedule| %>
           <li class="list-group-item  d-flex justify-content-between align-items-center bg-transparent">
             <span>
-              <%= l schedule.start_date, format: :long %>
-              <%= l schedule.end_date, format: :long %>
+              <small><%= "#{l schedule.start_date, format: :long}～#{l schedule.end_date, format: :long}" %></small>
+              <br>
               <%= schedule.title %>
               <!--予定詳細に入力がある場合-->
               <% if schedule.body.present? %>
@@ -75,7 +75,7 @@
       <!-- 予定がない場合 -->
       <% else %>
         <div>
-          <p>終了した予定はありません。</p>
+          <p>予定の投稿がありません。</p>
         </div>
       <% end %>
 

@@ -2,7 +2,7 @@
 
 class Users::SessionsController < Devise::SessionsController
   # 退会ユーザーのブロック
-  before_action :reject_user
+  before_action :reject_user, except: [:guest]
 
   # before_action :configure_sign_in_params, only: [:create]
 
@@ -20,6 +20,18 @@ class Users::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
+
+  # ゲストログイン
+  def guest
+    guest = User.find_by(email: 'guest@example.com')
+    if sign_in guest
+      flash[:notice] = 'ゲストユーザーとしてログインしました。'
+      redirect_to mypage_path
+    else
+      flash[:error] = 'ゲストユーザーでのログインに失敗しました。'
+      redirect_to root_path
+    end
+  end
 
   protected
 
