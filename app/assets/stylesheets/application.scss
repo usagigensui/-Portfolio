@@ -274,16 +274,12 @@ a:hover {
 
 // カラーテーマ設定
 
-// デフォルト
+// 文字色：ブラック
 .text_color_black {
   color: #14171a;
 }
 
-.background_color_white {
-  background-color: #fff;
-}
-
-// ダーク
+// 文字色：ホワイト
 .text_color_white {
   color: #ccc;
 
@@ -292,40 +288,332 @@ a:hover {
   }
 }
 
-.background_color_black {
-  background-color: #23282F;
+// 文字色：セピア
+.text_color_sepia {
+  color: #622d18;
 
-  .nav-tabs {
-    border-bottom: 1px solid #666;
-  }
-
-  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    border-color: #666 #666 #23282F;
-  }
-
-  .card {
-    border-color: #666;
-  }
-
-  .card-header {
-    border-bottom: 1px solid #666;
-  }
-
-  .card-footer {
-    border-top: 1px solid #666;
+   .table {
+    color: #622d18;
   }
 }
 
-// アクセントカラー
+// 背景色：ホワイト
+.background_color_white {
+  background-color: #fff;
+}
 
+// 背景色：ブラック
+.background_color_black {
+  --background: #23282F;
+  --line: #808080;
+
+  background-color: var(--background);
+
+  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    border-bottom-color: var(--background);
+  }
+
+  .nav-tabs {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    border-top-color: var(--line);
+    border-right-color: var(--line);
+    border-left-color: var(--line);
+  }
+
+  .nav-link:hover {
+    border-color: var(--line);
+  }
+
+  .card {
+    border-color: var(--line);
+  }
+
+  .card-header {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .card-footer {
+    border-top: 1px solid var(--line);
+  }
+
+}
+
+// 背景色：グレー
+.background_color_gray {
+  --background: #dcdcdc;
+  --line: #c0c0c0;
+
+  background-color: var(--background);
+
+  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    border-bottom-color: var(--background);
+  }
+
+  .nav-tabs {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    border-top-color: var(--line);
+    border-right-color: var(--line);
+    border-left-color: var(--line);
+  }
+
+  .nav-link:hover {
+    border-color: var(--line);
+  }
+
+  .card {
+    border-color: var(--line);
+  }
+
+  .card-header {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .card-footer {
+    border-top: 1px solid var(--line);
+  }
+
+}
+
+// 背景色：アイボリー
+.background_color_ivory {
+  --background: #fffff0;
+  --line: #deb887;
+
+  background-color: var(--background);
+
+  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    border-bottom-color: var(--background);
+  }
+
+  .nav-tabs {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    border-top-color: var(--line);
+    border-right-color: var(--line);
+    border-left-color: var(--line);
+  }
+
+  .nav-link:hover {
+    border-color: var(--line);
+  }
+
+  .card {
+    border-color: var(--line);
+  }
+
+  .card-header {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .card-footer {
+    border-top: 1px solid var(--line);
+  }
+
+}
+
+// 背景色：ブラウン
+.background_color_brown {
+  --background: #8f6552;
+  --line: #66483a;
+
+  background-color: var(--background);
+
+  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    border-bottom-color: var(--background);
+  }
+
+  .nav-tabs {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    border-top-color: var(--line);
+    border-right-color: var(--line);
+    border-left-color: var(--line);
+  }
+
+  .nav-link:hover {
+    border-color: var(--line);
+  }
+
+  .card {
+    border-color: var(--line);
+  }
+
+  .card-header {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .card-footer {
+    border-top: 1px solid var(--line);
+  }
+
+}
+
+// アクセントカラー：ライトグレー
+.accent_color_lightgray {
+  a {
+    color: #a9a9a9;
+  }
+}
+
+// アクセントカラー：ダークグレー
+.accent_color_darkgray {
+  a {
+    color: #808080;
+  }
+
+  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .card-header {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .card-footer {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+// アクセントカラー：ブルー
 .accent_color_blue {
   a {
     color: #007bff;
   }
+
+  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: rgba(0, 123, 225, 0.3);
+  }
+
+  .card-header {
+    background-color: rgba(0, 123, 225, 0.3);
+  }
+
+  .card-footer {
+    background-color: rgba(0, 123, 225, 0.3);
+  }
 }
 
+
+// アクセントカラー：レッド
 .accent_color_red {
   a {
     color: #dc143c;
+  }
+
+  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: rgba(220, 20, 26, 0.3);
+  }
+
+  .card-header {
+    background-color: rgba(220, 20, 26, 0.3);
+  }
+
+  .card-footer {
+    background-color: rgba(220, 20, 26, 0.3);
+  }
+}
+
+// アクセントカラー：ピンク
+.accent_color_pink {
+  a {
+    color: #ffc0cb;
+  }
+
+  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: rgba(255, 192, 203, 0.3);
+  }
+
+  .card-header {
+    background-color: rgba(255, 192, 203, 0.3);
+  }
+
+  .card-footer {
+    background-color: rgba(255, 192, 203, 0.3);
+  }
+}
+
+// アクセントカラー：スカイブルー
+.accent_color_skyblue {
+  a {
+    color: #87cefa;
+  }
+
+  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: rgba(135, 206, 250, 0.3);
+  }
+
+  .card-header {
+    background-color: rgba(135, 206, 250, 0.3);
+  }
+
+  .card-footer {
+    background-color: rgba(135, 206, 250, 0.3);
+  }
+}
+
+// アクセントカラー：ライトグリーン
+.accent_color_lightgreen {
+  a {
+    color: #90ee90;
+  }
+
+  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: rgba(144, 238, 144, 0.3);
+  }
+
+  .card-header {
+    background-color: rgba(144, 238, 144, 0.3);
+  }
+
+  .card-footer {
+    background-color: rgba(144, 238, 144, 0.3);
+  }
+}
+
+// アクセントカラー：イエロー
+.accent_color_yellow {
+  a {
+    color: #ffd700;
+  }
+
+  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: rgba(255, 215, 0, 0.3);
+  }
+
+  .card-header {
+    background-color: rgba(255, 215, 0, 0.3);
+  }
+
+  .card-footer {
+    background-color: rgba(255, 215, 0, 0.3);
+  }
+}
+
+// アクセントカラー：オレンジ
+.accent_color_orange {
+  a {
+    color: #ff8c00;
+  }
+
+  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: rgba(255, 140, 0, 0.3);
+  }
+
+  .card-header {
+    background-color: rgba(255, 140, 0, 0.3);
+  }
+
+  .card-footer {
+    background-color: rgba(255, 140, 0, 0.3);
   }
 }
