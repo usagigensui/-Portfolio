@@ -1,22 +1,22 @@
 <nav class="mb-3">
   <ul class="nav nav-tabs nav-fill">
   <li class="nav-item">
-    <%= link_to profile_path, class: "nav-link #{active_if('profiles')}" do %>
+    <%= link_to profile_path, class: "nav-link bg-transparent #{active_if('profiles')}" do %>
       <i class="fas fa-paperclip"></i>
     <% end %>
   </li>
   <li class="nav-item">
-    <%= link_to timeline_profile_path(@profile), class: "nav-link #{active_if('posts')}" do %>
+    <%= link_to timeline_profile_path(@profile), class: "nav-link bg-transparent #{active_if('posts')}" do %>
       <i class="far fa-clock"></i>
     <% end %>
   </li>
   <li class="nav-item">
-    <%= link_to schedules_path(@profile), class: "nav-link #{active_if('schedules')}" do %>
+    <%= link_to schedules_path(@profile), class: "nav-link bg-transparent #{active_if('schedules')}" do %>
       <i class="far fa-calendar-alt"></i>
     <% end %>
   </li>
   <li class="nav-item">
-    <%= link_to new_inquiry_path(@profile), class: "nav-link #{active_if('inquiries')}" do %>
+    <%= link_to new_inquiry_path(@profile), class: "nav-link bg-transparent #{active_if('inquiries')}" do %>
       <i class="far fa-envelope"></i>
     <% end %>
   </li>

@@ -76,6 +76,6 @@ gem 'refile-mini_magick'
 group :production do
   gem 'mysql2'
 end
+gem 'kaminari'
 gem 'rubocop', require: false
 gem 'rubocop-rails'
-gem 'kaminari'

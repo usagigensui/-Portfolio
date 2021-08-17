@@ -15,10 +15,15 @@
 
   <!--コメント一覧-->
   <% profile.comments.each do |comment| %>
-    <div class="card mt-3">
-      <div class="card-header">
-        <%= comment.title %>
-      </div>
+    <div class="card bg-transparent mt-3">
+
+      <!--コメントタイトルがある場合-->
+      <% if comment.title.present? %>
+        <div class="card-header">
+          <%= comment.title %>
+        </div>
+      <% end %>
+
       <div class="card-body">
         <%== user_text(comment.text) %>
         <!--ログインしている場合-->

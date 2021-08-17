@@ -1,27 +1,29 @@
-<!--ヘッダー呼び出し-->
-<%= render "profiles/header", profile: @profile %>
+<div class="profile-page <%= colortheme(@profile) %>">
 
-<!--タブメニュー-->
-<%= render "profiles/tab-menu", profile: @profile %>
+  <!--ヘッダー呼び出し-->
+  <%= render "profiles/header", profile: @profile %>
 
-<!--プロフィールオーナーがログインしている場合-->
-<% if current_user_signed_in?(@profile) %>
-  <!--新規投稿ボタン-->
-  <%= link_to "#", class: "", "data-toggle": "modal", "data-target": "#postModal" do %>
-    <i class="fas fa-plus"></i>
+  <!--タブメニュー-->
+  <%= render "profiles/tab-menu", profile: @profile %>
+
+  <!--プロフィールオーナーがログインしている場合-->
+  <% if current_user_signed_in?(@profile) %>
+    <!--新規投稿ボタン-->
+    <%= link_to "#", class: "", "data-toggle": "modal", "data-target": "#postModal" do %>
+      <i class="fas fa-plus"></i>
+    <% end %>
+    <!--新規投稿モーダルの立ち上げ-->
+    <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <%= render "posts/new", { profile: @profile, post: @post } %>
+    </div>
   <% end %>
-  <!--新規投稿モーダルの立ち上げ-->
-  <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <%= render "posts/new", { profile: @profile, post: @post } %>
-  </div>
-<% end %>
 
-<!--投稿がある場合-->
-<% if @profile.posts.present? %>
+  <!--投稿がある場合-->
+  <% if @profile.posts.present? %>
 
-  <!---投稿一覧->
-  <% @posts.each do |post| %>
-    <div class="card card-body mt-3">
+    <!--投稿一覧-->
+    <% @posts.each do |post| %>
+      <div class="card bg-transparent card-body mt-3">
         <%== user_text(post.text) %>
         <div class="text-right">
           <!--プロフィールオーナーがログインしている場合-->
@@ -46,16 +48,18 @@
             updated at <%= l post.updated_at, format: :long %>
           <% end %>
         </div>
+      </div>
+    <% end %>
+    <!--ページネーション-->
+    <div class="mt-3 d-flex justify-content-center">
+      <%= paginate @posts %>
+    </div>
+
+  <!-- 投稿がない場合 -->
+  <% else %>
+    <div>
+      <p>投稿はありません。</p>
     </div>
   <% end %>
-  <!--ページネーション-->
-  <div class="mt-3 d-flex justify-content-center">
-    <%= paginate @posts %>
-  </div>
-  
-<!-- 投稿がない場合 -->
-<% else %>
-  <div>
-    <p>投稿はありません。</p>
-  </div>
-<% end %>
+
+</div>

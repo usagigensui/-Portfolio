@@ -1,8 +1,10 @@
-<!--ヘッダー呼び出し-->
-<%= render "profiles/header", profile: @profile %>
+<div class="profile-page <%= colortheme(@profile) %>">
+  <!--ヘッダー呼び出し-->
+  <%= render "profiles/header", profile: @profile %>
 
-<!--タブメニュー-->
-<%= render "profiles/tab-menu", profile: @profile %>
+  <!--タブメニュー-->
+  <%= render "profiles/tab-menu", profile: @profile %>
 
-<!--自己紹介コメント一覧-->
-<%= render "comments/index", { profile: @profile, comment: @comment } %>
+  <!--自己紹介コメント一覧-->
+  <%= render "comments/index", { profile: @profile, comment: @comment } %>
+</div>

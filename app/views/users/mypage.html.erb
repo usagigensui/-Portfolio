@@ -1,33 +1,37 @@
-<!--ヘッダー呼び出し-->
-<%= render "layouts/header" %>
+<div class="management-page">
 
-<div class="mypage">
-  <h2>マイページ</h2>
+  <!--ヘッダー呼び出し-->
+  <%= render "layouts/header" %>
 
-  <!--フラッシュメッセージの呼び出し-->
-  <%= render "layouts/flash" %>
+  <div class="mypage">
+    <h2>マイページ</h2>
 
-  <div class="row">
-    <nav class="col-md-4">
-      <p><%= @user.email %></p>
-      <ul class="nav flex-column">
-        <li class="nav-item">
-          <%= link_to "新しいプロフィールを作成", new_profile_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "プロフィールを削除", profiles_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "退会する", mypage_alert_path, class: "nav-link" %>
-        </li>
-      </ul>
-    </nav>
+    <!--フラッシュメッセージの呼び出し-->
+    <%= render "layouts/flash" %>
 
-    <!--プロフィール一覧-->
-    <main class="col-md-8">
-      <%= render 'profiles/index', profiles: @user.profiles %>
-    </main>
+    <div class="row">
+      <nav class="col-md-4">
+        <p><%= @user.email %></p>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <%= link_to "新しいプロフィールを作成", new_profile_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "プロフィールを削除", profiles_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "退会する", mypage_alert_path, class: "nav-link" %>
+          </li>
+        </ul>
+      </nav>
+
+      <!--プロフィール一覧-->
+      <main class="col-md-8">
+        <%= render 'profiles/index', profiles: @user.profiles %>
+      </main>
+    </div>
   </div>
+  <!--フッター呼び出し-->
+  <%= render "layouts/footer" %>
+
 </div>
-<!--フッター呼び出し-->
-<%= render "layouts/footer" %>

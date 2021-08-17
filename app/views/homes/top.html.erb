@@ -1,48 +1,50 @@
-<!--フラッシュメッセージの呼び出し-->
-<%= render "layouts/flash" %>
+<div class="management-page">
+  <!--フラッシュメッセージの呼び出し-->
+  <%= render "layouts/flash" %>
 
-<div class="top mt-3">
-  <!--検索窓-->
-  <%= render "profiles/search_form", keyword: @keyword %>
-  <div class="row">
-    <!--画面左-->
-    <div class="top-image col-md-5 d-flex justify-content-center align-items-center">
-      <h1>Mine Page</h1>
+  <div class="top mt-3">
+    <!--検索窓-->
+    <%= render "profiles/search_form", keyword: @keyword %>
+    <div class="row">
+      <!--画面左-->
+      <div class="top-image col-md-5 d-flex justify-content-center align-items-center">
+        <h1>Mine Page</h1>
+      </div>
+
+      <!--画面右-->
+      <nav class="col-md-7 text-center my-auto">
+        <h2>簡単プロフィール作成</h2>
+        <ul class="nav flex-column col-md-5 mx-auto">
+          <!--aboutページへのリンク-->
+          <!--<li class="nav-item">-->
+          <!--  <#%= link_to about_path, class: "btn btn-outline-secondary btn-lg nav-link" do %>-->
+          <!--    <span>Mine Page</span>とは？-->
+          <!--  <#% end %>-->
+          <!--</li>-->
+          <!--会員登録ボタン-->
+          <li class="nav-item">
+            <%= link_to new_user_registration_path, class: "btn btn-outline-secondary btn-lg nav-link", "data-toggle": "modal", "data-target": "#signupModal" do %>
+              アカウント作成
+            <% end %>
+          </li>
+          <!--会員登録モーダルの立ち上げ-->
+          <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <%= render "devise/registrations/form", user: @user %>
+          </div>
+          <!--ログインボタン-->
+          <li class="nav-item">
+            <%= link_to new_user_session_path, class: "btn btn-outline-secondary btn-lg nav-link", "data-toggle": "modal", "data-target": "#loginModal" do %>
+              ログイン
+            <% end %>
+          </li>
+          <!--ログインモーダルの立ち上げ-->
+          <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <%= render "devise/sessions/form", user: @user %>
+          </div>
+        </ul>
+      </nav>
     </div>
-
-    <!--画面右-->
-    <nav class="col-md-7 text-center my-auto">
-      <h2>簡単プロフィール作成</h2>
-      <ul class="nav flex-column col-md-5 mx-auto">
-        <!--aboutページへのリンク-->
-        <!--<li class="nav-item">-->
-        <!--  <#%= link_to about_path, class: "btn btn-outline-secondary btn-lg nav-link" do %>-->
-        <!--    <span>Mine Page</span>とは？-->
-        <!--  <#% end %>-->
-        <!--</li>-->
-        <!--会員登録ボタン-->
-        <li class="nav-item">
-          <%= link_to new_user_registration_path, class: "btn btn-outline-secondary btn-lg nav-link", "data-toggle": "modal", "data-target": "#signupModal" do %>
-            アカウント作成
-          <% end %>
-        </li>
-        <!--会員登録モーダルの立ち上げ-->
-        <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-hidden="true">
-          <%= render "devise/registrations/form", user: @user %>
-        </div>
-        <!--ログインボタン-->
-        <li class="nav-item">
-          <%= link_to new_user_session_path, class: "btn btn-outline-secondary btn-lg nav-link", "data-toggle": "modal", "data-target": "#loginModal" do %>
-            ログイン
-          <% end %>
-        </li>
-        <!--ログインモーダルの立ち上げ-->
-        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
-          <%= render "devise/sessions/form", user: @user %>
-        </div>
-      </ul>
-    </nav>
   </div>
+  <!--フッター呼び出し-->
+  <%= render "layouts/footer" %>
 </div>
-<!--フッター呼び出し-->
-<%= render "layouts/footer" %>

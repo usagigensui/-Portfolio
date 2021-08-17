@@ -1,7 +1,11 @@
-<!--ヘッダー呼び出し-->
-<%= render "layouts/header" %>
-<h2>プロフィール作成</h2>
-<!--プロフィール作成・編集フォーム呼び出し-->
-<%= render "profiles/form", profile: @profile %>
-<!--フッター呼び出し-->
-<%= render "layouts/footer" %>
+<div class="management-page">
+
+  <!--ヘッダー呼び出し-->
+  <%= render "layouts/header" %>
+  <h2>プロフィール作成</h2>
+  <!--プロフィール作成・編集フォーム呼び出し-->
+  <%= render "profiles/form", profile: @profile %>
+  <!--フッター呼び出し-->
+  <%= render "layouts/footer" %>
+
+</div>

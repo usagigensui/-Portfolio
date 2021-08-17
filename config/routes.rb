@@ -31,8 +31,8 @@ Rails.application.routes.draw do
       resources :comments, except: [:new, :index, :show, :edit]
       # リンク
       resources :links, except: [:new, :show, :edit]
-      # テーマカラー
-      resources :colors, only: [:new, :update]
+      # カラーテーマ
+      resource :colors, only: [:edit, :update]
       # タイムライン
       get 'timeline' => 'posts#index'
       resources :posts, except: [:new, :index, :show, :edit]

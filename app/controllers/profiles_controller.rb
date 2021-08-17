@@ -15,16 +15,14 @@ class ProfilesController < ApplicationController
   # プロフィール作成フォーム
   def new
     @profile = Profile.new
-    @color = Color.new
   end
 
   # プロフィールを新規作成
   def create
     @profile = Profile.new(profile_params)
     @profile.user_id = current_user.id
-    @color = Color.new(color_params)
-    @color.profile_id = @profile.id
-    if @profile.save && @color.save
+    if @profile.save
+      @color = Color.create(profile_id: @profile.id)
       flash[:notice] = 'プロフィールを新規作成しました。'
       redirect_to mypage_path
     else
@@ -36,7 +34,6 @@ class ProfilesController < ApplicationController
   def edit
     # プロフィールオーナー=ログインユーザーの場合
     if @profile.user == current_user
-      @color = @profile.color
       render 'edit'
     # プロフィールオーナー≠ログインユーザーの場合
     else
@@ -46,7 +43,7 @@ class ProfilesController < ApplicationController
 
   # プロフィールへの編集を保存
   def update
-    if @profile.update(profile_params) && @color.update(color_params)
+    if @profile.update(profile_params)
       flash[:notice] = 'プロフィールを編集しました。'
       redirect_to profile_path(@profile)
     else
@@ -81,9 +78,5 @@ class ProfilesController < ApplicationController
 
   def profile_params
     params.require(:profile).permit(:code, :name, :image, :introduction, :status)
-  end
-
-  def color_params
-    params.require(:color).permit(:text, :background, :accent)
   end
 end

@@ -5,7 +5,7 @@ class Profile < ApplicationRecord
   has_many :schedules, dependent: :destroy
   has_many :inquiries, dependent: :destroy
   has_many :links, dependent: :destroy
-  has_one :colors, dependent: :destroy
+  has_one :color, dependent: :destroy
 
   # プロフィールコード、名前は空白禁止
   with_options presence: true do

@@ -1,20 +1,26 @@
-<!--ヘッダー呼び出し-->
-<%= render "layouts/header" %>
-<!--検索窓-->
-<%= render "profiles/search_form", keyword: @keyword %>
-<div class="search">
-  <h2>ユーザー検索</h2>
-  
-  <!--条件に合うプロフィールがある場合-->
-  <% if @profiles.present? %>
-    <!--検索結果一覧-->
-    <%= render 'profiles/index', profiles: @profiles %>
-  <!--条件に合うプロフィールがない場合 -->
-  <% else %>
-    <div>
-      <p>条件に合うプロフィールは存在しません。</p>
-    </div>
-  <% end %>
+<div class="management-page">
+
+  <!--ヘッダー呼び出し-->
+  <%= render "layouts/header" %>
+  <!--検索窓-->
+  <%= render "profiles/search_form", keyword: @keyword %>
+
+  <main class="search">
+    <h2>ユーザー検索</h2>
+
+    <!--条件に合うプロフィールがある場合-->
+    <% if @profiles.present? %>
+      <!--検索結果一覧-->
+      <%= render 'profiles/index', profiles: @profiles %>
+    <!--条件に合うプロフィールがない場合 -->
+    <% else %>
+      <div>
+        <p>条件に合うプロフィールは存在しません。</p>
+      </div>
+    <% end %>
+  </main>
+
+  <!--フッター呼び出し-->
+  <%= render "layouts/footer" %>
+
 </div>
-<!--フッター呼び出し-->
-<%= render "layouts/footer" %>
