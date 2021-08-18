@@ -19,7 +19,7 @@
     <% @links.each do |link| %>
       <tr>
         <td>
-          <a href="<%= link.url %>"><%= link.url %></a>
+          <a href="<%= link.url %>" target="_blank" rel="noopener noreferrer"><%= link.url %></a>
         </td>
         <td><%= link.category %></td>
         <td class="text-center">

@@ -32,7 +32,7 @@
           <!--リンク-->
           <% profile.links.each do |link| %>
             <li class="nav-item">
-              <%= link_to link.url, class: "nav-link" do %>
+              <%= link_to link.url, class: "nav-link", target: "_blank", rel: "noopener noreferrer" do %>
                 <i class="<%= icon(link.category) %>"></i>
               <% end %>
             </li>

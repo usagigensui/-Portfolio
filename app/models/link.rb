@@ -10,5 +10,5 @@ class Link < ApplicationRecord
 
   # カテゴリーはenum管理
   enum category: { "Homepage": 0, "Twitter": 1, "Instagram": 2, "Facebook": 3, "YouTube": 4, "TikTok": 5,
-                   "Favorite": 6, "Other": 7 }
+                   "Github": 6, "Favorite": 7, "Other": 8 }
 end

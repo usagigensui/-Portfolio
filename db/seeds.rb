@@ -6,6 +6,52 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# 管理人プロフィール
+User.create!(
+  :id => 1,
+  :email => ENV['MASTER_EMAIL'],
+  :password => ENV['MASTER_PASSWORD']
+)
+
+Profile.create!(
+  :id => 1,
+  :user_id => 1,
+  :code => "master",
+  :name => "sumiyoshi",
+  :introduction => "MinePageを作っているひとです。\r\今後も改良していく予定です。",
+  :image => File.open("./app/assets/images/yuru_neko.png"),
+  :status => 0
+)
+
+Color.create!(
+  :id => 1,
+  :profile_id => 1,
+  :text => 2,
+  :background => 4,
+  :accent => 4
+)
+
+Link.create!(
+  :id => 1,
+  :profile_id => 1,
+  :url => "https://github.com/usagigensui",
+  :category => 6
+)
+
+Comment.create!(
+  :id => 1,
+  :profile_id => 1,
+  :title => "Like♥",
+  :text => "読書・お絵描き\r\まったりコーヒータイム☕"
+)
+
+Comment.create!(
+  :id => 2,
+  :profile_id => 1,
+  :title => "Special thanks",
+  :text => "アイコンはガーリー素材(https://girlysozai.com)さまよりお借りしています。"
+)
+
 # ゲストユーザー
 User.create!(
   :id => 2,
@@ -31,15 +77,29 @@ Color.create!(
   :accent => 0
 )
 
-Comment.create!(
+Link.create!(
   :id => 2,
+  :profile_id => 2,
+  :url => "https://twitter.com/?lang=ja",
+  :category => 1
+)
+
+Link.create!(
+  :id => 3,
+  :profile_id => 2,
+  :url => "https://ja-jp.facebook.com/",
+  :category => 3
+)
+
+Comment.create!(
+  :id => 3,
   :profile_id => 2,
   :title => "ここはプロフィールコメント欄です。",
   :text => "お好きなコメントを投稿することができます。\r\この欄はユーザーさまに自由に使っていただくため、あえて使用用途を定めていません。"
 )
 
 Comment.create!(
-  :id => 3,
+  :id => 4,
   :profile_id => 2,
   :title => "リンクの設置も可能です。",
   :text => "URLを入力すると、\r\https://www.google.com/?hl=ja\r\ハイパーリンクが設置されます。"
@@ -93,18 +153,32 @@ Color.create!(
   :profile_id => 3,
   :text => 1,
   :background => 1,
-  :accent => 1
+  :accent => 2
+)
+
+Link.create!(
+  :id => 4,
+  :profile_id => 3,
+  :url => "https://twitter.com/?lang=ja",
+  :category => 1
+)
+
+Link.create!(
+  :id => 5,
+  :profile_id => 3,
+  :url => "https://www.instagram.com/?hl=ja",
+  :category => 2
 )
 
 Comment.create!(
-  :id => 4,
+  :id => 5,
   :profile_id => 3,
   :title => "ここはプロフィールコメント欄です。",
   :text => "お好きなコメントを投稿することができます。\r\この欄はユーザーさまに自由に使っていただくため、あえて使用用途を定めていません。"
 )
 
 Comment.create!(
-  :id => 5,
+  :id => 6,
   :profile_id => 3,
   :title => "リンクの設置も可能です。",
   :text => "URLを入力すると、\r\https://www.google.com/?hl=ja\r\ハイパーリンクが設置されます。"

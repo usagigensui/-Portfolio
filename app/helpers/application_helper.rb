@@ -17,7 +17,7 @@ module ApplicationHelper
   # 投稿テキストのURLをハイパーリンクに変更
   def url2a(text)
     text.gsub(URI::DEFAULT_PARSER.make_regexp(%w[http https])) do
-      tag.a Regexp.last_match(0), href: Regexp.last_match(0), target: '_blank'
+      tag.a Regexp.last_match(0), href: Regexp.last_match(0), target: '_blank', rel: "noopener noreferrer"
     end
   end
 
@@ -46,6 +46,7 @@ module ApplicationHelper
     'Facebook' => 'fab fa-facebook-f',
     'YouTube' => 'fab fa-youtube',
     'TikTok' => 'fab fa-tiktok',
+    'Github' => 'fab fa-github',
     'Favorite' => 'fas fa-heart',
     'Other' => 'fas fa-star'
   }.freeze
