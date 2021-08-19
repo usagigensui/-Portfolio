@@ -58,6 +58,7 @@ https://docs.google.com/spreadsheets/d/1iBqV0anYklTokT4v9J5auW2oT1cM6sycMHXr0ZJN
 - <a href="https://fontawesome.com/">Font Awesome</a>
 - <a href="https://www.shoshinsha-design.com/">フリー素材ブログ</a>
 
-###### :no_mouth: おまけ
+
+##### :no_mouth: おまけ
 せっかくなので、こっそり自分のプロフを作ってしまいました。  
 https://minepage.xyz/profiles/master
