@@ -7,7 +7,6 @@ class PostsController < ApplicationController
     @profile = Profile.find_by(code: params[:code])
     @posts = @profile.posts.page(params[:page]).per(10).reverse_order
     @post = Post.new
-    @link = Link.new
     ## 非公開プロフィールへのアクセスをブロック
     release_check(@profile)
   end

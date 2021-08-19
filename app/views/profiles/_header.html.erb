@@ -1,18 +1,81 @@
-<header class="profile-header">
-  <!--ログインしている場合-->
-  <% if user_signed_in? %>
-    <nav>
-      <ul class="nav justify-content-end">
+ <!--ログインしている場合-->
+<% if user_signed_in? %>
+  <nav>
+    <div class="menu-ber">
+      <!--ログインしている場合-->
+      <% if user_signed_in? %>
+      <ul class="nav justify-content-end align-items-end">
         <li class="nav-item">
           <%= link_to "マイページ", mypage_path, class: "nav-link active" %>
         </li>
         <li class="nav-item">
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
         </li>
+        <% end %>
+        <!--プロフィールオーナーがログインしている場合-->
+        <% if current_user_signed_in?(profile) %>
+        <li class="nav-item">
+          <div class="nav-link">
+          <button class="menu-btn btn btn-outline-secondary frex justify-content-end">
+            <i class="fas fa-cog"></i>
+          </button>
+          </div>
+        </li>
+        <% end %>
       </ul>
-    </nav>
-  <% end %>
+    </div>
+    <!--プロフィールオーナーがログインしている場合-->
+    <% if current_user_signed_in?(profile) %>
+      <ul class="menu-nav nav flex-column">
+        <h6 class="nav-item">
+          <i class="fas fa-link"> Link</i>
+        </h6>
+        <!--リンクの追加ページへのリンク-->
+        <li class="nav-item">
+          <%= link_to new_link_path, class: "nav-link" do %>
+            <i class="fas fa-plus"></i> リンクを追加する
+          <% end %>
+        </li>
+        <!--リンクが存在した場合-->
+        <% if profile.links.present? %>
+          <!--リンク一覧画面へのリンク-->
+          <li class="nav-item">
+            <%= link_to links_path(profile), class: "nav-link" do %>
+              <i class="fas fa-pen-nib"></i> リンクを編集する
+            <% end %>
+          </li>
+        <% end %>
+        <h6 class="nav-item">
+          <i class="fas fa-palette"> Color</i>
+        </h6>
+        <!--カラーテーマ編集ページへのリンク-->
+        <li class="nav-item">
+          <%= link_to edit_colors_path(profile), class: "nav-link" do %>
+            <i class="fas fa-paint-brush"></i> カラーテーマを変更する
+          <% end %>
+        </li>
+        <h6 class="nav-item">
+          <i class="fas fa-mail-bulk"> Mail</i>
+        </h6>
+        <!--メールボックスへのリンク-->
+        <li class="nav-item">
+          <%= link_to inquiries_path(profile), class: "nav-link" do %>
+            <i class="fas fa-envelope-open-text"></i> 受信メールを確認する
+          <% end %>
+        </li>
+      </ul>
+    <% end %>
+  </nav>
+  <script>
+    const menubtn = document.querySelector('.menu-btn');
+    const menunav = document.querySelector('.menu-nav');
+    menubtn.addEventListener('click', () => {
+      menunav.classList.toggle('open-menu');
+    });
+  </script>
+<% end %>
 
+<header class="profile-header">
 
   <!--フラッシュメッセージの呼び出し-->
   <%= render "layouts/flash" %>
@@ -36,29 +99,6 @@
                 <i class="<%= icon(link.category) %>"></i>
               <% end %>
             </li>
-          <% end %>
-          <!--プロフィールオーナーがログインしている場合-->
-          <% if current_user_signed_in?(profile) %>
-            <li class="nav-item">
-              <!--リンク先追加ボタン-->
-              <%= link_to "#", class: "nav-link", "data-toggle": "modal", "data-target": "#linkModal" do %>
-                <i class="fas fa-plus"></i>
-              <% end %>
-              <!--新規投稿モーダルの立ち上げ-->
-              <div class="modal fade" id="linkModal" tabindex="-1" role="dialog" aria-hidden="true">
-                <%= render "links/new", { profile: @profile, link: @link } %>
-              </div>
-            </li>
-
-            <!--リンクが存在した場合-->
-            <% if profile.links.present? %>
-              <li class="nav-item">
-                <!--リンク一覧画面へのリンク-->
-                <%= link_to links_path(profile), class: "nav-link" do %>
-                  <i class="fas fa-cog"></i>
-                <% end %>
-              </li>
-            <% end %>
           <% end %>
         </ul>
       </nav>

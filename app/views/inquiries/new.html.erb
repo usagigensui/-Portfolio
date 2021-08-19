@@ -6,7 +6,10 @@
   <!--タブメニュー-->
   <%= render "profiles/tab-menu", profile: @profile %>
 
-  <p><span class="small required"><i class="fas fa-asterisk"></i></span>は必須項目です。</p>
+  <p>
+    プロフィールオーナーへメールを送信できます。<br>
+    <span class="small required"><i class="fas fa-asterisk"></i></span>は必須項目です。
+  </p>
 
   <!--メール送信フォーム-->
   <%= form_with(model: [@profile, @inquiry], url: confirm_inquiries_path(@profile), local: true) do |f| %>

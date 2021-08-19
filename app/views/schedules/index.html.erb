@@ -15,8 +15,8 @@
           <% if current_user_signed_in?(@profile) %>
             <!--新規投稿ボタン-->
             <li class="nav-link">
-              <%= link_to "#", class: "", "data-toggle": "modal", "data-target": "#scheduleModal" do %>
-                <i class="fas fa-plus"></i>
+              <%= link_to "#", class: "ml-3", "data-toggle": "modal", "data-target": "#scheduleModal" do %>
+                <i class="fas fa-plus"></i> 予定を追加する
               <% end %>
             </li>
             <!--新規投稿モーダルの立ち上げ-->
@@ -27,7 +27,7 @@
           <!--終了した予定へのリンク-->
           <li class="nav-link">
           <%= link_to completed_schedules_path(@profile) do %>
-            <i class="fas fa-history"></i>
+            <i class="fas fa-history"></i> 過去の予定を確認する
           <% end %>
           </li>
         </ul>

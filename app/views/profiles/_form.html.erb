@@ -7,13 +7,6 @@
     <%= render "layouts/error", model: f.object %>
 
     <div class="form-group mb-3">
-      <%= f.label :code, "プロフィールコード", class: "form-label" %>
-      <span class="small required"><i class="fas fa-asterisk"></i></span>
-      <%= f.text_field :code, class: "form-control" %>
-      <div class="small text-muted">プロフィールページのURLの末尾に使用します。半角小文字英数字で、20文字まで入力できます。</div>
-    </div>
-
-    <div class="form-group mb-3">
       <%= f.label :name, "名前", class: "form-label" %>
       <span class="small required"><i class="fas fa-asterisk"></i></span>
       <%= f.text_field :name, class: "form-control" %>
@@ -61,6 +54,13 @@
       <%= f.label :status, "非公開", value: :"非公開", class: "form-check-label" %>
     </div>
     <span class="small required"><i class="fas fa-asterisk"></i></span>
+
+    <div class="form-group mb-3">
+      <%= f.label :code, "プロフィールコード", class: "form-label" %>
+      <span class="small required"><i class="fas fa-asterisk"></i></span>
+      <%= f.text_field :code, class: "form-control" %>
+      <div class="small text-muted">プロフィールページのURLの末尾に使用します。半角小文字英数字で、20文字まで入力できます。URLが変わってしまいますので、変更は慎重に行ってください。</div>
+    </div>
 
     <div class="form-group mb-3">
       <%= f.submit "確定", class: "btn btn-outline-success" %>

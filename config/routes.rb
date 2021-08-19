@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       # 自己紹介コメント
       resources :comments, except: [:new, :index, :show, :edit]
       # リンク
-      resources :links, except: [:new, :show, :edit]
+      resources :links, except: [:show, :edit]
       # カラーテーマ
       resource :colors, only: [:edit, :update]
       # タイムライン

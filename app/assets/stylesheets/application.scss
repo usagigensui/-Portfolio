@@ -199,6 +199,57 @@ a:hover {
   padding: 1rem 4rem 2rem;
 }
 
+// メニューバー
+.menu-ber {
+  height: 3rem;
+  position: relative;
+}
+
+// メニューボタン
+.menu-btn {
+  padding: 0.2rem 1.5rem;
+  text-decoration: none;
+  transition: 0.4s;
+}
+
+// メニューボタン：ホバー
+.menu:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+// メニューナビ一覧
+.menu-nav {
+  width: 0;
+  padding: 1rem 0;
+  margin-right: 4rem;
+  background-color: #fff;
+  position: absolute;
+  z-index: 3;
+  right: 0;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.125) inset;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: 0.5s;
+
+  .nav-item {
+    margin-left: 1.5rem;
+  }
+
+  h6 {
+    margin-top: 0.5rem;
+  }
+
+  h6:first-child {
+    margin-top: 0;
+  }
+
+}
+
+  // メニューナビの表示
+  .menu-nav.open-menu {
+    width: 20rem;
+}
+
 // ヘッダー
 .profile-header {
   padding-top: 1rem;
@@ -314,7 +365,12 @@ a:hover {
     border-bottom-color: var(--background);
   }
 
-  .nav-tabs {
+  .menu-nav {
+    background-color: var(--background);
+    box-shadow: 0 0 0 1px var(--line) inset;
+  }
+
+  .nav-tabs, .card-header, .card-footer {
     border-bottom: 1px solid var(--line);
   }
 
@@ -324,22 +380,9 @@ a:hover {
     border-left-color: var(--line);
   }
 
-  .nav-link:hover {
+  .nav-link:hover, .card {
     border-color: var(--line);
   }
-
-  .card {
-    border-color: var(--line);
-  }
-
-  .card-header {
-    border-bottom: 1px solid var(--line);
-  }
-
-  .card-footer {
-    border-top: 1px solid var(--line);
-  }
-
 }
 
 // 背景色：グレー
@@ -353,7 +396,12 @@ a:hover {
     border-bottom-color: var(--background);
   }
 
-  .nav-tabs {
+   .menu-nav {
+    background-color: var(--background);
+    box-shadow: 0 0 0 1px var(--line) inset;
+  }
+
+  .nav-tabs, .card-header, .card-footer {
     border-bottom: 1px solid var(--line);
   }
 
@@ -363,22 +411,9 @@ a:hover {
     border-left-color: var(--line);
   }
 
-  .nav-link:hover {
+  .nav-link:hover, .card {
     border-color: var(--line);
   }
-
-  .card {
-    border-color: var(--line);
-  }
-
-  .card-header {
-    border-bottom: 1px solid var(--line);
-  }
-
-  .card-footer {
-    border-top: 1px solid var(--line);
-  }
-
 }
 
 // 背景色：アイボリー
@@ -392,7 +427,12 @@ a:hover {
     border-bottom-color: var(--background);
   }
 
-  .nav-tabs {
+   .menu-nav {
+    background-color: var(--background);
+    box-shadow: 0 0 0 1px var(--line) inset;
+  }
+
+  .nav-tabs, .card-header, .card-footer {
     border-bottom: 1px solid var(--line);
   }
 
@@ -402,22 +442,9 @@ a:hover {
     border-left-color: var(--line);
   }
 
-  .nav-link:hover {
+  .nav-link:hover, .card {
     border-color: var(--line);
   }
-
-  .card {
-    border-color: var(--line);
-  }
-
-  .card-header {
-    border-bottom: 1px solid var(--line);
-  }
-
-  .card-footer {
-    border-top: 1px solid var(--line);
-  }
-
 }
 
 // 背景色：ブラウン
@@ -431,7 +458,12 @@ a:hover {
     border-bottom-color: var(--background);
   }
 
-  .nav-tabs {
+   .menu-nav {
+    background-color: var(--background);
+    box-shadow: 0 0 0 1px var(--line) inset;
+  }
+
+  .nav-tabs, .card-header, .card-footer {
     border-bottom: 1px solid var(--line);
   }
 
@@ -441,22 +473,9 @@ a:hover {
     border-left-color: var(--line);
   }
 
-  .nav-link:hover {
+  .nav-link:hover, .card {
     border-color: var(--line);
   }
-
-  .card {
-    border-color: var(--line);
-  }
-
-  .card-header {
-    border-bottom: 1px solid var(--line);
-  }
-
-  .card-footer {
-    border-top: 1px solid var(--line);
-  }
-
 }
 
 // アクセントカラー：ライトグレー
@@ -468,153 +487,177 @@ a:hover {
 
 // アクセントカラー：ダークグレー
 .accent_color_darkgray {
-  a {
-    color: #808080;
+  --link: #808080;
+  --accent: rgba(0, 0, 0, 0.3);
+
+  a, .menu-btn {
+    color: var(--link);
+  }
+
+  .menu-btn {
+    border-color: var(--link);
   }
 
   .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    color: rgba(0, 0, 0, 0.3);
+    color: var(--accent);
   }
 
-  .card-header {
-    background-color: rgba(0, 0, 0, 0.3);
-  }
-
-  .card-footer {
-    background-color: rgba(0, 0, 0, 0.3);
+  .menu-btn, .card-header, .card-footer {
+    background-color: var(--accent);
   }
 }
 
 // アクセントカラー：ブルー
 .accent_color_blue {
-  a {
-    color: #007bff;
+  --link: #007bff;
+  --accent: rgba(0, 123, 225, 0.3);
+
+  a, .menu-btn {
+    color: var(--link);
+  }
+
+  .menu-btn {
+    border-color: var(--link);
   }
 
   .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    color: rgba(0, 123, 225, 0.3);
+    color: var(--accent);
   }
 
-  .card-header {
-    background-color: rgba(0, 123, 225, 0.3);
-  }
-
-  .card-footer {
-    background-color: rgba(0, 123, 225, 0.3);
+  .menu-btn, .card-header, .card-footer {
+    background-color: var(--accent);
   }
 }
 
 
 // アクセントカラー：レッド
 .accent_color_red {
-  a {
-    color: #dc143c;
+  --link: #dc143c;
+  --accent: rgba(220, 20, 26, 0.3);
+
+  a, .menu-btn {
+    color: var(--link);
+  }
+
+  .menu-btn {
+    border-color: var(--link);
   }
 
   .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    color: rgba(220, 20, 26, 0.3);
+    color: var(--accent);
   }
 
-  .card-header {
-    background-color: rgba(220, 20, 26, 0.3);
-  }
-
-  .card-footer {
-    background-color: rgba(220, 20, 26, 0.3);
+  .menu-btn, .card-header, .card-footer {
+    background-color: var(--accent);
   }
 }
 
 // アクセントカラー：ピンク
 .accent_color_pink {
-  a {
-    color: #ffc0cb;
+  --link: #ffc0cb;
+  --accent: rgba(255, 192, 203, 0.3);
+
+  a, .menu-btn {
+    color: var(--link);
+  }
+
+  .menu-btn {
+    border-color: var(--link);
   }
 
   .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    color: rgba(255, 192, 203, 0.3);
+    color: var(--accent);
   }
 
-  .card-header {
-    background-color: rgba(255, 192, 203, 0.3);
-  }
-
-  .card-footer {
-    background-color: rgba(255, 192, 203, 0.3);
+  .menu-btn, .card-header, .card-footer {
+    background-color: var(--accent);
   }
 }
 
 // アクセントカラー：スカイブルー
 .accent_color_skyblue {
-  a {
-    color: #87cefa;
+  --link: #87cefa;
+  --accent: rgba(135, 206, 250, 0.3);
+
+  a, .menu-btn {
+    color: var(--link);
+  }
+
+  .menu-btn {
+    border-color: var(--link);
   }
 
   .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    color: rgba(135, 206, 250, 0.3);
+    color: var(--accent);
   }
 
-  .card-header {
-    background-color: rgba(135, 206, 250, 0.3);
-  }
-
-  .card-footer {
-    background-color: rgba(135, 206, 250, 0.3);
+  .menu-btn, .card-header, .card-footer {
+    background-color: var(--accent);
   }
 }
 
 // アクセントカラー：ライトグリーン
 .accent_color_lightgreen {
-  a {
-    color: #90ee90;
+  --link: #90ee90;
+  --accent: rgba(144, 238, 144, 0.3);
+
+  a, .menu-btn {
+    color: var(--link);
+  }
+
+  .menu-btn {
+    border-color: var(--link);
   }
 
   .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    color: rgba(144, 238, 144, 0.3);
+    color: var(--accent);
   }
 
-  .card-header {
-    background-color: rgba(144, 238, 144, 0.3);
-  }
-
-  .card-footer {
-    background-color: rgba(144, 238, 144, 0.3);
+  .menu-btn, .card-header, .card-footer {
+    background-color: var(--accent);
   }
 }
 
 // アクセントカラー：イエロー
 .accent_color_yellow {
-  a {
-    color: #ffd700;
+  --link: #ffd700;
+  --accent: rgba(255, 215, 0, 0.3);
+
+  a, .menu-btn {
+    color: var(--link);
+  }
+
+  .menu-btn {
+    border-color: var(--link);
   }
 
   .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    color: rgba(255, 215, 0, 0.3);
+    color: var(--accent);
   }
 
-  .card-header {
-    background-color: rgba(255, 215, 0, 0.3);
-  }
-
-  .card-footer {
-    background-color: rgba(255, 215, 0, 0.3);
+  .menu-btn, .card-header, .card-footer {
+    background-color: var(--accent);
   }
 }
 
 // アクセントカラー：オレンジ
 .accent_color_orange {
-  a {
-    color: #ff8c00;
+  --link: #ff8c00;
+  --accent: rgba(255, 140, 0, 0.3);
+
+  a, .menu-btn {
+    color: var(--link);
+  }
+
+  .menu-btn {
+    border-color: var(--link);
   }
 
   .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    color: rgba(255, 140, 0, 0.3);
+    color: var(--accent);
   }
 
-  .card-header {
-    background-color: rgba(255, 140, 0, 0.3);
-  }
-
-  .card-footer {
-    background-color: rgba(255, 140, 0, 0.3);
+  .menu-btn, .card-header, .card-footer {
+    background-color: var(--accent);
   }
 }

@@ -9,8 +9,8 @@
   <!--プロフィールオーナーがログインしている場合-->
   <% if current_user_signed_in?(@profile) %>
     <!--新規投稿ボタン-->
-    <%= link_to "#", class: "", "data-toggle": "modal", "data-target": "#postModal" do %>
-      <i class="fas fa-plus"></i>
+    <%= link_to "#", class: "nav-link", "data-toggle": "modal", "data-target": "#postModal" do %>
+      <i class="fas fa-plus"></i> タイムラインへ投稿する
     <% end %>
     <!--新規投稿モーダルの立ち上げ-->
     <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-hidden="true">

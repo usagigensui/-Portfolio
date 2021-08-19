@@ -2,6 +2,12 @@ class LinksController < ApplicationController
   # ログインユーザーのみ許可
   before_action :authenticate_user!
 
+  # リンクの新規登録画面
+  def new
+    @profile = Profile.find_by(code: params[:code])
+    @link = Link.new
+  end
+
   # リンクを新規作成
   def create
     @profile = Profile.find_by(code: params[:code])

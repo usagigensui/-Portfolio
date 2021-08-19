@@ -1,0 +1,32 @@
+<div class="management-page">
+
+  <!--ヘッダー呼び出し-->
+  <%= render "layouts/header" %>
+
+  <h2>リンクを追加</h2>
+
+  <!--フォーム-->
+  <%= form_with(model: [@profile, @link], url: links_path, local: true) do |f| %>
+
+    <!--エラーメッセージ-->
+    <%= render "layouts/error", model: f.object %>
+
+    <div class="form-group mb-3">
+      <%= f.label :url, "URL" %>
+      <%= f.text_field :url, autofocus: true, autocomplete: "https://minepage.com", class: "form-control" %>
+    </div>
+
+    <div class="form-group mb-3">
+      <%= f.label :category, "カテゴリー" %>
+      <%= f.select :category, Link.categories.keys, {prompt: "選択してください"}, class: "custom-select" %>
+    </div>
+
+    <div class="form-group mb-3">
+      <%= f.submit "作成", class: "btn btn-outline-secondary" %>
+    </div>
+  <% end %>
+
+  <!--フッター呼び出し-->
+  <%= render "layouts/footer" %>
+
+</div>

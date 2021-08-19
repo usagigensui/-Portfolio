@@ -9,7 +9,6 @@ class SchedulesController < ApplicationController
     @schedules = @profile.schedules
     @waiting_schedules = @schedules.where('end_date > ?', DateTime.now).page(params[:page]).per(10).reverse_order
     @schedule = Schedule.new
-    @link = Link.new
     # 非公開プロフィールへのアクセスをブロック
     release_check(@profile)
   end
@@ -19,7 +18,6 @@ class SchedulesController < ApplicationController
     @schedules = @profile.schedules
     @completed_schedules = @schedules.where('end_date < ?', DateTime.now).page(params[:page]).per(10).reverse_order
     @schedule = Schedule.new
-    @link = Link.new
     # 非公開プロフィールへのアクセスをブロック
     release_check(@profile)
   end

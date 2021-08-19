@@ -6,7 +6,6 @@ class ProfilesController < ApplicationController
 
   # プロフィールページ
   def show
-    @link = Link.new
     @comment = Comment.new
     # 非公開プロフィールへのアクセスをブロック
     release_check(@profile)

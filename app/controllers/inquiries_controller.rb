@@ -7,7 +7,6 @@ class InquiriesController < ApplicationController
   # フォームメール作成ページ
   def new
     @inquiry = Inquiry.new
-    @link = Link.new
     # 非公開プロフィールへのアクセスをブロック
     release_check(@profile)
   end
@@ -16,7 +15,6 @@ class InquiriesController < ApplicationController
   def confirm
     @inquiry = Inquiry.new(inquiry_params)
     @inquiry.profile_id = @profile.id
-    @link = Link.new
     # バリデーション確認
     render 'new' if @inquiry.invalid?
     # 非公開プロフィールへのアクセスをブロック

@@ -9,6 +9,12 @@
   <table class="table table-borderless">
     <tbody>
       <tr>
+        <td colspan="2">
+          下記内容で送信します。<br>
+          ご確認のうえ、送信ボタンを押下してください。
+        </td>
+      </tr>
+      <tr>
         <td class="text-center">名前</td>
         <td><%= @inquiry.sender %></td>
       </tr>
@@ -24,22 +30,34 @@
         <td class="text-center">メッセージ</td>
         <td style="white-space: pre-wrap;"><%= @inquiry.message %></td>
       </tr>
+      <tr>
+        <td>
+          <div class="row justify-content-center">
+            <div class="mr-3">
+              <%= form_with(model: [@profile, @inquiry], url: inquiries_path, local: true) do |f| %>
+                <%= f.hidden_field :sender %>
+                <%= f.hidden_field :email %>
+                <%= f.hidden_field :title %>
+                <%= f.hidden_field :message %>
+                <%= f.submit "送信", class: "btn btn-outline-success" %>
+              <% end %>
+            </div>
+            <div class="">
+              <%= form_with(model: [@profile, @inquiry], url: back_inquiries_path(@profile), local: true) do |f| %>
+                <%= f.hidden_field :sender %>
+                <%= f.hidden_field :email %>
+                <%= f.hidden_field :title %>
+                <%= f.hidden_field :message %>
+                <%= f.submit "修正", class: "btn btn-outline-danger" %>
+              <% end %>
+            </div>
+          </div>
+        </td>
+        </td>
+      </tr>
     </tbody>
   </table>
 
-  <%= form_with(model: [@profile, @inquiry], url: inquiries_path, local: true) do |f| %>
-    <%= f.hidden_field :sender %>
-    <%= f.hidden_field :email %>
-    <%= f.hidden_field :title %>
-    <%= f.hidden_field :message %>
-    <div><%= f.submit "送信", class: "btn btn-outline-success" %></div>
-  <% end %>
-  <%= form_with(model: [@profile, @inquiry], url: back_inquiries_path(@profile), local: true) do |f| %>
-    <%= f.hidden_field :sender %>
-    <%= f.hidden_field :email %>
-    <%= f.hidden_field :title %>
-    <%= f.hidden_field :message %>
-    <div><%= f.submit "修正", class: "btn btn-outline-danger" %></div>
-  <% end %>
+
 
 </div>
