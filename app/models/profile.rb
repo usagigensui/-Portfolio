@@ -6,6 +6,7 @@ class Profile < ApplicationRecord
   has_many :inquiries, dependent: :destroy
   has_many :links, dependent: :destroy
   has_one :color, dependent: :destroy
+  has_many :images, dependent: :destroy
 
   # プロフィールコード、名前は空白禁止
   with_options presence: true do
@@ -15,6 +16,7 @@ class Profile < ApplicationRecord
     # 名前は20文字以内
     validates :name, length: { maximum: 20 }
   end
+
   # 自己紹介は160文字以内
   validates :introduction, length: { maximum: 160 }
 

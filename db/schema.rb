@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_16_153413) do
+ActiveRecord::Schema.define(version: 2021_08_20_154442) do
 
   create_table "colors", force: :cascade do |t|
     t.integer "profile_id", null: false
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 2021_08_16_153413) do
     t.integer "profile_id", null: false
     t.string "title"
     t.text "text", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.integer "profile_id", null: false
+    t.string "title"
+    t.string "body_id", null: false
+    t.text "information"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
