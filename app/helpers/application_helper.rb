@@ -17,7 +17,7 @@ module ApplicationHelper
   # 投稿テキストのURLをハイパーリンクに変更
   def url2a(text)
     text.gsub(URI::DEFAULT_PARSER.make_regexp(%w[http https])) do
-      tag.a Regexp.last_match(0), href: Regexp.last_match(0), target: '_blank', rel: "noopener noreferrer"
+      tag.a Regexp.last_match(0), href: Regexp.last_match(0), target: '_blank', rel: 'noopener noreferrer'
     end
   end
 

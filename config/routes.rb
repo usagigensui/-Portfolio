@@ -44,6 +44,7 @@ Rails.application.routes.draw do
           get :completed
         end
       end
+      resources :images, except: [:show, :edit]
       # フォームメール
       resources :inquiries, except: [:edit, :update, :show] do
         collection do
