@@ -6,7 +6,7 @@ class ImagesController < ApplicationController
 
   # ギャラリーページ
   def index
-    @images = @profile.images
+    @images = @profile.images.page(params[:page]).per(10).reverse_order
   end
 
   # 新規投稿画面
@@ -24,6 +24,17 @@ class ImagesController < ApplicationController
       flash[:error] = '画像の追加に失敗しました。'
     end
     redirect_to images_path(@image.profile)
+  end
+
+  # 投稿編集画面
+  def edit
+    # プロフィールオーナー=ログインユーザーの場合
+    if @profile.user == current_user
+      render 'edit'
+    # プロフィールオーナー≠ログインユーザーの場合
+    else
+      redirect_to root_path
+    end
   end
 
   # 投稿を編集
@@ -54,6 +65,6 @@ class ImagesController < ApplicationController
   private
 
   def image_params
-    params.require(:image).permit(:title, :body_id, :information)
+    params.require(:image).permit(:body, :title, :information)
   end
 end

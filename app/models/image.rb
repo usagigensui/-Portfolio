@@ -1,10 +1,10 @@
 class Image < ApplicationRecord
   belongs_to :profile
 
-  # プロフィールID、画像は空白禁止
+  # プロフィールID、タイトルは空白禁止
   with_options presence: true do
     validates :profile_id
-    validates :body_id
+    validates :title
   end
 
   # body_idに画像投稿機能を追加
