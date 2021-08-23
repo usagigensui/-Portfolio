@@ -30,6 +30,7 @@ class ImagesController < ApplicationController
   def edit
     # プロフィールオーナー=ログインユーザーの場合
     if @profile.user == current_user
+      @image = Image.find(params[:id])
       render 'edit'
     # プロフィールオーナー≠ログインユーザーの場合
     else

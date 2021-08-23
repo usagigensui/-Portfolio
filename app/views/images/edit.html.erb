@@ -3,9 +3,9 @@
   <!--ヘッダー呼び出し-->
   <%= render "layouts/header" %>
 
-  <h2>画像を追加</h2>
+  <h2>画像を編集</h2>
 
-  <%= form_with(model: [@profile, @image], url: images_path, local: true) do |f| %>
+  <%= form_with(model: [@profile, @image], url: image_path(@profile, @image), local: true) do |f| %>
     <!--フォーム呼び出し-->
     <%= render "images/form", f: f %>
   <% end %>

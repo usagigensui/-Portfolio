@@ -16,25 +16,30 @@
 
   <!--投稿がある場合-->
   <% if @profile.images.present? %>
-
-    <!--投稿一覧-->
-    <% @images.each do |image| %>
-      <%= attachment_image_tag image, :body, class: "" %>
-      <%= image.title %>
-      <%== user_text(image.information) %>
-      <%= l image.created_at, format: :long %>
-      <!--プロフィールオーナーがログインしている場合-->
-      <% if current_user_signed_in?(@profile) %>
-        <!--編集ボタン-->
-        <%= link_to edit_image_path(@profile, image) do %>
-          <i class="fas fa-pen-nib"></i>
-        <% end %>
-        <!--削除ボタン-->
-        <%= link_to post_path(@profile, image), method: :delete, "data-confirm" => "投稿を削除しますか？" do %>
-          <i class="fas fa-trash-alt"></i>
-        <% end %>
+    <div class="image-list">
+      <!--投稿一覧-->
+      <% @images.each do |image| %>
+        <div class="wrap">
+          <%= attachment_image_tag image, :body, class: "" %>
+          <p class="title">
+            <%= image.title %>
+          </p>
+          <%#== user_text(image.information) %>
+          <%#= l image.created_at, format: :long %>
+          <!--プロフィールオーナーがログインしている場合-->
+          <%# if current_user_signed_in?(@profile) %>
+            <!--編集ボタン-->
+            <%#= link_to edit_image_path(@profile, image) do %>
+              <!--<i class="fas fa-pen-nib"></i>-->
+            <%# end %>
+            <!--削除ボタン-->
+            <%#= link_to post_path(@profile, image), method: :delete, "data-confirm" => "投稿を削除しますか？" do %>
+              <!--<i class="fas fa-trash-alt"></i>-->
+            <%# end %>
+          <%# end %>
+        </div>
       <% end %>
-    <% end %>
+    </div>
     <!--ページネーション-->
     <div class="mt-3 d-flex justify-content-center">
       <%= paginate @images %>
