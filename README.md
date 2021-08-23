@@ -21,22 +21,24 @@ http://minepage.xyz/
 
 ### :smile: ターゲットユーザ
 ネットで自己表現を行いたい方。  
-主に若年層を想定しています
+主に若年層を想定しています。
 
 ### :musical_note: 主な利用シーン
 - 既存のSNSを使っていて、プロフィールの補足を行いたいとき。
 - 簡易的な個人サイトを持ちたいとき。
 
 ## :paperclip: ER図
-<img alt="ER図" src="https://user-images.githubusercontent.com/82370957/130108392-bdb8d350-cefa-4be7-9b36-34bf57bc2694.jpg">
+<img alt="ER図" src="https://github.com/usagigensui/Portfolio/files/7033811/ER.pdf">
 
 ## :seedling: チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1iBqV0anYklTokT4v9J5auW2oT1cM6sycMHXr0ZJNMik/edit?usp=sharing
 
 ## :thought_balloon: 今後実装予定
 - サイト説明ページ
-- ギャラリー機能
 - 使わない機能を非表示にする
+- レスポンシブ対応
+- テーマカラー設定のアップデート
+- スケジュールに記載した予定のメール通知
 > :eyes: 鋭意作成中です！
 
 ## :notebook: 開発環境
