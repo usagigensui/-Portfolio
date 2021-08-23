@@ -8,10 +8,20 @@
 
   <!--プロフィールオーナーがログインしている場合-->
   <% if current_user_signed_in?(@profile) %>
-    <!--新規投稿ボタン-->
-    <%= link_to new_image_path, class: "nav-link" do %>
-      <i class="fas fa-plus"></i> 画像を投稿する
-    <% end %>
+    <ul class="nav">
+      <li class="nav-link">
+        <!--新規投稿ボタン-->
+        <%= link_to new_image_path do %>
+          <i class="fas fa-plus"></i> 画像を投稿する
+        <% end %>
+      </li>
+      <!--編集ボタン-->
+      <li class="nav-link">
+        <%= link_to list_images_path(@profile) do %>
+          <i class="fas fa-pen-nib"></i> 画像を編集する
+        <% end %>
+      </li>
+    </ul>
   <% end %>
 
   <!--投稿がある場合-->
@@ -20,23 +30,13 @@
       <!--投稿一覧-->
       <% @images.each do |image| %>
         <div class="wrap">
-          <%= attachment_image_tag image, :body, class: "" %>
-          <p class="title">
-            <%= image.title %>
+          <%= link_to Refile.attachment_url(image, :body), "data-lightbox": image.body do %>
+            <%= attachment_image_tag image, :body %>
+          <% end %>
+          <p class="title text-center">
+            <%= image.title %><br>
+            <small class="small"><%= l image.created_at, format: :default %></small>
           </p>
-          <%#== user_text(image.information) %>
-          <%#= l image.created_at, format: :long %>
-          <!--プロフィールオーナーがログインしている場合-->
-          <%# if current_user_signed_in?(@profile) %>
-            <!--編集ボタン-->
-            <%#= link_to edit_image_path(@profile, image) do %>
-              <!--<i class="fas fa-pen-nib"></i>-->
-            <%# end %>
-            <!--削除ボタン-->
-            <%#= link_to post_path(@profile, image), method: :delete, "data-confirm" => "投稿を削除しますか？" do %>
-              <!--<i class="fas fa-trash-alt"></i>-->
-            <%# end %>
-          <%# end %>
         </div>
       <% end %>
     </div>

@@ -1,0 +1,38 @@
+<div class="management-page">
+
+  <!--ヘッダー呼び出し-->
+  <%= render "layouts/header" %>
+
+  <h2>画像一覧</h2>
+
+  <table class="table align-middle">
+    <thaed>
+      <tr>
+        <th style="width: 15%" class="text-center">画像</th>
+        <th style="width: 55%">タイトル</th>
+        <th style="width: 15%"></th>
+        <th style="width: 15%"></th>
+      </tr>
+    </thaed>
+    <% @images.each do |image| %>
+    <tr>
+      <td class="align-middle text-center">
+        <%= attachment_image_tag image, :body, class: "list-image" %>
+      </td>
+      <td class="align-middle">
+        <%= image.title %>
+      </td>
+      <td class="align-middle text-center">
+        <%= link_to "編集", edit_image_path(@profile, image) %>
+      </td>
+      <td class="align-middle text-center">
+        <%= link_to "削除", image_path(@profile, image), method: :delete, "data-confirm" => "画像を削除しますか？" %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+
+  <!--フッター呼び出し-->
+  <%= render "layouts/footer" %>
+
+</div>

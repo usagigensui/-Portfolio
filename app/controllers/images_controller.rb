@@ -6,7 +6,7 @@ class ImagesController < ApplicationController
 
   # ギャラリーページ
   def index
-    @images = @profile.images.page(params[:page]).per(10).reverse_order
+    @images = @profile.images.page(params[:page]).per(20).reverse_order
   end
 
   # 新規投稿画面
@@ -23,7 +23,12 @@ class ImagesController < ApplicationController
     else
       flash[:error] = '画像の追加に失敗しました。'
     end
-    redirect_to images_path(@image.profile)
+    redirect_to gallery_profile_path(@image.profile)
+  end
+
+  # 投稿一覧
+  def list
+    @images = @profile.images.page(params[:page]).per(20).reverse_order
   end
 
   # 投稿編集画面
@@ -46,7 +51,7 @@ class ImagesController < ApplicationController
     else
       flash[:error] = '画像の修正に失敗しました。'
     end
-    redirect_to images_path(@image.profile)
+    redirect_to list_images_path(@image.profile)
   end
 
   # 投稿を削除
@@ -55,7 +60,7 @@ class ImagesController < ApplicationController
     @profile = @image.profile
     @image.destroy
     flash[:notice] = '画像を削除しました。'
-    redirect_to images_path(@image.profile)
+    redirect_to list_images_path(@image.profile)
   end
 
   # プロフィールの特定
@@ -66,6 +71,6 @@ class ImagesController < ApplicationController
   private
 
   def image_params
-    params.require(:image).permit(:body, :title, :information)
+    params.require(:image).permit(:body, :title)
   end
 end

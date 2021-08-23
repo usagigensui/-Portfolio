@@ -45,7 +45,12 @@ Rails.application.routes.draw do
         end
       end
       # ギャラリー
-      resources :images, except: [:show]
+      get 'gallery' => 'images#index'
+      resources :images, except: [:show, :index] do
+        collection do
+          get :list
+        end
+      end
       # フォームメール
       resources :inquiries, except: [:edit, :update, :show] do
         collection do

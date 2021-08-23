@@ -9,29 +9,27 @@
   <div class="row">
     <section class="col-md-7">
 
-      <nav>
-        <ul class="nav">
-          <!--プロフィールオーナーがログインしている場合-->
-          <% if current_user_signed_in?(@profile) %>
-            <!--新規投稿ボタン-->
-            <li class="nav-link">
-              <%= link_to "#", class: "ml-3", "data-toggle": "modal", "data-target": "#scheduleModal" do %>
-                <i class="fas fa-plus"></i> 予定を追加する
-              <% end %>
-            </li>
-            <!--新規投稿モーダルの立ち上げ-->
-            <div id="scheduleModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-              <%= render "schedules/form", { profile: @profile, schedule: @schedule } %>
-            </div>
+    <ul class="nav">
+      <!--プロフィールオーナーがログインしている場合-->
+      <% if current_user_signed_in?(@profile) %>
+        <!--新規投稿ボタン-->
+        <li class="nav-link">
+          <%= link_to "#", class: "ml-3", "data-toggle": "modal", "data-target": "#scheduleModal" do %>
+            <i class="fas fa-plus"></i> 予定を追加する
           <% end %>
-          <!--終了した予定へのリンク-->
-          <li class="nav-link">
-          <%= link_to completed_schedules_path(@profile) do %>
-            <i class="fas fa-history"></i> 過去の予定を確認する
-          <% end %>
-          </li>
-        </ul>
-      </nav>
+        </li>
+        <!--新規投稿モーダルの立ち上げ-->
+        <div id="scheduleModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+          <%= render "schedules/form", { profile: @profile, schedule: @schedule } %>
+        </div>
+      <% end %>
+      <!--終了した予定へのリンク-->
+      <li class="nav-link">
+      <%= link_to completed_schedules_path(@profile) do %>
+        <i class="fas fa-history"></i> 過去の予定を確認する
+      <% end %>
+      </li>
+    </ul>
 
       <!--予定がある場合-->
       <% if @waiting_schedules.present? %>

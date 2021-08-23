@@ -329,6 +329,7 @@ a:hover {
   column-count: 4;
   column-gap: 1rem;
 
+  // 画像
   .wrap {
     position: relative;
 
@@ -338,6 +339,7 @@ a:hover {
     }
   }
 
+  // タイトル
   .title {
     display: none;
     position: absolute;
@@ -348,6 +350,7 @@ a:hover {
     padding: 0;
   }
 
+  // 画像ホバー時
   .wrap:hover {
 
     img {
@@ -367,7 +370,11 @@ a:hover {
       padding: 0;
     }
   }
+}
 
+// ギャラリー一覧（編集・削除ページ）
+.list-image {
+  width: 5rem;
 }
 
 // カラーテーマ設定
