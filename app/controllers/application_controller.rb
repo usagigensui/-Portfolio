@@ -12,4 +12,13 @@ class ApplicationController < ActionController::Base
     flash[:error] = '非公開のプロフィールです。'
     redirect_to root_path
   end
+
+  # プロフィールの特定、プロフィールオーナー==ログインユーザーかを確認
+  def set_profile
+    @profile = Profile.find_by(code: params[:code])
+    return unless current_user.id != @profile.user_id
+
+    flash[:error] = '不正な操作です。'
+    redirect_to root_path
+  end
 end

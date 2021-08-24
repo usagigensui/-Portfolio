@@ -1,11 +1,12 @@
 class ProfilesController < ApplicationController
   # show、search以外はログインユーザーのみ許可
   before_action :authenticate_user!, except: %i[show search]
-  # プロフィールの特定
-  before_action :set_profile, except: %i[new create index search]
+  # 操作ユーザーの確認
+  before_action :set_profile, only: %i[edit update destroy]
 
   # プロフィールページ
   def show
+    @profile = Profile.find_by(code: params[:code])
     @comment = Comment.new
     # 非公開プロフィールへのアクセスをブロック
     release_check(@profile)
@@ -30,15 +31,7 @@ class ProfilesController < ApplicationController
   end
 
   # プロフィール編集フォーム
-  def edit
-    # プロフィールオーナー=ログインユーザーの場合
-    if @profile.user == current_user
-      render 'edit'
-    # プロフィールオーナー≠ログインユーザーの場合
-    else
-      redirect_to root_path
-    end
-  end
+  def edit; end
 
   # プロフィールへの編集を保存
   def update
@@ -66,11 +59,6 @@ class ProfilesController < ApplicationController
   def search
     @profiles = Profile.search(params[:keyword])
     @keyword = params[:keyword]
-  end
-
-  # プロフィールの特定
-  def set_profile
-    @profile = Profile.find_by(code: params[:code])
   end
 
   private

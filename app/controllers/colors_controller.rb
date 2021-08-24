@@ -1,22 +1,14 @@
 class ColorsController < ApplicationController
   # ログインユーザーのみ許可
   before_action :authenticate_user!
+  # プロフィールの特定
+  before_action :set_profile
 
   # カラーテーマの編集画面
-  def edit
-    @profile = Profile.find_by(code: params[:code])
-    # プロフィールオーナー=ログインユーザーの場合
-    if @profile.user == current_user
-      render 'edit'
-    # プロフィールオーナー≠ログインユーザーの場合
-    else
-      redirect_to root_path
-    end
-  end
+  def edit; end
 
   # カラーテーマを編集を保存
   def update
-    @profile = Profile.find_by(code: params[:code])
     if @profile.color.update(color_params)
       flash[:notice] = 'カラーテーマを編集しました。'
     else

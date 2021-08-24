@@ -2,10 +2,11 @@ class ImagesController < ApplicationController
   # ログインユーザーのみ許可
   before_action :authenticate_user!, except: [:index]
   # プロフィールの特定
-  before_action :set_profile, except: %i[update destroy]
+  before_action :set_profile, except: [:index]
 
   # ギャラリーページ
   def index
+    @profile = Profile.find_by(code: params[:code])
     @images = @profile.images.page(params[:page]).per(20).reverse_order
   end
 
@@ -33,14 +34,8 @@ class ImagesController < ApplicationController
 
   # 投稿編集画面
   def edit
-    # プロフィールオーナー=ログインユーザーの場合
-    if @profile.user == current_user
-      @image = Image.find(params[:id])
-      render 'edit'
-    # プロフィールオーナー≠ログインユーザーの場合
-    else
-      redirect_to root_path
-    end
+    @image = Image.find(params[:id])
+    render 'edit'
   end
 
   # 投稿を編集
@@ -51,7 +46,7 @@ class ImagesController < ApplicationController
     else
       flash[:error] = '画像の修正に失敗しました。'
     end
-    redirect_to list_images_path(@image.profile)
+    redirect_to list_images_path(@profile)
   end
 
   # 投稿を削除
@@ -60,12 +55,7 @@ class ImagesController < ApplicationController
     @profile = @image.profile
     @image.destroy
     flash[:notice] = '画像を削除しました。'
-    redirect_to list_images_path(@image.profile)
-  end
-
-  # プロフィールの特定
-  def set_profile
-    @profile = Profile.find_by(code: params[:code])
+    redirect_to list_images_path(@profile)
   end
 
   private

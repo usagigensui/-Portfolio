@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   # index以外はログインユーザーのみ許可
   before_action :authenticate_user!, except: [:index]
+  # 操作ユーザーの確認
+  before_action :set_profile, except: [:index]
 
   # タイムライン
   def index
@@ -13,7 +15,6 @@ class PostsController < ApplicationController
 
   # 新規投稿
   def create
-    @profile = Profile.find_by(code: params[:code])
     @post = Post.new(post_params)
     @post.profile_id = @profile.id
     if @post.save
@@ -32,13 +33,12 @@ class PostsController < ApplicationController
     else
       flash[:error] = '投稿の修正に失敗しました。'
     end
-    redirect_to timeline_profile_path(@post.profile)
+    redirect_to timeline_profile_path(@profile)
   end
 
   # 投稿を削除
   def destroy
     @post = Post.find(params[:id])
-    @profile = @post.profile
     @post.destroy
     flash[:notice] = '投稿を削除しました。'
     redirect_to timeline_profile_path(@profile)

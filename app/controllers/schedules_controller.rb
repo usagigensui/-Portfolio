@@ -2,12 +2,13 @@ class SchedulesController < ApplicationController
   # index、completed以外はログインユーザーのみ許可
   before_action :authenticate_user!, except: %i[index completed]
   # プロフィールの特定
-  before_action :set_profile, except: [:destroy]
+  before_action :set_profile, except: %i[index completed]
 
   # 予定一覧ページ
   def index
+    @profile = Profile.find_by(code: params[:code])
     @schedules = @profile.schedules
-    @waiting_schedules = @schedules.where('end_date > ?', DateTime.now).page(params[:page]).per(10).reverse_order
+    @waiting_schedules = @schedules.waiting_schedules.page(params[:page]).per(10).reverse_order
     @schedule = Schedule.new
     # 非公開プロフィールへのアクセスをブロック
     release_check(@profile)
@@ -15,8 +16,9 @@ class SchedulesController < ApplicationController
 
   # 終了した予定一覧ページ
   def completed
+    @profile = Profile.find_by(code: params[:code])
     @schedules = @profile.schedules
-    @completed_schedules = @schedules.where('end_date < ?', DateTime.now).page(params[:page]).per(10).reverse_order
+    @completed_schedules = @schedules.completed_schedules.page(params[:page]).per(10).reverse_order
     @schedule = Schedule.new
     # 非公開プロフィールへのアクセスをブロック
     release_check(@profile)
@@ -43,11 +45,6 @@ class SchedulesController < ApplicationController
     @schedule.destroy
     flash[:notice] = '投稿を削除しました。'
     redirect_to schedules_path(@profile)
-  end
-
-  # プロフィールの特定
-  def set_profile
-    @profile = Profile.find_by(code: params[:code])
   end
 
   private

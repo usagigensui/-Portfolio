@@ -2,10 +2,11 @@ class InquiriesController < ApplicationController
   # index、show、destroyはログインユーザーのみ許可
   before_action :authenticate_user!, only: %i[index destroy]
   # プロフィールの特定
-  before_action :set_profile, except: [:destroy]
+  before_action :set_profile, only: %i[index destroy]
 
   # フォームメール作成ページ
   def new
+    @profile = Profile.find_by(code: params[:code])
     @inquiry = Inquiry.new
     # 非公開プロフィールへのアクセスをブロック
     release_check(@profile)
@@ -13,6 +14,7 @@ class InquiriesController < ApplicationController
 
   # 入力内容確認ページ
   def confirm
+    @profile = Profile.find_by(code: params[:code])
     @inquiry = Inquiry.new(inquiry_params)
     @inquiry.profile_id = @profile.id
     # バリデーション確認
@@ -23,13 +25,14 @@ class InquiriesController < ApplicationController
 
   # 作成ページに戻る
   def back
+    @profile = Profile.find_by(code: params[:code])
     @inquiry = Inquiry.new(inquiry_params)
-    @link = Link.new
     render 'new'
   end
 
   # メール保存・送信
   def create
+    @profile = Profile.find_by(code: params[:code])
     @inquiry = Inquiry.new(inquiry_params)
     @inquiry.profile_id = @profile.id
     if @inquiry.save
@@ -50,15 +53,9 @@ class InquiriesController < ApplicationController
   # メール削除
   def destroy
     @inquiry = Inquiry.find(params[:id])
-    @profile = @inquiry.profile
     @inquiry.destroy
     flash[:notice] = 'メールを削除しました。'
     redirect_to inquiries_path(@profile)
-  end
-
-  # プロフィールの特定
-  def set_profile
-    @profile = Profile.find_by(code: params[:code])
   end
 
   private

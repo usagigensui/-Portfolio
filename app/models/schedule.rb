@@ -8,4 +8,14 @@ class Schedule < ApplicationRecord
     validates :start_date
     validates :end_date
   end
+
+  # 未完了の予定一覧を取得
+  def self.waiting_schedules
+    where('end_date > ?', DateTime.now)
+  end
+
+  # 完了した予定一覧を取得
+  def self.completed_schedules
+    where('end_date < ?', DateTime.now)
+  end
 end
