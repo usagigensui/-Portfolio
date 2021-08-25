@@ -3,34 +3,50 @@
   <!--ヘッダー呼び出し-->
   <%= render "layouts/header" %>
 
-  <h2>画像一覧</h2>
+  <main class="mypage">
 
-  <table class="table align-middle">
-    <thaed>
-      <tr>
-        <th style="width: 15%" class="text-center">画像</th>
-        <th style="width: 55%">タイトル</th>
-        <th style="width: 15%"></th>
-        <th style="width: 15%"></th>
-      </tr>
-    </thaed>
-    <% @images.each do |image| %>
-    <tr>
-      <td class="align-middle text-center">
-        <%= attachment_image_tag image, :body, class: "list-image" %>
-      </td>
-      <td class="align-middle">
-        <%= image.title %>
-      </td>
-      <td class="align-middle text-center">
-        <%= link_to "編集", edit_image_path(@profile, image) %>
-      </td>
-      <td class="align-middle text-center">
-        <%= link_to "削除", image_path(@profile, image), method: :delete, "data-confirm" => "画像を削除しますか？" %>
-      </td>
-    </tr>
+    <h2>画像一覧</h2>
+
+    <!--投稿がある場合-->
+    <% if @images.present? %>
+
+      <table class="table align-middle">
+        <thaed>
+          <tr>
+            <th style="width: 15%" class="text-center">画像</th>
+            <th style="width: 55%">タイトル</th>
+            <th style="width: 15%"></th>
+            <th style="width: 15%"></th>
+          </tr>
+        </thaed>
+        <tbody>
+          <% @images.each do |image| %>
+          <tr>
+            <td class="align-middle text-center">
+              <%= attachment_image_tag image, :body, class: "list-image" %>
+            </td>
+            <td class="align-middle">
+              <%= image.title %>
+            </td>
+            <td class="align-middle text-center">
+              <%= link_to "編集", edit_image_path(@profile, image) %>
+            </td>
+            <td class="align-middle text-center">
+              <%= link_to "削除", image_path(@profile, image), method: :delete, "data-confirm" => "画像を削除しますか？" %>
+            </td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+
+    <!--投稿がない場合-->
+    <% else %>
+      <div>
+        <p>投稿はありません。</p>
+      </div>
     <% end %>
-  </table>
+
+  </main>
 
   <!--フッター呼び出し-->
   <%= render "layouts/footer" %>
