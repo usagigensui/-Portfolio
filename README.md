@@ -28,7 +28,7 @@ http://minepage.xyz/
 - 簡易的な個人サイトを持ちたいとき。
 
 ## :paperclip: ER図
-<img alt="ER図" src="https://user-images.githubusercontent.com/82370957/130490995-9b3ee313-7d3a-4069-a654-8d8c2adfbef8.jpg">
+<img alt="ER図" src="https://user-images.githubusercontent.com/82370957/130993532-5c4c21b1-9b60-40bb-803b-d7c41a9d7acf.jpg">
 
 ## :seedling: チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1iBqV0anYklTokT4v9J5auW2oT1cM6sycMHXr0ZJNMik/edit?usp=sharing
