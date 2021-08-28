@@ -20,7 +20,8 @@ class ProfilesController < ApplicationController
 
   # プロフィールを新規作成
   def create
-    if @profile= Profile.create(profile_params)
+    @profile = Profile.new(profile_params)
+    if @profile.save
       @color = Color.create(profile_id: @profile.id)
       flash[:notice] = 'プロフィールを新規作成しました。'
       redirect_to mypage_path
@@ -63,6 +64,6 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profile).permit(:code, :name, :image, :introduction, :status, function_setting_attributes: [:timeline, :schedule, :gallery, :mail]).merge(user_id: current_user.id)
+    params.require(:profile).permit(:code, :name, :image, :introduction, :status, function_setting_attributes: [:id, :timeline, :schedule, :gallery, :mail]).merge(user_id: current_user.id)
   end
 end
