@@ -35,6 +35,8 @@ Rails.application.routes.draw do
       resources :links, except: [:show, :edit]
       # カラーテーマ
       resource :colors, only: [:edit, :update]
+      # 機能設定
+      resource :function_settings, only: [:edit, :update]
       # タイムライン
       get 'timeline' => 'posts#index'
       resources :posts, except: [:new, :index, :show, :edit]

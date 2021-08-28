@@ -1,0 +1,19 @@
+<div class="form-check">
+  <%= form.check_box :timeline, {class: "form-check-input"}, "true", "false" %>
+  <%= form.label :timeline, "タイムライン", class: "form-check-label" %>
+</div>
+
+<div class="form-check">
+  <%= form.check_box :schedule, {class: "form-check-input"}, "true", "false" %>
+  <%= form.label :schedule, "スケジュール(カレンダー)", class: "form-check-label" %>
+</div>
+
+<div class="form-check">
+  <%= form.check_box :gallery, {class: "form-check-input"}, "true", "false" %>
+  <%= form.label :gallery, "ギャラリー", class: "form-check-label" %>
+</div>
+
+<div class="form-check">
+  <%= form.check_box :mail, {class: "form-check-input"}, "true", "false" %>
+  <%= form.label :mail, "メール", class: "form-check-label" %>
+</div>

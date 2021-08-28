@@ -31,6 +31,15 @@ Color.create!(
   :accent => 4
 )
 
+FunctionSetting.create!(
+  :id => 1,
+  :profile_id => 1,
+  :timeline => false,
+  :schedule => false,
+  :gallery => false,
+  :mail => false
+)
+
 Link.create!(
   :id => 1,
   :profile_id => 1,
@@ -75,6 +84,15 @@ Color.create!(
   :text => 0,
   :background => 0,
   :accent => 0
+)
+
+FunctionSetting.create!(
+  :id => 2,
+  :profile_id => 2,
+  :timeline => true,
+  :schedule => true,
+  :gallery => true,
+  :mail => true
 )
 
 Link.create!(
@@ -154,6 +172,15 @@ Color.create!(
   :text => 1,
   :background => 1,
   :accent => 2
+)
+
+FunctionSetting.create!(
+  :id => 3,
+  :profile_id => 3,
+  :timeline => true,
+  :schedule => true,
+  :gallery => true,
+  :mail => true
 )
 
 Link.create!(

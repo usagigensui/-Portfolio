@@ -45,6 +45,14 @@
       <div class="small text-muted">最大160文字まで入力できます。</div>
     </div>
 
+    <div class="mb-3">
+      <p class="mb-1">使用する機能 <span class="small required"><i class="fas fa-asterisk"></i></span></p>
+      <%= f.fields_for :function_setting, profile.function_setting do |form| %>
+        <%= render "function_settings/form", form: form %>
+      <% end %>
+    </div>
+
+    <p class="mb-1">公開設定 <span class="small required"><i class="fas fa-asterisk"></i></span></p>
     <div class="form-check form-check-inline mb-3">
       <%= f.radio_button :status, :"公開", class: "form-check-input" %>
       <%= f.label :status, "公開", value: :"公開", class: "form-check-label" %>
@@ -53,7 +61,6 @@
       <%= f.radio_button :status, :"非公開", class: "form-check-input" %>
       <%= f.label :status, "非公開", value: :"非公開", class: "form-check-label" %>
     </div>
-    <span class="small required"><i class="fas fa-asterisk"></i></span>
 
     <div class="form-group mb-3">
       <%= f.label :code, "プロフィールコード", class: "form-label" %>

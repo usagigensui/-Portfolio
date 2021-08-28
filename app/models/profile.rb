@@ -7,6 +7,7 @@ class Profile < ApplicationRecord
   has_many :links, dependent: :destroy
   has_one :color, dependent: :destroy
   has_many :images, dependent: :destroy
+  has_one :function_setting, dependent: :destroy
 
   # プロフィールコード、名前は空白禁止
   with_options presence: true do
