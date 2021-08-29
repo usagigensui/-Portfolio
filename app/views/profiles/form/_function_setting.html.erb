@@ -1,0 +1,6 @@
+<div class="mb-3">
+  <p class="mb-1">使用する機能 <span class="small required"><i class="fas fa-asterisk"></i></span></p>
+  <%= f.fields_for :function_setting, profile.function_setting do |form| %>
+    <%= render "function_settings/form", form: form %>
+  <% end %>
+</div>

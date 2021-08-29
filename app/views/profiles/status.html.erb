@@ -1,0 +1,26 @@
+<div class="management-page">
+
+  <!--ヘッダー呼び出し-->
+  <%= render "layouts/header" %>
+  <h2>プロフィール編集</h2>
+
+  <p><span class="small required"><i class="fas fa-asterisk"></i></span>は必須項目です。</p>
+
+  <%= form_with model: @profile, local:true do |f| %>
+
+    <!--エラーメッセージ-->
+    <%= render "layouts/error", model: f.object %>
+
+    <!--公開設定-->
+    <%= render "profiles/form/status", f: f %>
+
+    <div class="form-group mb-3">
+      <%= f.submit "確定", class: "btn btn-outline-success" %>
+    </div>
+
+  <% end %>
+
+  <!--フッター呼び出し-->
+  <%= render "layouts/footer" %>
+
+</div>

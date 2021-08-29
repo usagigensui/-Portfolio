@@ -26,16 +26,46 @@
     </div>
     <!--プロフィールオーナーがログインしている場合-->
     <% if current_user_signed_in?(profile) %>
+
       <ul class="menu-nav nav flex-column">
+
+        <h6 class="nav-item">
+          <i class="fas fa-address-card"> Profile</i>
+        </h6>
+        <!--プロフィール編集ページへのリンク-->
+        <li class="nav-item">
+          <%= link_to edit_profile_path(profile), class: "nav-link" do %>
+            <i class="fas fa-pen-nib"></i> 名前やコメントを編集する
+          <% end %>
+        </li>
+        <!--機能の追加・削除ページへのリンク-->
+        <li class="nav-item">
+          <%= link_to edit_profile_path(profile), class: "nav-link" do %>
+            <i class="fas fa-clipboard-list"></i> 機能を追加・削除する
+          <% end %>
+        </li>
+        <!--公開・非公開設定ページへのリンク-->
+
+        <li class="nav-item">
+          <%= link_to status_profile_path(profile), class: "nav-link" do %>
+            <% if profile.status == "公開" %>
+              <i class="fas fa-lock-open"></i> 公開・非公開設定
+            <% elsif profile.status == "非公開" %>
+              <i class="fas fa-lock"></i> 公開・非公開設定
+            <% end %>
+          <% end %>
+        </li>
+
         <h6 class="nav-item">
           <i class="fas fa-link"> Link</i>
         </h6>
         <!--リンクの追加ページへのリンク-->
         <li class="nav-item">
-          <%= link_to new_link_path, class: "nav-link" do %>
+          <%= link_to new_link_path(profile), class: "nav-link" do %>
             <i class="fas fa-plus"></i> リンクを追加する
           <% end %>
         </li>
+
         <!--リンクが存在した場合-->
         <% if profile.links.present? %>
           <!--リンク一覧画面へのリンク-->
@@ -45,6 +75,7 @@
             <% end %>
           </li>
         <% end %>
+
         <h6 class="nav-item">
           <i class="fas fa-palette"> Color</i>
         </h6>
@@ -54,6 +85,7 @@
             <i class="fas fa-paint-brush"></i> カラーテーマを変更する
           <% end %>
         </li>
+
         <h6 class="nav-item">
           <i class="fas fa-mail-bulk"> Mail</i>
         </h6>
@@ -63,6 +95,7 @@
             <i class="fas fa-envelope-open-text"></i> 受信メールを確認する
           <% end %>
         </li>
+
       </ul>
     <% end %>
   </nav>
@@ -88,30 +121,24 @@
     </div>
     <div class="col right">
 
-    <div class="ber d-flex">
-      <h1 class="name mb-0 my-auto"><%= profile.name %></h1>
-      <nav>
-        <ul class="nav">
-          <!--リンク-->
-          <% profile.links.each do |link| %>
-            <li class="nav-item">
-              <%= link_to link.url, class: "nav-link", target: "_blank", rel: "noopener noreferrer" do %>
-                <i class="<%= icon(link.category) %>"></i>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-      </nav>
-    </div>
+      <div class="ber d-flex">
+        <h1 class="name mb-0 my-auto"><%= profile.name %></h1>
+        <nav>
+          <ul class="nav">
+            <!--リンク-->
+            <% profile.links.each do |link| %>
+              <li class="nav-item">
+                <%= link_to link.url, class: "nav-link", target: "_blank", rel: "noopener noreferrer" do %>
+                  <i class="<%= icon(link.category) %>"></i>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
 
       <p class="ml-3 mb-0">
         <%== user_text(profile.introduction) %>
-        <!--プロフィールオーナーがログインしている場合-->
-        <% if current_user_signed_in?(profile) %>
-          <%= link_to edit_profile_path do %>
-            <i class="fas fa-edit"></i>
-          <% end %>
-        <% end %>
       </p>
     </div>
   </div>

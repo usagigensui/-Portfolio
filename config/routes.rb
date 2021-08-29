@@ -26,9 +26,12 @@ Rails.application.routes.draw do
   # プロフィール
   resources :profiles, param: :code do
     collection do
+      # プロフィール検索
       get 'search' => 'profiles#search'
     end
     member do
+      # 公開設定
+      get 'status' => 'profiles#status'
       # 自己紹介コメント
       resources :comments, except: [:new, :index, :show, :edit]
       # リンク

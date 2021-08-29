@@ -2,7 +2,7 @@ class ProfilesController < ApplicationController
   # show、search以外はログインユーザーのみ許可
   before_action :authenticate_user!, except: %i[show search]
   # 操作ユーザーの確認
-  before_action :set_profile, only: %i[edit update destroy]
+  before_action :set_profile, only: %i[edit status update destroy]
 
   # プロフィールページ
   def show
@@ -32,6 +32,9 @@ class ProfilesController < ApplicationController
 
   # プロフィール編集フォーム
   def edit; end
+
+  # 公開設定編集ページ
+  def status; end
 
   # プロフィールへの編集を保存
   def update

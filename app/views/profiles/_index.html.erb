@@ -24,7 +24,13 @@
       <div class="card-footer nav p-0">
         <!--公開設定の表示-->
         <span class="nav-link text-muted small">
-          <%= profile.status %>
+          <%= link_to status_profile_path(profile), class: "nav-link" do %>
+            <% if profile.status == "公開" %>
+              <i class="fas fa-lock-open"></i> <%= profile.status %>
+            <% elsif profile.status == "非公開" %>
+              <i class="fas fa-lock"></i> <%= profile.status %>
+            <% end %>
+          <% end %>
         </span>
         <!--カラーテーマ編集ページへのリンク-->
         <%= link_to edit_colors_path(profile), class: "ml-auto nav-link" do %>
