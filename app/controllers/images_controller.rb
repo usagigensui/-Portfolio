@@ -8,6 +8,8 @@ class ImagesController < ApplicationController
   def index
     @profile = Profile.find_by(code: params[:code])
     @images = @profile.images.page(params[:page]).per(20).reverse_order
+    # 非公開プロフィールへのアクセスをブロック
+    release_check(@profile)
   end
 
   # 新規投稿画面

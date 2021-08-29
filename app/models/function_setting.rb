@@ -8,5 +8,4 @@ class FunctionSetting < ApplicationRecord
     validates :gallery
     validates :mail
   end
-
 end

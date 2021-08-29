@@ -64,6 +64,7 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profile).permit(:code, :name, :image, :introduction, :status, function_setting_attributes: [:id, :timeline, :schedule, :gallery, :mail]).merge(user_id: current_user.id)
+    params.require(:profile).permit(:code, :name, :image, :introduction, :status,
+                                    function_setting_attributes: %i[id timeline schedule gallery mail]).merge(user_id: current_user.id)
   end
 end

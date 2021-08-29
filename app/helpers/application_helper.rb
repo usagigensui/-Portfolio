@@ -38,6 +38,12 @@ module ApplicationHelper
     path == controller_path ? 'active' : ''
   end
 
+  def tab_unnecessary?(function_setting)
+    active_function = []
+    active_function.push(function_setting.timeline, function_setting.schedule, function_setting.gallery, function_setting.mail)
+    active_function.count(true) != 0
+  end
+
   # アイコンの選択
   NAMES = {
     'Homepage' => 'fas fa-home',

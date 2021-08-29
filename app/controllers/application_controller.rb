@@ -5,12 +5,36 @@ class ApplicationController < ActionController::Base
     mypage_path
   end
 
-  # 非公開プロフィールへのアクセスをブロック
-  def release_check(profile)
-    return unless profile.status == '非公開' && profile.user != current_user
+  # 機能の種別確認
+  FUNCTIONS = {
+    'profiles' => 'profiles',
+    'posts' => 'timeline',
+    'schedules' => 'schedule',
+    'images' => 'gallery',
+    'inquiries' => 'mail'
+  }.freeze
 
-    flash[:error] = '非公開のプロフィールです。'
-    redirect_to root_path
+  # 非公開プロフィール・機能へのアクセスをブロック
+  def function_release_check(profile)
+    if FUNCTIONS[controller_path] == 'profiles'
+      nil
+    elsif profile.function_setting.public_send(FUNCTIONS[controller_path])
+      nil
+    else
+      flash[:error] = '非公開のページです。'
+      redirect_to root_path
+    end
+  end
+
+  def release_check(profile)
+    if profile.status == '公開'
+      function_release_check(profile)
+    elsif profile.user == current_user
+      function_release_check(profile)
+    else
+      flash[:error] = '非公開のページです。'
+      redirect_to root_path
+    end
   end
 
   # プロフィールの特定、プロフィールオーナー==ログインユーザーかを確認

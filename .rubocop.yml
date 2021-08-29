@@ -35,6 +35,8 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 
 # コードの長さに関する指摘を緩和
+Metrics/LineLength:
+  Enabled: false
 Metrics/AbcSize:
   # The ABC size is a calculated magnitude, so this number can be a Fixnum or
   # a Float.

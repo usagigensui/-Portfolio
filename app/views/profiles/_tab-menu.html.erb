@@ -1,43 +1,58 @@
-<nav class="mb-3">
-  <ul class="nav nav-tabs nav-fill">
+<!--メニューが２つ以上ある場合はタブを表示-->
+<% if tab_unnecessary?(profile.function_setting) %>
 
-  <li class="nav-item">
-    <%= link_to profile_path, class: "nav-link bg-transparent #{active_if('profiles')}" do %>
-      <i class="fas fa-paperclip"></i>
+  <nav class="mb-3">
+    <ul class="nav nav-tabs nav-fill">
+
+    <!--プロフィールページ-->
+    <li class="nav-item">
+      <%= link_to profile_path, class: "nav-link bg-transparent #{active_if('profiles')}" do %>
+        <i class="fas fa-paperclip"></i>
+      <% end %>
+    </li>
+
+    <!--タイムライン-->
+    <% if profile.function_setting.timeline %>
+      <li class="nav-item">
+        <%= link_to timeline_profile_path(profile), class: "nav-link bg-transparent #{active_if('posts')}" do %>
+          <i class="far fa-clock"></i>
+        <% end %>
+      </li>
     <% end %>
-  </li>
 
-  <% if profile.function_setting.timeline %>
-    <li class="nav-item">
-      <%= link_to timeline_profile_path(profile), class: "nav-link bg-transparent #{active_if('posts')}" do %>
-        <i class="far fa-clock"></i>
-      <% end %>
-    </li>
-  <% end %>
+    <!--スケジュール-->
+    <% if profile.function_setting.schedule %>
+      <li class="nav-item">
+        <%= link_to schedules_path(profile), class: "nav-link bg-transparent #{active_if('schedules')}" do %>
+          <i class="far fa-calendar-alt"></i>
+        <% end %>
+      </li>
+    <% end %>
 
-  <% if profile.function_setting.schedule %>
-    <li class="nav-item">
-      <%= link_to schedules_path(profile), class: "nav-link bg-transparent #{active_if('schedules')}" do %>
-        <i class="far fa-calendar-alt"></i>
-      <% end %>
-    </li>
-  <% end %>
+    <!--ギャラリー-->
+    <% if profile.function_setting.gallery %>
+      <li class="nav-item">
+        <%= link_to gallery_profile_path(profile), class: "nav-link bg-transparent #{active_if('images')}" do %>
+          <i class="fas fa-image"></i>
+        <% end %>
+      </li>
+    <% end %>
 
-  <% if profile.function_setting.gallery %>
-    <li class="nav-item">
-      <%= link_to gallery_profile_path(profile), class: "nav-link bg-transparent #{active_if('images')}" do %>
-        <i class="fas fa-image"></i>
-      <% end %>
-    </li>
-  <% end %>
+    <!--メール-->
+    <% if profile.function_setting.mail %>
+      <li class="nav-item">
+        <%= link_to new_inquiry_path(profile), class: "nav-link bg-transparent #{active_if('inquiries')}" do %>
+          <i class="far fa-envelope"></i>
+        <% end %>
+      </li>
+    <% end %>
 
-  <% if profile.function_setting.mail %>
-    <li class="nav-item">
-      <%= link_to new_inquiry_path(profile), class: "nav-link bg-transparent #{active_if('inquiries')}" do %>
-        <i class="far fa-envelope"></i>
-      <% end %>
-    </li>
-  <% end %>
+    </ul>
+  </nav>
 
-  </ul>
-</nav>
+<!--メニューがひとつのみの場合はタブを非表示-->
+<% else %>
+
+  <% nil %>
+
+<% end %>
