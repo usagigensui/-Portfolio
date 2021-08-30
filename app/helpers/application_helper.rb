@@ -38,6 +38,7 @@ module ApplicationHelper
     path == controller_path ? 'active' : ''
   end
 
+  # タブの数がひとつか確認
   def tab_unnecessary?(function_setting)
     active_function = []
     active_function.push(function_setting.timeline, function_setting.schedule, function_setting.gallery, function_setting.mail)

@@ -4,8 +4,7 @@ class FunctionSettingsController < ApplicationController
   # プロフィールの特定
   before_action :set_profile
 
-  def edit
-  end
+  def edit; end
 
   # 機能の公開状況への編集を保存
   def update
