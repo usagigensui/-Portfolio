@@ -35,7 +35,6 @@ https://docs.google.com/spreadsheets/d/1iBqV0anYklTokT4v9J5auW2oT1cM6sycMHXr0ZJN
 
 ## :thought_balloon: 今後実装予定
 - サイト説明ページ
-- 使わない機能を非表示にする
 - レスポンシブ対応
 - テーマカラー設定のアップデート
 - スケジュールに記載した予定のメール通知
