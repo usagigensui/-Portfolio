@@ -1,0 +1,29 @@
+<div class="management-page">
+
+  <!--ヘッダー呼び出し-->
+  <%= render "layouts/header" %>
+  <h2>プロフィールで使用する機能の公開設定</h2>
+
+  <!--プロフィール作成フォーム-->
+  <div class="profile-form">
+    <p><span class="small required"><i class="fas fa-asterisk"></i></span>は必須項目です。</p>
+
+    <%= form_with(model: [@profile, @profile.function_setting], url: function_settings_path(@profile, @profile.function_setting), local:true) do |form| %>
+
+      <!--エラーメッセージ-->
+      <%= render "layouts/error", model: form.object %>
+
+      <!--機能設定-->
+      <%= render "function_settings/form", form: form %>
+
+      <div class="form-group mb-3">
+        <%= form.submit "確定", class: "btn btn-outline-success" %>
+      </div>
+
+    <% end %>
+  </div>
+
+  <!--フッター呼び出し-->
+  <%= render "layouts/footer" %>
+
+</div>

@@ -40,8 +40,8 @@
         </li>
         <!--機能の追加・削除ページへのリンク-->
         <li class="nav-item">
-          <%= link_to edit_profile_path(profile), class: "nav-link" do %>
-            <i class="fas fa-clipboard-list"></i> 機能を追加・削除する
+          <%= link_to edit_function_settings_path(profile), class: "nav-link" do %>
+            <i class="fas fa-clipboard-list"></i> 機能の公開設定を変更する
           <% end %>
         </li>
         <!--公開・非公開設定ページへのリンク-->
@@ -51,7 +51,7 @@
             <% if profile.status == "公開" %>
               <i class="fas fa-lock-open"></i> 公開・非公開設定
             <% elsif profile.status == "非公開" %>
-              <i class="fas fa-lock"></i> 公開・非公開設定
+              <i class="fas fa-lock"></i> 公開・非公開設
             <% end %>
           <% end %>
         </li>
