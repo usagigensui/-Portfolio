@@ -41,8 +41,7 @@ Rails.application.routes.draw do
       # 機能設定
       resource :function_settings, only: [:edit, :update]
       # タイムライン
-      get 'timeline' => 'posts#index'
-      resources :posts, except: [:new, :index, :show, :edit]
+      resources :posts, path: 'timeline', except: [:new, :show, :edit]
       # カレンダー
       resources :schedules, except: [:new, :edit, :update] do
         collection do
@@ -50,14 +49,13 @@ Rails.application.routes.draw do
         end
       end
       # ギャラリー
-      get 'gallery' => 'images#index'
-      resources :images, except: [:show, :index] do
+      resources :images, path: 'gallery', except: [:show] do
         collection do
           get :list
         end
       end
       # フォームメール
-      resources :inquiries, except: [:edit, :update, :show] do
+      resources :inquiries, path: 'mail', except: [:edit, :update, :show] do
         collection do
           post :confirm
           post :back

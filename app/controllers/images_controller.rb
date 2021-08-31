@@ -26,7 +26,7 @@ class ImagesController < ApplicationController
     else
       flash[:error] = '画像の追加に失敗しました。'
     end
-    redirect_to gallery_profile_path(@image.profile)
+    redirect_to images_path(@image.profile)
   end
 
   # 投稿一覧

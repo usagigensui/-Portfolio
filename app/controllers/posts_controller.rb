@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     else
       flash[:error] = 'タイムラインへの投稿に失敗しました。'
     end
-    redirect_to timeline_profile_path(params[:code])
+    redirect_to posts_path(params[:code])
   end
 
   # 投稿を編集
@@ -33,7 +33,7 @@ class PostsController < ApplicationController
     else
       flash[:error] = '投稿の修正に失敗しました。'
     end
-    redirect_to timeline_profile_path(@profile)
+    redirect_to posts_path(@profile)
   end
 
   # 投稿を削除
@@ -41,7 +41,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     flash[:notice] = '投稿を削除しました。'
-    redirect_to timeline_profile_path(@profile)
+    redirect_to posts_path(@profile)
   end
 
   private

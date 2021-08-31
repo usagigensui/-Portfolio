@@ -14,7 +14,7 @@
     <!--タイムライン-->
     <% if profile.function_setting.timeline %>
       <li class="nav-item">
-        <%= link_to timeline_profile_path(profile), class: "nav-link bg-transparent #{active_if('posts')}" do %>
+        <%= link_to posts_path(profile), class: "nav-link bg-transparent #{active_if('posts')}" do %>
           <i class="far fa-clock"></i>
         <% end %>
       </li>
@@ -32,7 +32,7 @@
     <!--ギャラリー-->
     <% if profile.function_setting.gallery %>
       <li class="nav-item">
-        <%= link_to gallery_profile_path(profile), class: "nav-link bg-transparent #{active_if('images')}" do %>
+        <%= link_to images_path(profile), class: "nav-link bg-transparent #{active_if('images')}" do %>
           <i class="fas fa-image"></i>
         <% end %>
       </li>
