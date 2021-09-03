@@ -26,9 +26,9 @@ Profile.create!(
 Color.create!(
   :id => 1,
   :profile_id => 1,
-  :text => 2,
-  :background => 4,
-  :accent => 4
+  :text => "#622d18",
+  :background => "#b37e66",
+  :accent => "#ffc0cb"
 )
 
 FunctionSetting.create!(
@@ -81,9 +81,9 @@ Profile.create!(
 Color.create!(
   :id => 2,
   :profile_id => 2,
-  :text => 0,
-  :background => 0,
-  :accent => 0
+  :text => "#495057",
+  :background => "#ffffff",
+  :accent => "#a9a9a9"
 )
 
 FunctionSetting.create!(
@@ -169,9 +169,9 @@ Profile.create!(
 Color.create!(
   :id => 3,
   :profile_id => 3,
-  :text => 1,
-  :background => 1,
-  :accent => 2
+  :text => "#fffafa",
+  :background => "#23282F",
+  :accent => "#808080"
 )
 
 FunctionSetting.create!(

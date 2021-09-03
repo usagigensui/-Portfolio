@@ -4,7 +4,10 @@
   <%= render "profiles/header", profile: @profile %>
 
   <!--タブメニュー-->
-  <%= render "profiles/tab-menu", profile: @profile %>
+  <!--プロフィールカラーの反映-->
+<%= render "colors/style", profile: @profile %>
+
+<%= render "profiles/tab-menu", profile: @profile %>
 
   <nav>
     <ul class="nav">

@@ -13,10 +13,10 @@
 ActiveRecord::Schema.define(version: 2021_08_28_132833) do
 
   create_table "colors", force: :cascade do |t|
-    t.integer "profile_id", null: false
-    t.integer "text", default: 0
-    t.integer "background", default: 0
-    t.integer "accent", default: 0
+    t.string "profile_id", null: false
+    t.string "text", default: "#495057"
+    t.string "background", default: "#ffffff"
+    t.string "accent", default: "#a9a9a9"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

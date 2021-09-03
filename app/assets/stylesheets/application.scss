@@ -298,6 +298,46 @@ a:hover {
   }
 }
 
+    // タブメニュー
+
+.tabs-menu {
+  display: flex;
+  text-align: center;
+}
+
+.tab-item {
+  margin-bottom: -1px;
+}
+
+.tab-item > .tab-link, .tabs-menu > .tab-item {
+  flex: 1 1 auto;
+  list-style: none;
+}
+
+.tab-link {
+  margin-bottom: -1px;
+  padding: 0.5rem 1rem;
+  display: block;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  border: 1px solid transparent;
+  border-bottom: 1px solid #000000;
+}
+
+.tab-link.active {
+  border: 1px solid #000000;
+  border-bottom: 1px solid transparent;
+}
+
+.tab-link.active:hover {
+  border-bottom: 1px solid transparent;
+}
+
+.tab-link:hover {
+  border: 1px solid #000000;
+}
+
+
 // ページネーション
 .pagination {
   li {
@@ -375,342 +415,4 @@ a:hover {
 // ギャラリー一覧（編集・削除ページ）
 .list-image {
   width: 5rem;
-}
-
-// カラーテーマ設定
-
-// 文字色：ブラック
-.text_color_black {
-  color: #495057;
-}
-
-// 文字色：ホワイト
-.text_color_white {
-  color: #fffafa;
-
-   .table {
-    color: #fffafa;
-  }
-}
-
-// 文字色：セピア
-.text_color_sepia {
-  color: #622d18;
-
-   .table {
-    color: #622d18;
-  }
-}
-
-// 背景色：ホワイト
-.background_color_white {
-  background-color: #fff;
-}
-
-// 背景色：ブラック
-.background_color_black {
-  --background: #23282F;
-  --line: #808080;
-
-  background-color: var(--background);
-
-  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    border-bottom-color: var(--background);
-  }
-
-  .menu-nav {
-    background-color: var(--background);
-    box-shadow: 0 0 0 1px var(--line) inset;
-  }
-
-  .nav-tabs, .card-header, .card-footer {
-    border-bottom: 1px solid var(--line);
-  }
-
-  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    border-top-color: var(--line);
-    border-right-color: var(--line);
-    border-left-color: var(--line);
-  }
-
-  .nav-link:hover, .card {
-    border-color: var(--line);
-  }
-}
-
-// 背景色：グレー
-.background_color_gray {
-  --background: #dcdcdc;
-  --line: #c0c0c0;
-
-  background-color: var(--background);
-
-  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    border-bottom-color: var(--background);
-  }
-
-   .menu-nav {
-    background-color: var(--background);
-    box-shadow: 0 0 0 1px var(--line) inset;
-  }
-
-  .nav-tabs, .card-header, .card-footer {
-    border-bottom: 1px solid var(--line);
-  }
-
-  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    border-top-color: var(--line);
-    border-right-color: var(--line);
-    border-left-color: var(--line);
-  }
-
-  .nav-link:hover, .card {
-    border-color: var(--line);
-  }
-}
-
-// 背景色：アイボリー
-.background_color_ivory {
-  --background: #fffff0;
-  --line: #deb887;
-
-  background-color: var(--background);
-
-  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    border-bottom-color: var(--background);
-  }
-
-   .menu-nav {
-    background-color: var(--background);
-    box-shadow: 0 0 0 1px var(--line) inset;
-  }
-
-  .nav-tabs, .card-header, .card-footer {
-    border-bottom: 1px solid var(--line);
-  }
-
-  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    border-top-color: var(--line);
-    border-right-color: var(--line);
-    border-left-color: var(--line);
-  }
-
-  .nav-link:hover, .card {
-    border-color: var(--line);
-  }
-}
-
-// 背景色：ブラウン
-.background_color_brown {
-  --background: #b37e66;
-  --line: #66483a;
-
-  background-color: var(--background);
-
-  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    border-bottom-color: var(--background);
-  }
-
-   .menu-nav {
-    background-color: var(--background);
-    box-shadow: 0 0 0 1px var(--line) inset;
-  }
-
-  .nav-tabs, .card-header, .card-footer {
-    border-bottom: 1px solid var(--line);
-  }
-
-  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    border-top-color: var(--line);
-    border-right-color: var(--line);
-    border-left-color: var(--line);
-  }
-
-  .nav-link:hover, .card {
-    border-color: var(--line);
-  }
-}
-
-// アクセントカラー：ライトグレー
-.accent_color_lightgray {
-  a {
-    color: #a9a9a9;
-  }
-}
-
-// アクセントカラー：ダークグレー
-.accent_color_darkgray {
-  --link: #808080;
-  --accent: rgba(0, 0, 0, 0.3);
-
-  a, .menu-btn {
-    color: var(--link);
-  }
-
-  .menu-btn {
-    border-color: var(--link);
-  }
-
-  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    color: var(--accent);
-  }
-
-  .menu-btn, .card-header, .card-footer {
-    background-color: var(--accent);
-  }
-}
-
-// アクセントカラー：ブルー
-.accent_color_blue {
-  --link: #007bff;
-  --accent: rgba(0, 123, 225, 0.3);
-
-  a, .menu-btn {
-    color: var(--link);
-  }
-
-  .menu-btn {
-    border-color: var(--link);
-  }
-
-  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    color: var(--accent);
-  }
-
-  .menu-btn, .card-header, .card-footer {
-    background-color: var(--accent);
-  }
-}
-
-
-// アクセントカラー：レッド
-.accent_color_red {
-  --link: #dc143c;
-  --accent: rgba(220, 20, 26, 0.3);
-
-  a, .menu-btn {
-    color: var(--link);
-  }
-
-  .menu-btn {
-    border-color: var(--link);
-  }
-
-  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    color: var(--accent);
-  }
-
-  .menu-btn, .card-header, .card-footer {
-    background-color: var(--accent);
-  }
-}
-
-// アクセントカラー：ピンク
-.accent_color_pink {
-  --link: #ffc0cb;
-  --accent: rgba(255, 192, 203, 0.3);
-
-  a, .menu-btn {
-    color: var(--link);
-  }
-
-  .menu-btn {
-    border-color: var(--link);
-  }
-
-  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    color: var(--accent);
-  }
-
-  .menu-btn, .card-header, .card-footer {
-    background-color: var(--accent);
-  }
-}
-
-// アクセントカラー：スカイブルー
-.accent_color_skyblue {
-  --link: #87cefa;
-  --accent: rgba(135, 206, 250, 0.3);
-
-  a, .menu-btn {
-    color: var(--link);
-  }
-
-  .menu-btn {
-    border-color: var(--link);
-  }
-
-  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    color: var(--accent);
-  }
-
-  .menu-btn, .card-header, .card-footer {
-    background-color: var(--accent);
-  }
-}
-
-// アクセントカラー：ライトグリーン
-.accent_color_lightgreen {
-  --link: #90ee90;
-  --accent: rgba(144, 238, 144, 0.3);
-
-  a, .menu-btn {
-    color: var(--link);
-  }
-
-  .menu-btn {
-    border-color: var(--link);
-  }
-
-  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    color: var(--accent);
-  }
-
-  .menu-btn, .card-header, .card-footer {
-    background-color: var(--accent);
-  }
-}
-
-// アクセントカラー：イエロー
-.accent_color_yellow {
-  --link: #ffd700;
-  --accent: rgba(255, 215, 0, 0.3);
-
-  a, .menu-btn {
-    color: var(--link);
-  }
-
-  .menu-btn {
-    border-color: var(--link);
-  }
-
-  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    color: var(--accent);
-  }
-
-  .menu-btn, .card-header, .card-footer {
-    background-color: var(--accent);
-  }
-}
-
-// アクセントカラー：オレンジ
-.accent_color_orange {
-  --link: #ff8c00;
-  --accent: rgba(255, 140, 0, 0.3);
-
-  a, .menu-btn {
-    color: var(--link);
-  }
-
-  .menu-btn {
-    border-color: var(--link);
-  }
-
-  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    color: var(--accent);
-  }
-
-  .menu-btn, .card-header, .card-footer {
-    background-color: var(--accent);
-  }
 }

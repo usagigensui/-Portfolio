@@ -1,0 +1,66 @@
+<% content_for :style do %>
+  <style>
+
+    /*全体*/
+
+    body {
+      color: <%= profile.color.text %>;
+      background-color: <%= profile.color.background %>;
+    }
+
+    a {
+      color: <%= profile.color.accent %>;
+    }
+
+    /*テーブルの文字（メール確認画面）*/
+
+    .table {
+      color: <%= profile.color.text %>;
+    }
+
+    /*スライドメニュー*/
+
+    .menu-nav {
+      background-color: <%= profile.color.background %>;
+      box-shadow: 0 0 0 1px <%= profile.color.accent %> inset;
+    }
+
+    .menu-btn {
+      color: <%= profile.color.accent %>;
+      border-color: <%= profile.color.accent %>;
+      background-color: <%= "#{profile.color.accent}" + "4D" %>;
+    }
+
+    /*カード*/
+
+    .card {
+      border-color: <%= profile.color.accent %>;
+    }
+
+    .card-header {
+      border-bottom: 1px solid <%= profile.color.accent %>;
+    }
+
+    .card-header, .card-footer {
+      background-color: <%= "#{profile.color.accent}" + "4D" %>;
+    }
+
+    /*タブメニュー*/
+
+    .tab-link {
+    border-bottom: 1px solid <%= profile.color.accent %>;
+    }
+
+    .tab-link.active {
+    border: 1px solid <%= profile.color.accent %>;
+      border-bottom: 1px solid transparent;
+    }
+
+    .tab-link:hover {
+    border: 1px solid <%= profile.color.accent %>;
+    }
+
+
+  </style>
+
+<% end %>

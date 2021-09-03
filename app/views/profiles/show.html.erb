@@ -1,4 +1,7 @@
-<div class="profile-page <%= colortheme(@profile) %>">
+<!--プロフィールカラーの反映-->
+<%= render "colors/style", profile: @profile %>
+
+<div class="profile-page %>">
   <!--ヘッダー呼び出し-->
   <%= render "profiles/header", profile: @profile %>
 

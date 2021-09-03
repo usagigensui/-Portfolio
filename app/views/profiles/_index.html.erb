@@ -1,6 +1,6 @@
 <% profiles.each do |profile| %>
   <!--カード-->
-  <div class="card mb-3 <%= colortheme(profile) %>">
+  <div class="card mb-3" style="background: <%= profile.color.background %>;">
     <%= link_to profile_path(profile.code) do %>
     <div class="row g-0">
       <div class="col-md-3">
@@ -11,8 +11,8 @@
 
       <!--カードボディ-->
       <div class="card-body col-md-9">
-        <h5 class="card-title"><%= profile.name %></h5>
-        <p class="card-text"><%= safe_join(profile.introduction.split("\n"), tag(:br)) %></p>
+        <h5 class="card-title" style="color: <%= profile.color.accent %>;"><%= profile.name %></h5>
+        <p class="card-text" style="color: <%= profile.color.text %>;"><%= safe_join(profile.introduction.split("\n"), tag(:br)) %></p>
       </div>
 
     </div>
@@ -21,10 +21,10 @@
     <!--プロフィールオーナーがログインしている場合-->
     <% if current_user_signed_in?(profile) %>
       <!--カードフッター-->
-      <div class="card-footer nav p-0">
+      <div class="card-footer nav p-0" style="background-color: <%= "#{profile.color.accent}" + "4D" %>;">
         <!--公開設定の表示-->
         <span class="nav-link text-muted small">
-          <%= link_to status_profile_path(profile), class: "nav-link" do %>
+          <%= link_to status_profile_path(profile), class: "nav-link", style: "color: #{profile.color.text};" do %>
             <% if profile.status == "公開" %>
               <i class="fas fa-lock-open"></i> <%= profile.status %>
             <% elsif profile.status == "非公開" %>
@@ -33,11 +33,11 @@
           <% end %>
         </span>
         <!--カラーテーマ編集ページへのリンク-->
-        <%= link_to edit_colors_path(profile), class: "ml-auto nav-link" do %>
+        <%= link_to edit_colors_path(profile), class: "ml-auto nav-link", style: "color: #{profile.color.text};" do %>
           <i class="fas fa-palette"></i>
         <% end %>
         <!--メールボックスへのリンク-->
-        <%= link_to inquiries_path(profile), class: "nav-link" do %>
+        <%= link_to inquiries_path(profile), class: "nav-link", style: "color: #{profile.color.text};" do %>
           <i class="fas fa-mail-bulk"></i>
         <% end %>
       </div>

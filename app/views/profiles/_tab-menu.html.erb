@@ -2,19 +2,19 @@
 <% if tab_unnecessary?(profile.function_setting) %>
 
   <nav class="mb-3">
-    <ul class="nav nav-tabs nav-fill">
+    <ul class="tabs-menu">
 
     <!--プロフィールページ-->
-    <li class="nav-item">
-      <%= link_to profile_path, class: "nav-link bg-transparent #{active_if('profiles')}" do %>
+    <li class="tab-item">
+      <%= link_to profile_path, class: "tab-link #{active_if('profiles')}" do %>
         <i class="fas fa-paperclip"></i>
       <% end %>
     </li>
 
     <!--タイムライン-->
     <% if profile.function_setting.timeline %>
-      <li class="nav-item">
-        <%= link_to posts_path(profile), class: "nav-link bg-transparent #{active_if('posts')}" do %>
+      <li class="tab-item">
+        <%= link_to posts_path(profile), class: "tab-link #{active_if('posts')}" do %>
           <i class="far fa-clock"></i>
         <% end %>
       </li>
@@ -22,8 +22,8 @@
 
     <!--スケジュール-->
     <% if profile.function_setting.schedule %>
-      <li class="nav-item">
-        <%= link_to schedules_path(profile), class: "nav-link bg-transparent #{active_if('schedules')}" do %>
+      <li class="tab-item">
+        <%= link_to schedules_path(profile), class: "tab-link #{active_if('schedules')}" do %>
           <i class="far fa-calendar-alt"></i>
         <% end %>
       </li>
@@ -31,8 +31,8 @@
 
     <!--ギャラリー-->
     <% if profile.function_setting.gallery %>
-      <li class="nav-item">
-        <%= link_to images_path(profile), class: "nav-link bg-transparent #{active_if('images')}" do %>
+      <li class="tab-item">
+        <%= link_to images_path(profile), class: "tab-link #{active_if('images')}" do %>
           <i class="fas fa-image"></i>
         <% end %>
       </li>
@@ -40,8 +40,8 @@
 
     <!--メール-->
     <% if profile.function_setting.mail %>
-      <li class="nav-item">
-        <%= link_to new_inquiry_path(profile), class: "nav-link bg-transparent #{active_if('inquiries')}" do %>
+      <li class="tab-item">
+        <%= link_to new_inquiry_path(profile), class: "tab-link #{active_if('inquiries')}" do %>
           <i class="far fa-envelope"></i>
         <% end %>
       </li>

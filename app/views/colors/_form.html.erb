@@ -1,5 +1,7 @@
 <%= form_with model: [profile, profile.color], url: colors_path(profile.code), local:true do |f| %>
 
+  <p>複数項目で同じ色を選択すると、文字が見えなくなってしまう恐れがありますのでご注意ください。</p>
+
   <!--エラーメッセージ-->
   <%= render "layouts/error", model: f.object %>
 
