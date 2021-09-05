@@ -9,10 +9,20 @@ class ColorsController < ApplicationController
 
   # カラーテーマを編集を保存
   def update
-    if @profile.color.update(color_params)
-      flash[:notice] = 'カラーテーマを編集しました。'
+    # デフォルトカラーに戻すにチェックがあった場合
+    if params[:color][:default] == "true"
+      if @profile.color.update(text: "#495057", background: "#ffffff", accent: "#a9a9a9")
+        flash[:notice] = 'カラーテーマをデフォルトカラーに変更しました。'
+      else
+        flash[:error] = 'カラーテーマの編集に失敗しました。'
+      end
+    # デフォルトカラーに戻すにチェックがない場合
     else
-      flash[:error] = 'カラーテーマの編集に失敗しました。'
+      if @profile.color.update(color_params)
+        flash[:notice] = 'カラーテーマを編集しました。'
+      else
+        flash[:error] = 'カラーテーマの編集に失敗しました。'
+      end
     end
     redirect_to profile_path(@profile)
   end
