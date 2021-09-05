@@ -34,7 +34,7 @@
       <% @images.each do |image| %>
         <div class="wrap">
           <%= link_to Refile.attachment_url(image, :body), "data-lightbox": image.body do %>
-            <%= attachment_image_tag image, :body %>
+            <%= attachment_image_tag image, :body, fallback: "noimage.jpg" %>
           <% end %>
           <p class="title text-center">
             <%= image.title %><br>
