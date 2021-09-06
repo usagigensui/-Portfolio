@@ -69,7 +69,6 @@ a:hover {
   // top画像
   .top-image {
     width: 100%;
-    height: 25rem;
     margin: 2rem 0;
 
     h1{
@@ -207,7 +206,7 @@ a:hover {
 
 // メニューボタン
 .menu-btn {
-  padding: 0.2rem 1.5rem;
+  padding: 0.2rem .5rem;
   text-decoration: none;
   transition: 0.4s;
 }
@@ -416,3 +415,36 @@ a:hover {
 .list-image {
   width: 5rem;
 }
+
+@media (max-width:768px) {
+  body {
+    font-size: 13px;
+  }
+
+  .profile-header .profile-box {
+
+    .left .icon-wrap {
+    width: 3rem;
+    height: 3rem;
+
+      .icon {
+        width: 3rem;
+        height: 3rem;
+      }
+    }
+
+    .right {
+      .nav-link {
+        padding: 0.5rem 0.5rem;
+      }
+
+      .name {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+    .image-list {
+      column-count: 2;
+    }
+  }

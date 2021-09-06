@@ -1,6 +1,8 @@
-<div class="search-form ml-auto col-2">
-  <%= form_with url: search_profiles_path, method: :get, local: true do |f| %>
-    <%= f.text_field :keyword, value: keyword, placeholder: "\uf002 ユーザー検索", type: "search", class: "fa form-control form-control-sm" %>
-    <% f.submit %>
-  <% end %>
+<div class="row">
+  <div class="search-form form-inline pull-right mr-3 ml-auto">
+    <%= form_with url: search_profiles_path, method: :get, local: true do |f| %>
+      <%= f.text_field :keyword, value: keyword, placeholder: "\uf002 ユーザー検索", type: "search", class: "fa form-control form-control-sm" %>
+      <% f.submit %>
+    <% end %>
+  </div>
 </div>
