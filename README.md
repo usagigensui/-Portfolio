@@ -2,7 +2,7 @@
 
 ## :globe_with_meridians: App URL
 ~~http://minepage.xyz/~~
-> :exclamation: 就活終了のため現在公開停止中
+> :exclamation: 就活終了のため現在公開停止中  
 > :exclamation: ポートフォリオサイトのため、予告なくデータが削除されることがあります。
 
 
