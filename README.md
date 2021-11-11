@@ -1,7 +1,8 @@
 # MinePage
 
 ## :globe_with_meridians: App URL
-http://minepage.xyz/
+~~http://minepage.xyz/~~
+> :exclamation: 就活終了のため現在公開停止中
 > :exclamation: ポートフォリオサイトのため、予告なくデータが削除されることがあります。
 
 
@@ -30,10 +31,8 @@ http://minepage.xyz/
 ## :paperclip: ER図
 <img alt="ER図" src="https://user-images.githubusercontent.com/82370957/130993532-5c4c21b1-9b60-40bb-803b-d7c41a9d7acf.jpg">
 
-## :seedling: チャレンジ要素一覧
-https://docs.google.com/spreadsheets/d/1iBqV0anYklTokT4v9J5auW2oT1cM6sycMHXr0ZJNMik/edit?usp=sharing
-
 ## :thought_balloon: 今後実装予定
+- 文字色を白にした際に一部画面で文字が見えない不具合の修正
 - サイト説明ページ
 - レスポンシブ対応
 - スケジュールに記載した予定のメール通知
